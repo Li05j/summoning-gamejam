@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=4 format=3 uid="uid://bsrgy47skt0dq"]
+
+[ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xx2n"]
 bg_color = Color(0.261159, 0.176944, 0.0174073, 1)
@@ -6,7 +8,10 @@ bg_color = Color(0.261159, 0.176944, 0.0174073, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yop53"]
 bg_color = Color(0.284545, 0.660834, 0.727836, 1)
 
-[node name="Game" type="Node2D"]
+[node name="GameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_moilo")
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 1146.0
