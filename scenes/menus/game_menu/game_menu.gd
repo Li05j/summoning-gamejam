@@ -25,7 +25,6 @@ var bad_tower_health = TOWER_MAX;
 signal goodTowerHealthChange
 signal badTowerHealthChange
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	battlefield = $VBoxContainer/Battlefield
