@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://x7appjgs8kt8"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu/main_menu.gd" id="1_8m85a"]
-[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://addons/FlatUI4/kenneyUI.tres" id="2_5l1sd"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Theme/FlatUI4/kenneyUI.tres" id="2_5l1sd"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
