@@ -1,11 +1,19 @@
 extends Control
 var slime_scene = preload("res://scenes/troops/slime.tscn") # Preload slime scene
-
-
+	
+var battlefield
+var command_panel
+var summon_location_Vector2: Vector2;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Process is running.")
+	battlefield = $VBoxContainer/Battlefield
+	command_panel = $VBoxContainer/Command_Panel
+	var viewport_y = get_viewport_rect().size.y
+	var ground_y = command_panel.get_global_rect().size.y
+	var offset = Vector2(130, 15)
+	summon_location_Vector2 = Vector2(offset.x, viewport_y-ground_y-offset.y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -20,7 +28,7 @@ func _process(delta: float) -> void:
 func summon_slime():
 	print("Trying to summon slime.")
 	var slime_instance = slime_scene.instantiate()
-	slime_instance.position = Vector2(400, 300) # Dummy position
+	slime_instance.position = summon_location_Vector2
 	add_child(slime_instance)
 
 
