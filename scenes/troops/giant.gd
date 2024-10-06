@@ -27,6 +27,7 @@ func take_dmg(damage: int) -> void:
 		queue_free() # gracefully deletes this instance, i.e. self destruct
 
 func _physics_process(delta: float) -> void:
+	
 	if is_friendly and position.x >= enemy_turrent_x:
 		velocity.x = 0
 	elif !is_friendly and position.x <= friendly_turrent_x:
