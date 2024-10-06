@@ -203,12 +203,14 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("2_kx6yp")
 
 [node name="Bad_Tower" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
+z_index = -5
 position = Vector2(36.7593, 15.5245)
 scale = Vector2(0.0808847, 0.270059)
 sprite_frames = SubResource("SpriteFrames_6ddc5")
 frame_progress = 0.987625
 
 [node name="Good_Tower" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
+z_index = -5
 position = Vector2(3.01628, 15.3709)
 scale = Vector2(0.0812419, 0.266986)
 sprite_frames = SubResource("SpriteFrames_1c3a1")
@@ -351,7 +353,7 @@ offset_right = 1157.0
 offset_bottom = 544.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
-z_index = -9
+z_index = -14
 layout_mode = 0
 offset_right = 1154.0
 offset_bottom = 490.0

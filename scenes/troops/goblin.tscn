@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://4i5khnwcry42"]
+[gd_scene load_steps=12 format=3 uid="uid://4i5khnwcry42"]
 
 [ext_resource type="Script" path="res://scenes/troops/goblin.gd" id="1_alw66"]
-[ext_resource type="Texture2D" uid="uid://c73h6712rngmj" path="res://sprites/pinksquare.png" id="2_p88vm"]
 [ext_resource type="Texture2D" uid="uid://kfj8w5ulhml5" path="res://sprites/Troops/Knight/knight walk animation.png" id="3_ngyuo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ij2xe"]
@@ -69,13 +68,11 @@ animations = [{
 }]
 
 [node name="Goblin" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_alw66")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(19, -19)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_p88vm")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(18.75, -40.5)
+scale = Vector2(2.25, 2.21429)
 sprite_frames = SubResource("SpriteFrames_d4ikb")
-frame_progress = 0.777286
+frame_progress = 0.948174
