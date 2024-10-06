@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://x7appjgs8kt8"]
+[gd_scene load_steps=4 format=3 uid="uid://x7appjgs8kt8"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu/main_menu.gd" id="1_8m85a"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Theme/FlatUI4/kenneyUI.tres" id="2_5l1sd"]
+[ext_resource type="Texture2D" uid="uid://b2otnrmcof7o2" path="res://addons/pixel-art-cloud-background [photoutils.com] (2).png" id="3_i3xjc"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -70,6 +71,17 @@ theme = ExtResource("2_5l1sd")
 theme_type_variation = &"GraphFrameTitleLabel"
 theme_override_font_sizes/font_size = 59
 text = "*Insert Title Here*"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -7
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_i3xjc")
 
 [connection signal="pressed" from="Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="button_down" from="Buttons/Help" to="." method="_on_help_button_down"]
