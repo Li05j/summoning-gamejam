@@ -6,7 +6,7 @@ var action_timer: Timer
 var spawn_timer: Timer
 
 const MOVE_SPEED = 110 # Default speed
-const ATTACK_RANGE = 150 # Default DUMMY attack range
+const ATTACK_RANGE = 160 # Default DUMMY attack range
 const ATTACK_DMG = 15 # Default atk
 const ATTACK_SPD = 1 # Default rate of atk
 const MAX_HP = 35 # Default hp
@@ -51,23 +51,46 @@ func add_spawn_timer() -> void:
 	spawn_timer.start()
 	spawn_timer.timeout.connect(_on_spawn_animation_done)
 
-
-func set_enemy(spawn_pos: Vector2) -> void:
+func set_as_enemy(spawn_pos: Vector2) -> void:
 	is_friendly = false
 	position = spawn_pos
 	direction = -direction
 	
-func take_dmg(damage: int) -> void:
+func take_dmg(damage: int) -> bool:
 	current_hp -= damage
 	if current_hp <= 0:
-		queue_free() # gracefully deletes this instance, i.e. self destruct
+		queue_free() # Gracefully deletes this instance, i.e. self destruct
+		return true # Unit died from the attack
+	return false
+
+func find_target() -> void:
+	if is_instance_valid(current_target):
+		return
+	else:
+		current_target = null
+		
+	var container_name;
+	var container_node;
+	if is_friendly:
+		container_name = "Enemy_Troop_Container"
+	else:
+		container_name = "Friend_Troop_Container"
+	container_node = get_parent().get_parent().get_node(container_name)
+
+	for unit in container_node.get_children():
+		if abs(unit.position.x - position.x) <= ATTACK_RANGE:
+			current_target = unit
+			velocity.x = 0 # Stop moving when target is not NULL
 
 func _physics_process(delta: float) -> void:
+	find_target()
 	if is_friendly and position.x >= enemy_turrent_x:
 		is_hitting_tower = true
 		velocity.x = 0
 	elif !is_friendly and position.x <= friendly_turrent_x:
 		is_hitting_tower = true
+		velocity.x = 0
+	elif current_target:
 		velocity.x = 0
 	else:
 		if spawn_timer.is_stopped():
@@ -85,6 +108,8 @@ func _on_action_timeout() -> void:
 				get_parent().get_parent().damageBadTower(ATTACK_DMG)
 			else:
 				get_parent().get_parent().damageGoodTower(ATTACK_DMG)
+		if current_target != null and current_target.take_dmg(ATTACK_DMG):
+			current_target = null
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if slime.animation == "attack":

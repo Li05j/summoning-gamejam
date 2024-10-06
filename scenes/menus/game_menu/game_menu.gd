@@ -11,7 +11,6 @@ var giant_scene = preload("res://scenes/troops/giant.tscn")
 @onready var E_Button = $HBoxContainer/E_Button
 @onready var R_Button = $HBoxContainer/R_Button
 
-
 var tower_to_destroy = null;
 
 var battlefield;
@@ -111,17 +110,17 @@ func summon_friendly_giant():
 	
 func summon_enemy_slime():
 	var slime_instance = slime_scene.instantiate()
-	slime_instance.set_enemy(enemy_summon_location_Vector2);
+	slime_instance.set_as_enemy(enemy_summon_location_Vector2);
 	get_node("Enemy_Troop_Container").add_child(slime_instance)
 	
 func summon_enemy_goblin():
 	var goblin_instance = goblin_scene.instantiate()
-	goblin_instance.set_enemy(enemy_summon_location_Vector2);
+	goblin_instance.set_as_enemy(enemy_summon_location_Vector2);
 	get_node("Enemy_Troop_Container").add_child(goblin_instance)
 		
 func summon_enemy_giant():
 	var giant_instance = goblin_scene.instantiate()
-	giant_instance.set_enemy(enemy_summon_location_Vector2);
+	giant_instance.set_as_enemy(enemy_summon_location_Vector2);
 	get_node("Enemy_Troop_Container").add_child(giant_instance)
 	
 func r_purchase():
