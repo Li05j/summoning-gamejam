@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=35 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Theme/FlatUI4/kenneyUI.tres" id="2_i1dq0"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://b5io10hnfju2q" path="res://addons/Good_Guy_Tower.png" id="5_5iork"]
 [ext_resource type="Texture2D" uid="uid://d1apvpyhli44c" path="res://addons/free-coin-icon-794-thumb.png" id="6_xbff3"]
 [ext_resource type="Texture2D" uid="uid://b2otnrmcof7o2" path="res://addons/pixel-art-cloud-background [photoutils.com] (2).png" id="7_tkhtq"]
+[ext_resource type="Texture2D" uid="uid://cjrv4wmmm3x47" path="res://addons/health bar.png" id="8_vu1xw"]
+[ext_resource type="Texture2D" uid="uid://ce7frgooi6ehd" path="res://addons/empty health bar.png" id="9_hks1h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6oeqv"]
 atlas = ExtResource("4_ame2p")
@@ -88,8 +90,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_vjiqr")
 }],
 "loop": true,
-"name": &"default",
-"speed": 7.0
+"name": &"vibe",
+"speed": 11.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iv5eb"]
@@ -173,8 +175,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_pe5n2")
 }],
 "loop": true,
-"name": &"default",
-"speed": 7.0
+"name": &"vibe",
+"speed": 11.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
@@ -195,32 +197,35 @@ offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(28.8501, 16.2742)
-theme_override_constants/separation = -20
+theme_override_constants/separation = -31
 metadata/_edit_use_anchors_ = true
 
 [node name="Battlefield" type="Node2D" parent="VBoxContainer"]
 
 [node name="Bad_Tower" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
 z_index = -5
-position = Vector2(36.7593, 15.5245)
-scale = Vector2(0.0808847, 0.270059)
+position = Vector2(36.915, 17.0461)
+scale = Vector2(0.0808847, 0.309352)
 sprite_frames = SubResource("SpriteFrames_6ddc5")
-frame_progress = 0.987625
+animation = &"vibe"
+frame_progress = 0.70623
 
 [node name="Good_Tower" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
 z_index = -5
-position = Vector2(3.01628, 15.3709)
-scale = Vector2(0.0812419, 0.266986)
+position = Vector2(3.11957, 16.9947)
+scale = Vector2(0.0812419, 0.308617)
 sprite_frames = SubResource("SpriteFrames_1c3a1")
+animation = &"vibe"
+frame_progress = 0.0524225
 
 [node name="Command_Panel" type="Panel" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
+custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_64j8a")
 
 [node name="total_gold" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(18.5441, 1.95241)
+position = Vector2(18.522, 2.58274)
 scale = Vector2(0.00402864, 0.00584581)
 texture = ExtResource("6_xbff3")
 
@@ -231,9 +236,10 @@ offset_right = 1041.34
 offset_bottom = 167.887
 theme_override_font_sizes/font_size = 150
 text = "Gold: 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="q_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(3.18884, 8.58887)
+position = Vector2(3.2707, 4.85646)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -250,7 +256,7 @@ text = "Q Cost"
 metadata/_edit_use_anchors_ = true
 
 [node name="w_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(6.82837, 8.58887)
+position = Vector2(6.91023, 4.85646)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -267,7 +273,7 @@ text = "W Cost"
 metadata/_edit_use_anchors_ = true
 
 [node name="e_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(10.5024, 8.65039)
+position = Vector2(10.5843, 4.91798)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -284,7 +290,7 @@ text = "E Cost"
 metadata/_edit_use_anchors_ = true
 
 [node name="r_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(14.1421, 8.65039)
+position = Vector2(14.224, 4.91798)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -349,28 +355,29 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "R"
 
-[node name="P1 Health" type="ProgressBar" parent="."]
-layout_mode = 0
-offset_top = 488.0
-offset_right = 479.0
-offset_bottom = 544.0
-
-[node name="P2 Health" type="ProgressBar" parent="."]
-layout_mode = 0
-offset_left = 678.0
-offset_top = 488.0
-offset_right = 1157.0
-offset_bottom = 544.0
-
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -14
 layout_mode = 0
 offset_right = 1154.0
-offset_bottom = 490.0
+offset_bottom = 553.0
 texture = ExtResource("7_tkhtq")
 
-[node name="Enemy_AI_React_Time" type="Timer" parent="."]
-autostart = true
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 449.0
+offset_bottom = 68.0
+nine_patch_stretch = true
+texture_under = ExtResource("8_vu1xw")
+texture_over = ExtResource("9_hks1h")
+
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
+offset_left = 706.0
+offset_top = -1.0
+offset_right = 1155.0
+offset_bottom = 67.0
+nine_patch_stretch = true
+texture_under = ExtResource("8_vu1xw")
+texture_over = ExtResource("9_hks1h")
 
 [connection signal="timeout" from="VBoxContainer/Command_Panel/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="HBoxContainer/Q_Button" to="." method="_on_q_pressed"]

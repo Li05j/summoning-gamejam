@@ -2,14 +2,14 @@ extends Control
 var slime_scene = preload("res://scenes/troops/slime.tscn") # Preload slime scene
 var goblin_scene = preload("res://scenes/troops/goblin.tscn")
 var giant_scene = preload("res://scenes/troops/giant.tscn")
-	
+
 var battlefield;
 var command_panel;
 
 var friendly_summon_location_Vector2: Vector2;
 var enemy_summon_location_Vector2: Vector2;
 
-var player_current_gold = 0;
+var player_current_gold = 10000;
 var q_cost = 50;
 var w_cost = 30;
 var e_cost = 200;
@@ -22,7 +22,8 @@ func _ready() -> void:
 	
 	var viewport_y = get_viewport_rect().size.y
 	var ground_y = command_panel.get_global_rect().size.y
-	var offset = Vector2(130, 1) # Offset so the units don't look like they are kissing the floor
+
+	var offset = Vector2(130, -5) # Offset so the units don't look like they are kissing the floor
 	friendly_summon_location_Vector2 = Vector2(offset.x, viewport_y-ground_y-offset.y) # Determining summoning position
 	enemy_summon_location_Vector2 = Vector2(975, viewport_y-ground_y-offset.y) # 975 is default enemy spawn point too lazy to make it a global const whatever
 	

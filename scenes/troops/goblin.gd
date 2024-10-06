@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var goblin = $AnimatedSprite2D
+
 const MOVE_SPEED = 180 # Default speed
 const ATTACK_RANGE = 5 # Default DUMMY attack range
 const ATTACK_DMG = 5 # Default atk
@@ -26,11 +28,14 @@ func take_dmg(damage: int) -> void:
 	if current_hp <= 0:
 		queue_free() # gracefully deletes this instance, i.e. self destruct
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:	
 	if is_friendly and position.x >= enemy_turrent_x:
+		goblin.play("attack")
 		velocity.x = 0
 	elif !is_friendly and position.x <= friendly_turrent_x:
+		goblin.play("attack")
 		velocity.x = 0
 	else:
 		velocity.x = direction * MOVE_SPEED
+		goblin.play("walk")
 	move_and_slide()

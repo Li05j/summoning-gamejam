@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var giant = $AnimatedSprite2D
+
 const MOVE_SPEED = 75 # Default speed
 const ATTACK_RANGE = 10 # Default DUMMY attack range
 const ATTACK_DMG = 35 # Default atk
@@ -26,12 +28,14 @@ func take_dmg(damage: int) -> void:
 	if current_hp <= 0:
 		queue_free() # gracefully deletes this instance, i.e. self destruct
 
-func _physics_process(delta: float) -> void:
-	
+func _physics_process(delta: float) -> void:	
 	if is_friendly and position.x >= enemy_turrent_x:
+		giant.play("attack")
 		velocity.x = 0
 	elif !is_friendly and position.x <= friendly_turrent_x:
+		giant.play("attack")
 		velocity.x = 0
 	else:
 		velocity.x = direction * MOVE_SPEED
+		giant.play("walk")
 	move_and_slide()
