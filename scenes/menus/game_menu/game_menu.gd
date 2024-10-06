@@ -28,9 +28,6 @@ func _process(delta: float) -> void:
 		_on_w_pressed()
 	if Input.is_action_just_pressed("Summon_3"): 
 		_on_e_pressed()
-	
-	player_current_gold += 1
-	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
 
 func summon_slime():
 	var slime_instance = slime_scene.instantiate()
@@ -58,3 +55,7 @@ func _on_w_pressed() -> void:
 func _on_e_pressed() -> void:
 	summon_giant()
 	print("Summoned Giant with E")
+
+func _on_timer_timeout() -> void:
+	player_current_gold += 1
+	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)

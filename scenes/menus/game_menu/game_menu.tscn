@@ -292,6 +292,10 @@ text = "*R price*
 "
 metadata/_edit_use_anchors_ = true
 
+[node name="Timer" type="Timer" parent="VBoxContainer/Command_Panel"]
+wait_time = 0.25
+autostart = true
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 24.0
@@ -357,6 +361,7 @@ offset_right = 1158.0
 offset_bottom = 490.0
 texture = ExtResource("7_tkhtq")
 
+[connection signal="timeout" from="VBoxContainer/Command_Panel/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="HBoxContainer/Q_Button" to="." method="_on_q_pressed"]
 [connection signal="pressed" from="HBoxContainer/W_Button" to="." method="_on_w_pressed"]
 [connection signal="pressed" from="HBoxContainer/E_Button" to="." method="_on_e_pressed"]
