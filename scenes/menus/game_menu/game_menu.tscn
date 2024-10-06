@@ -3,6 +3,17 @@
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xx2n"]
+bg_color = Color(0.868427, 0.508358, 0.558385, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oh4jt"]
+bg_color = Color(0.881653, 0.527233, 0.310807, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6i3fa"]
+bg_color = Color(0.942858, 0.478426, 0.296759, 1)
+
+[ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xx2n"]
 bg_color = Color(0.261159, 0.176944, 0.0174073, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yop53"]
@@ -13,30 +24,35 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_moilo")
 
-[node name="Panel" type="Panel" parent="."]
-offset_right = 1146.0
-offset_bottom = 644.0
+[node name="Main" type="Panel" parent="."]
+z_index = -6
+offset_top = 3.0
+offset_right = 1153.0
+offset_bottom = 647.0
+size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_6xx2n")
 
-[node name="Panel" type="Panel" parent="Panel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -191.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yop53")
+[node name="Top Bar" type="Panel" parent="."]
+z_index = -6
+offset_top = 3.0
+offset_right = 1153.0
+offset_bottom = 80.0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oh4jt")
 
-[node name="Panel2" type="Panel" parent="Panel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -644.0
-offset_bottom = -574.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yop53")
+[node name="Button Bar" type="Panel" parent="."]
+z_index = 2
+offset_top = 509.0
+offset_right = 1153.0
+offset_bottom = 647.0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6i3fa")
+
+[node name="Button Bar2" type="Panel" parent="."]
+z_index = 2
+offset_top = 509.0
+offset_right = 1153.0
+offset_bottom = 647.0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6i3fa")
+
