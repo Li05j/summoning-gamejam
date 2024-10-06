@@ -3,6 +3,9 @@ var slime_scene = preload("res://scenes/troops/slime.tscn") # Preload slime scen
 var goblin_scene = preload("res://scenes/troops/goblin.tscn")
 var giant_scene = preload("res://scenes/troops/giant.tscn")
 
+@onready var good_tower = $VBoxContainer/Battlefield/Good_Tower
+@onready var bad_tower = $VBoxContainer/Battlefield/Bad_Tower
+
 var battlefield;
 var command_panel;
 
@@ -19,6 +22,9 @@ var r_cost = 100;
 func _ready() -> void:
 	battlefield = $VBoxContainer/Battlefield
 	command_panel = $VBoxContainer/Command_Panel
+	
+	good_tower.play("vibe")
+	bad_tower.play("vibe")
 	
 	var viewport_y = get_viewport_rect().size.y
 	var ground_y = command_panel.get_global_rect().size.y
@@ -39,6 +45,7 @@ func _process(delta: float) -> void:
 		_on_e_pressed()
 	if Input.is_action_just_pressed("Discount"): 
 		_on_r_pressed()
+		
 
 func summon_slime():
 	player_current_gold -= q_cost
