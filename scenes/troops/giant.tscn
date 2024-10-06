@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvaiy58cn1gbg"]
+
+[ext_resource type="Script" path="res://scenes/troops/giant.gd" id="1_pht17"]
+[ext_resource type="Texture2D" uid="uid://dxviqno3vpwlo" path="res://sprites/yellowsquare.png" id="2_b8exh"]
+
+[node name="Giant" type="CharacterBody2D"]
+script = ExtResource("1_pht17")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_b8exh")

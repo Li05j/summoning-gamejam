@@ -1,5 +1,7 @@
 extends Control
 var slime_scene = preload("res://scenes/troops/slime.tscn") # Preload slime scene
+var goblin_scene = preload("res://scenes/troops/goblin.tscn")
+var giant_scene = preload("res://scenes/troops/giant.tscn")
 	
 var battlefield;
 var command_panel;
@@ -31,19 +33,28 @@ func _process(delta: float) -> void:
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
 
 func summon_slime():
-	print("Trying to summon slime.")
 	var slime_instance = slime_scene.instantiate()
 	slime_instance.position = summon_location_Vector2
 	add_child(slime_instance)
+	
+func summon_goblin():
+	var goblin_instance = goblin_scene.instantiate()
+	goblin_instance.position = summon_location_Vector2
+	add_child(goblin_instance)
+
+func summon_giant():
+	var giant_instance = giant_scene.instantiate()
+	giant_instance.position = summon_location_Vector2
+	add_child(giant_instance)
 
 func _on_q_pressed() -> void:
 	summon_slime()
 	print("Summoned Slime with Q")
 
 func _on_w_pressed() -> void:
-	summon_slime()
-	print("Summoned Slime with W")
+	summon_goblin()
+	print("Summoned Goblin with W")
 
 func _on_e_pressed() -> void:
-	summon_slime()
-	print("Summoned Slime with E")
+	summon_giant()
+	print("Summoned Giant with E")
