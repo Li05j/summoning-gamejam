@@ -1,0 +1,171 @@
+[gd_scene load_steps=24 format=3 uid="uid://4i5khnwcry42"]
+
+[ext_resource type="Script" path="res://scenes/troops/goblin.gd" id="1_alw66"]
+[ext_resource type="Texture2D" uid="uid://b8j6y18i3j472" path="res://sprites/Troops/Knight/knight 3 improved slash animation.png" id="2_l1a88"]
+[ext_resource type="Texture2D" uid="uid://kfj8w5ulhml5" path="res://sprites/Troops/Knight/knight walk animation.png" id="3_ngyuo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aierh"]
+atlas = ExtResource("2_l1a88")
+region = Rect2(0, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbdme"]
+atlas = ExtResource("2_l1a88")
+region = Rect2(80, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ouow"]
+atlas = ExtResource("2_l1a88")
+region = Rect2(160, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhdot"]
+atlas = ExtResource("2_l1a88")
+region = Rect2(240, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oafha"]
+atlas = ExtResource("2_l1a88")
+region = Rect2(320, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk1mc"]
+atlas = ExtResource("2_l1a88")
+region = Rect2(400, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av6o0"]
+atlas = ExtResource("2_l1a88")
+region = Rect2(480, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1gxu"]
+atlas = ExtResource("2_l1a88")
+region = Rect2(560, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgpbr"]
+atlas = ExtResource("2_l1a88")
+region = Rect2(640, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_404r3"]
+atlas = ExtResource("2_l1a88")
+region = Rect2(720, 40, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij2xe"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4n3m"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaqqc"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghkt5"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kauof"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(168, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iunk4"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(210, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2875w"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(252, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6m3m"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(294, 0, 42, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d4ikb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aierh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbdme")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ouow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhdot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oafha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk1mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av6o0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1gxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgpbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_404r3")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij2xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4n3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaqqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghkt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kauof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iunk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2875w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6m3m")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_8mvcm"]
+script/source = "extends AnimatedSprite2D
+
+#@onready var goblin = $AnimatedSprite2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	#goblin.play(\"walk\")
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Goblin" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_alw66")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(47, -40)
+scale = Vector2(2.25, 2.21429)
+sprite_frames = SubResource("SpriteFrames_d4ikb")
+animation = &"walk"
+frame_progress = 0.811442
+script = SubResource("GDScript_8mvcm")

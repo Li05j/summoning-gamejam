@@ -19,6 +19,10 @@ var current_hp = MAX_HP
 var is_friendly = true # Default friendly
 var direction = 1 # Default moving right
 
+func _ready() -> void:
+	if not is_friendly:
+		slime.flip_h = true
+
 func set_enemy(spawn_pos: Vector2) -> void:
 	is_friendly = false
 	position = spawn_pos

@@ -18,6 +18,10 @@ var current_hp = MAX_HP
 var is_friendly = true # Default friendly
 var direction = 1 # Default moving right
 
+func _ready() -> void:
+	if not is_friendly:
+		goblin.flip_h = true
+
 func set_enemy(spawn_pos: Vector2) -> void:
 	is_friendly = false
 	position = spawn_pos
@@ -29,6 +33,7 @@ func take_dmg(damage: int) -> void:
 		queue_free() # gracefully deletes this instance, i.e. self destruct
 
 func _physics_process(delta: float) -> void:	
+
 	if is_friendly and position.x >= enemy_turrent_x:
 		goblin.play("attack")
 		velocity.x = 0
