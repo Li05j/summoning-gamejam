@@ -1,0 +1,549 @@
+[gd_scene load_steps=38 format=3 uid="uid://bp23o08oetah0"]
+
+[ext_resource type="Script" path="res://scenes/menus/victory_scene.gd" id="1_eskgp"]
+[ext_resource type="FontFile" uid="uid://cf7g0o2rn05hx" path="res://addons/FlatUI4/kenvector_future.ttf" id="1_pmoh4"]
+[ext_resource type="FontFile" uid="uid://b0mws8gku83oo" path="res://Theme/FlatUI4/kenvector_future.ttf" id="2_13mkr"]
+[ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://Theme/FlatUI4/UIpack_vector.svg" id="3_3nnln"]
+
+[sub_resource type="FontFile" id="FontFile_td3mp"]
+fallbacks = Array[Font]([ExtResource("2_13mkr")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/59/0/ascent = 0.0
+cache/0/59/0/descent = 0.0
+cache/0/59/0/underline_position = 0.0
+cache/0/59/0/underline_thickness = 0.0
+cache/0/59/0/scale = 1.0
+cache/0/80/0/ascent = 0.0
+cache/0/80/0/descent = 0.0
+cache/0/80/0/underline_position = 0.0
+cache/0/80/0/underline_thickness = 0.0
+cache/0/80/0/scale = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hxqd7"]
+texture = ExtResource("3_3nnln")
+texture_margin_left = 12.5436
+texture_margin_top = 10.0349
+texture_margin_right = 8.78053
+texture_margin_bottom = 14.2161
+region_rect = Rect2(211, 0, 190, 49)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rej3h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fecjw"]
+texture = ExtResource("3_3nnln")
+texture_margin_left = 12.5436
+texture_margin_top = 10.0349
+texture_margin_right = 8.78053
+texture_margin_bottom = 14.2161
+region_rect = Rect2(1, 0, 190, 49)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l1a8w"]
+texture = ExtResource("3_3nnln")
+texture_margin_left = 12.5436
+texture_margin_top = 10.0349
+texture_margin_right = 8.78053
+texture_margin_bottom = 14.2161
+region_rect = Rect2(211, 0, 190, 49)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lrj4d"]
+texture = ExtResource("3_3nnln")
+texture_margin_left = 12.5436
+texture_margin_top = 10.0349
+texture_margin_right = 8.78053
+texture_margin_bottom = 14.2161
+region_rect = Rect2(421, 4, 190, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4ggs"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(250, 544, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hv2e"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(251, 440, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcgsj"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(1, 440, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8tj8"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(0, 544, 36, 36)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jevsx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6vsyo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbxib"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7yv57"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sddd2"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(250, 544, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74lvh"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(250, 644, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erc24"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(872, 444, 28, 42)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3f2my"]
+texture = ExtResource("3_3nnln")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
+region_rect = Rect2(840, 316, 192, 6)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyjwf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ddbyi"]
+texture = ExtResource("3_3nnln")
+texture_margin_left = 17.1475
+texture_margin_top = 12.0032
+texture_margin_right = 13.718
+texture_margin_bottom = 9.43112
+region_rect = Rect2(629, 317, 194, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwkc6"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(812, 458, 28, 10)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ax412"]
+texture = ExtResource("3_3nnln")
+texture_margin_left = 12.3202
+texture_margin_top = 13.3469
+texture_margin_right = 13.3469
+texture_margin_bottom = 11.2935
+region_rect = Rect2(1, 310, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi7t8"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(250, 544, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb41t"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(251, 440, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ci41"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(1, 440, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jimx0"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(0, 544, 36, 36)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c2h5s"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+texture = ExtResource("3_3nnln")
+texture_margin_left = 7.94429
+texture_margin_top = 9.53314
+texture_margin_right = 8.73872
+texture_margin_bottom = 13.9025
+region_rect = Rect2(321, 440, 49, 49)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3sesa"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("3_3nnln")
+texture_margin_left = 7.94429
+texture_margin_top = 9.53314
+texture_margin_right = 8.73872
+texture_margin_bottom = 13.9025
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+region_rect = Rect2(321, 440, 49, 49)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j1upg"]
+content_margin_left = 12.0
+content_margin_top = 10.0
+texture = ExtResource("3_3nnln")
+texture_margin_left = 10.8072
+texture_margin_top = 28.4299
+texture_margin_right = 9.71325
+texture_margin_bottom = 14.7561
+axis_stretch_vertical = 1
+region_rect = Rect2(1, 310, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42r7q"]
+atlas = ExtResource("3_3nnln")
+region = Rect2(1007, 450, 39, 31)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cbq5w"]
+texture = ExtResource("3_3nnln")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(1051, 317, 4, 100)
+
+[sub_resource type="Theme" id="Theme_hil2p"]
+default_font = SubResource("FontFile_td3mp")
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+Button/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+Button/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
+Button/constants/h_separation = 2
+Button/fonts/font = SubResource("FontFile_td3mp")
+Button/styles/disabled = SubResource("StyleBoxTexture_hxqd7")
+Button/styles/focus = SubResource("StyleBoxEmpty_rej3h")
+Button/styles/hover = SubResource("StyleBoxTexture_fecjw")
+Button/styles/normal = SubResource("StyleBoxTexture_l1a8w")
+Button/styles/pressed = SubResource("StyleBoxTexture_lrj4d")
+CheckBox/colors/font_color = Color(0, 0, 0, 1)
+CheckBox/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+CheckBox/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+CheckBox/colors/font_hover_color_pressed = Color(0.34902, 0.34902, 0.34902, 1)
+CheckBox/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
+CheckBox/constants/check_v_offset = 0
+CheckBox/constants/h_separation = 4
+CheckBox/fonts/font = SubResource("FontFile_td3mp")
+CheckBox/icons/checked = SubResource("AtlasTexture_l4ggs")
+CheckBox/icons/radio_checked = SubResource("AtlasTexture_1hv2e")
+CheckBox/icons/radio_unchecked = SubResource("AtlasTexture_bcgsj")
+CheckBox/icons/unchecked = SubResource("AtlasTexture_c8tj8")
+CheckBox/styles/disabled = null
+CheckBox/styles/focus = null
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_jevsx")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_6vsyo")
+CheckBox/styles/normal = SubResource("StyleBoxEmpty_tbxib")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_7yv57")
+CheckButton/colors/font_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+CheckButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+CheckButton/colors/font_hover_color_pressed = Color(0.388235, 0.388235, 0.388235, 1)
+CheckButton/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
+CheckButton/constants/check_v_offset = 0
+CheckButton/constants/h_separation = 4
+CheckButton/fonts/font = SubResource("FontFile_td3mp")
+CheckButton/icons/checked = SubResource("AtlasTexture_sddd2")
+CheckButton/icons/checked_disabled = SubResource("AtlasTexture_sddd2")
+CheckButton/icons/unchecked = SubResource("AtlasTexture_74lvh")
+CheckButton/icons/unchecked_disabled = SubResource("AtlasTexture_74lvh")
+CheckButton/styles/disabled = null
+CheckButton/styles/focus = null
+CheckButton/styles/hover = null
+CheckButton/styles/hover_pressed = null
+CheckButton/styles/normal = null
+CheckButton/styles/pressed = null
+HSlider/icons/grabber = SubResource("AtlasTexture_erc24")
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_erc24")
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_3f2my")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_3f2my")
+HSlider/styles/slider = SubResource("StyleBoxTexture_3f2my")
+LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
+LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
+LineEdit/colors/cursor_color = Color(0.34902, 0.34902, 0.34902, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color_uneditable = Color(0.88, 0.88, 0.88, 0.5)
+LineEdit/colors/font_selected_color = Color(0.894118, 0.894118, 0.894118, 1)
+LineEdit/colors/selection_color = Color(0.34902, 0.34902, 0.34902, 1)
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = SubResource("FontFile_td3mp")
+LineEdit/icons/clear = null
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_lyjwf")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_ddbyi")
+LineEdit/styles/read_only = SubResource("StyleBoxTexture_ddbyi")
+OptionButton/colors/font_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+OptionButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+OptionButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+OptionButton/constants/arrow_margin = 2
+OptionButton/constants/h_separation = 2
+OptionButton/fonts/font = SubResource("FontFile_td3mp")
+OptionButton/icons/arrow = SubResource("AtlasTexture_cwkc6")
+OptionButton/styles/disabled = null
+OptionButton/styles/focus = null
+OptionButton/styles/hover = null
+OptionButton/styles/normal = null
+OptionButton/styles/pressed = null
+Panel/styles/panel = SubResource("StyleBoxTexture_ax412")
+PopupMenu/colors/font_color = Color(0, 0, 0, 1)
+PopupMenu/colors/font_color_accel = Color(0.701961, 0.701961, 0.701961, 0.8)
+PopupMenu/colors/font_disabled_color = Color(0.4, 0.4, 0.4, 0.8)
+PopupMenu/colors/font_hover_color = Color(0.388235, 0.388235, 0.388235, 1)
+PopupMenu/constants/h_separation = 4
+PopupMenu/constants/vseparation = 32
+PopupMenu/fonts/font = SubResource("FontFile_td3mp")
+PopupMenu/icons/checked = SubResource("AtlasTexture_gi7t8")
+PopupMenu/icons/radio_checked = SubResource("AtlasTexture_rb41t")
+PopupMenu/icons/radio_unchecked = SubResource("AtlasTexture_3ci41")
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = SubResource("AtlasTexture_jimx0")
+PopupMenu/styles/hover = SubResource("StyleBoxTexture_c2h5s")
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = SubResource("StyleBoxTexture_3sesa")
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+TextEdit/colors/background_color = Color(0, 0, 0, 0)
+TextEdit/colors/bookmark_color = Color(0.08, 0.49, 0.98, 1)
+TextEdit/colors/brace_mismatch_color = Color(1, 0.2, 0.2, 1)
+TextEdit/colors/breakpoint_color = Color(0.8, 0.8, 0.4, 0.2)
+TextEdit/colors/caret_background_color = Color(0, 0, 0, 1)
+TextEdit/colors/caret_color = Color(0.88, 0.88, 0.88, 1)
+TextEdit/colors/code_folding_color = Color(0.8, 0.8, 0.8, 0.8)
+TextEdit/colors/completion_background_color = Color(0.17, 0.16, 0.2, 1)
+TextEdit/colors/completion_existing_color = Color(0.87, 0.87, 0.87, 0.13)
+TextEdit/colors/completion_font_color = Color(0.67, 0.67, 0.67, 1)
+TextEdit/colors/completion_scroll_color = Color(1, 1, 1, 1)
+TextEdit/colors/completion_selected_color = Color(0.26, 0.26, 0.27, 1)
+TextEdit/colors/current_line_color = Color(0.25, 0.25, 0.26, 0.8)
+TextEdit/colors/executing_line_color = Color(0.2, 0.8, 0.2, 0.4)
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_color_readonly = Color(0.88, 0.88, 0.88, 0.5)
+TextEdit/colors/font_selected_color = Color(0.34902, 0.34902, 0.34902, 1)
+TextEdit/colors/function_color = Color(0.4, 0.64, 0.81, 1)
+TextEdit/colors/line_number_color = Color(0.67, 0.67, 0.67, 0.4)
+TextEdit/colors/mark_color = Color(1, 0.4, 0.4, 0.4)
+TextEdit/colors/member_variable_color = Color(0.9, 0.31, 0.35, 1)
+TextEdit/colors/number_color = Color(0.92, 0.58, 0.2, 1)
+TextEdit/colors/safe_line_number_color = Color(0.67, 0.78, 0.67, 0.6)
+TextEdit/colors/selection_color = Color(0.49, 0.49, 0.49, 1)
+TextEdit/colors/symbol_color = Color(0.94, 0.94, 0.94, 1)
+TextEdit/colors/word_highlighted_color = Color(0.8, 0.9, 0.9, 0.15)
+TextEdit/constants/completion_lines = 7
+TextEdit/constants/completion_max_width = 50
+TextEdit/constants/completion_scroll_width = 3
+TextEdit/constants/line_spacing = 4
+TextEdit/fonts/font = SubResource("FontFile_td3mp")
+TextEdit/icons/fold = null
+TextEdit/icons/folded = null
+TextEdit/icons/space = null
+TextEdit/icons/tab = null
+TextEdit/styles/completion = null
+TextEdit/styles/focus = null
+TextEdit/styles/normal = SubResource("StyleBoxTexture_j1upg")
+TextEdit/styles/read_only = null
+VSlider/icons/grabber = SubResource("AtlasTexture_42r7q")
+VSlider/icons/grabber_disabled = SubResource("AtlasTexture_42r7q")
+VSlider/icons/grabber_highlight = SubResource("AtlasTexture_42r7q")
+VSlider/icons/tick = null
+VSlider/styles/grabber_area = SubResource("StyleBoxTexture_cbq5w")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_cbq5w")
+VSlider/styles/slider = SubResource("StyleBoxTexture_cbq5w")
+
+[sub_resource type="Theme" id="Theme_2ifod"]
+default_font = SubResource("FontFile_td3mp")
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+Button/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+Button/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
+Button/constants/h_separation = 2
+Button/fonts/font = SubResource("FontFile_td3mp")
+Button/styles/disabled = SubResource("StyleBoxTexture_hxqd7")
+Button/styles/focus = SubResource("StyleBoxEmpty_rej3h")
+Button/styles/hover = SubResource("StyleBoxTexture_fecjw")
+Button/styles/normal = SubResource("StyleBoxTexture_l1a8w")
+Button/styles/pressed = SubResource("StyleBoxTexture_lrj4d")
+CheckBox/colors/font_color = Color(0, 0, 0, 1)
+CheckBox/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+CheckBox/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+CheckBox/colors/font_hover_color_pressed = Color(0.34902, 0.34902, 0.34902, 1)
+CheckBox/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
+CheckBox/constants/check_v_offset = 0
+CheckBox/constants/h_separation = 4
+CheckBox/fonts/font = SubResource("FontFile_td3mp")
+CheckBox/icons/checked = SubResource("AtlasTexture_l4ggs")
+CheckBox/icons/radio_checked = SubResource("AtlasTexture_1hv2e")
+CheckBox/icons/radio_unchecked = SubResource("AtlasTexture_bcgsj")
+CheckBox/icons/unchecked = SubResource("AtlasTexture_c8tj8")
+CheckBox/styles/disabled = null
+CheckBox/styles/focus = null
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_jevsx")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_6vsyo")
+CheckBox/styles/normal = SubResource("StyleBoxEmpty_tbxib")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_7yv57")
+CheckButton/colors/font_color = Color(0, 0, 0, 1)
+CheckButton/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+CheckButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+CheckButton/colors/font_hover_color_pressed = Color(0.388235, 0.388235, 0.388235, 1)
+CheckButton/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
+CheckButton/constants/check_v_offset = 0
+CheckButton/constants/h_separation = 4
+CheckButton/fonts/font = SubResource("FontFile_td3mp")
+CheckButton/icons/checked = SubResource("AtlasTexture_sddd2")
+CheckButton/icons/checked_disabled = SubResource("AtlasTexture_sddd2")
+CheckButton/icons/unchecked = SubResource("AtlasTexture_74lvh")
+CheckButton/icons/unchecked_disabled = SubResource("AtlasTexture_74lvh")
+CheckButton/styles/disabled = null
+CheckButton/styles/focus = null
+CheckButton/styles/hover = null
+CheckButton/styles/hover_pressed = null
+CheckButton/styles/normal = null
+CheckButton/styles/pressed = null
+HSlider/icons/grabber = SubResource("AtlasTexture_erc24")
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_erc24")
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_3f2my")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_3f2my")
+HSlider/styles/slider = SubResource("StyleBoxTexture_3f2my")
+LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
+LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
+LineEdit/colors/cursor_color = Color(0.34902, 0.34902, 0.34902, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color_uneditable = Color(0.88, 0.88, 0.88, 0.5)
+LineEdit/colors/font_selected_color = Color(0.894118, 0.894118, 0.894118, 1)
+LineEdit/colors/selection_color = Color(0.34902, 0.34902, 0.34902, 1)
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = SubResource("FontFile_td3mp")
+LineEdit/icons/clear = null
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_lyjwf")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_ddbyi")
+LineEdit/styles/read_only = SubResource("StyleBoxTexture_ddbyi")
+OptionButton/colors/font_color = Color(0, 0, 0, 1)
+OptionButton/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
+OptionButton/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
+OptionButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+OptionButton/constants/arrow_margin = 2
+OptionButton/constants/h_separation = 2
+OptionButton/fonts/font = SubResource("FontFile_td3mp")
+OptionButton/icons/arrow = SubResource("AtlasTexture_cwkc6")
+OptionButton/styles/disabled = null
+OptionButton/styles/focus = null
+OptionButton/styles/hover = null
+OptionButton/styles/normal = null
+OptionButton/styles/pressed = null
+Panel/styles/panel = SubResource("StyleBoxTexture_ax412")
+PopupMenu/colors/font_color = Color(0, 0, 0, 1)
+PopupMenu/colors/font_color_accel = Color(0.701961, 0.701961, 0.701961, 0.8)
+PopupMenu/colors/font_disabled_color = Color(0.4, 0.4, 0.4, 0.8)
+PopupMenu/colors/font_hover_color = Color(0.388235, 0.388235, 0.388235, 1)
+PopupMenu/constants/h_separation = 4
+PopupMenu/constants/vseparation = 32
+PopupMenu/fonts/font = SubResource("FontFile_td3mp")
+PopupMenu/icons/checked = SubResource("AtlasTexture_gi7t8")
+PopupMenu/icons/radio_checked = SubResource("AtlasTexture_rb41t")
+PopupMenu/icons/radio_unchecked = SubResource("AtlasTexture_3ci41")
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = SubResource("AtlasTexture_jimx0")
+PopupMenu/styles/hover = SubResource("StyleBoxTexture_c2h5s")
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = SubResource("StyleBoxTexture_3sesa")
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+TextEdit/colors/background_color = Color(0, 0, 0, 0)
+TextEdit/colors/bookmark_color = Color(0.08, 0.49, 0.98, 1)
+TextEdit/colors/brace_mismatch_color = Color(1, 0.2, 0.2, 1)
+TextEdit/colors/breakpoint_color = Color(0.8, 0.8, 0.4, 0.2)
+TextEdit/colors/caret_background_color = Color(0, 0, 0, 1)
+TextEdit/colors/caret_color = Color(0.88, 0.88, 0.88, 1)
+TextEdit/colors/code_folding_color = Color(0.8, 0.8, 0.8, 0.8)
+TextEdit/colors/completion_background_color = Color(0.17, 0.16, 0.2, 1)
+TextEdit/colors/completion_existing_color = Color(0.87, 0.87, 0.87, 0.13)
+TextEdit/colors/completion_font_color = Color(0.67, 0.67, 0.67, 1)
+TextEdit/colors/completion_scroll_color = Color(1, 1, 1, 1)
+TextEdit/colors/completion_selected_color = Color(0.26, 0.26, 0.27, 1)
+TextEdit/colors/current_line_color = Color(0.25, 0.25, 0.26, 0.8)
+TextEdit/colors/executing_line_color = Color(0.2, 0.8, 0.2, 0.4)
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_color_readonly = Color(0.88, 0.88, 0.88, 0.5)
+TextEdit/colors/font_selected_color = Color(0.34902, 0.34902, 0.34902, 1)
+TextEdit/colors/function_color = Color(0.4, 0.64, 0.81, 1)
+TextEdit/colors/line_number_color = Color(0.67, 0.67, 0.67, 0.4)
+TextEdit/colors/mark_color = Color(1, 0.4, 0.4, 0.4)
+TextEdit/colors/member_variable_color = Color(0.9, 0.31, 0.35, 1)
+TextEdit/colors/number_color = Color(0.92, 0.58, 0.2, 1)
+TextEdit/colors/safe_line_number_color = Color(0.67, 0.78, 0.67, 0.6)
+TextEdit/colors/selection_color = Color(0.49, 0.49, 0.49, 1)
+TextEdit/colors/symbol_color = Color(0.94, 0.94, 0.94, 1)
+TextEdit/colors/word_highlighted_color = Color(0.8, 0.9, 0.9, 0.15)
+TextEdit/constants/completion_lines = 7
+TextEdit/constants/completion_max_width = 50
+TextEdit/constants/completion_scroll_width = 3
+TextEdit/constants/line_spacing = 4
+TextEdit/fonts/font = SubResource("FontFile_td3mp")
+TextEdit/icons/fold = null
+TextEdit/icons/folded = null
+TextEdit/icons/space = null
+TextEdit/icons/tab = null
+TextEdit/styles/completion = null
+TextEdit/styles/focus = null
+TextEdit/styles/normal = SubResource("StyleBoxTexture_j1upg")
+TextEdit/styles/read_only = null
+VSlider/icons/grabber = SubResource("AtlasTexture_42r7q")
+VSlider/icons/grabber_disabled = SubResource("AtlasTexture_42r7q")
+VSlider/icons/grabber_highlight = SubResource("AtlasTexture_42r7q")
+VSlider/icons/tick = null
+VSlider/styles/grabber_area = SubResource("StyleBoxTexture_cbq5w")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_cbq5w")
+VSlider/styles/slider = SubResource("StyleBoxTexture_cbq5w")
+
+[node name="Victory Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eskgp")
+
+[node name="Congrats" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -226.0
+offset_top = -209.0
+offset_right = 220.0
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_pmoh4")
+theme_override_font_sizes/font_size = 80
+text = "You Win!"
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -37.0
+offset_right = 169.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="New Game" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_hil2p")
+text = "New Game"
+
+[node name="Exit" type="Button" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_2ifod")
+text = "Exit"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.170529, 0.816369, 0.302862, 1)
