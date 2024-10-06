@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=33 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Theme/FlatUI4/kenneyUI.tres" id="2_i1dq0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3gdtcekx0fee" path="res://addons/Bad_Guy_Tower.png" id="4_ame2p"]
 [ext_resource type="Texture2D" uid="uid://b5io10hnfju2q" path="res://addons/Good_Guy_Tower.png" id="5_5iork"]
 [ext_resource type="Texture2D" uid="uid://d1apvpyhli44c" path="res://addons/free-coin-icon-794-thumb.png" id="6_xbff3"]
+[ext_resource type="Texture2D" uid="uid://b2otnrmcof7o2" path="res://addons/pixel-art-cloud-background [photoutils.com] (2).png" id="7_tkhtq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6oeqv"]
 atlas = ExtResource("4_ame2p")
@@ -202,6 +203,7 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("2_kx6yp")
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer/Battlefield"]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0.553997, 0.935323, 0.627229, 1)
@@ -353,6 +355,13 @@ offset_left = 678.0
 offset_top = 488.0
 offset_right = 1157.0
 offset_bottom = 544.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 1158.0
+offset_bottom = 490.0
+texture = ExtResource("7_tkhtq")
 
 [connection signal="pressed" from="HBoxContainer/Q_Button" to="." method="_on_q_pressed"]
 [connection signal="pressed" from="HBoxContainer/W_Button" to="." method="_on_w_pressed"]
