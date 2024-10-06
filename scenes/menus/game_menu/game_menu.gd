@@ -18,6 +18,14 @@ var w_cost = 30;
 var e_cost = 200;
 var r_cost = 100;
 
+const TOWER_MAX = 1000;
+var good_tower_health = TOWER_MAX;
+var bad_tower_health = TOWER_MAX;
+
+signal goodTowerHealthChange
+signal badTowerHealthChange
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	battlefield = $VBoxContainer/Battlefield
@@ -43,9 +51,20 @@ func _process(delta: float) -> void:
 		_on_w_pressed()
 	if Input.is_action_just_pressed("Summon_3"): 
 		_on_e_pressed()
+	if Input.is_action_just_pressed("Discount"):
+		damageGoodTower(100)
+		damagebadTower(125)
+		print("damaged tower!")
 	if Input.is_action_just_pressed("Discount"): 
 		_on_r_pressed()
 		
+func damageGoodTower(damage: int) -> void:
+	good_tower_health -= damage
+	goodTowerHealthChange.emit()
+
+func damagebadTower(damage: int) -> void:
+	bad_tower_health -= damage
+	badTowerHealthChange.emit()
 
 func summon_slime():
 	player_current_gold -= q_cost

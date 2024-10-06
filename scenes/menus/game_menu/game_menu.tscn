@@ -1,13 +1,15 @@
-[gd_scene load_steps=34 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=37 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Theme/FlatUI4/kenneyUI.tres" id="2_i1dq0"]
 [ext_resource type="Texture2D" uid="uid://c3gdtcekx0fee" path="res://addons/Bad_Guy_Tower.png" id="4_ame2p"]
 [ext_resource type="Texture2D" uid="uid://b5io10hnfju2q" path="res://addons/Good_Guy_Tower.png" id="5_5iork"]
 [ext_resource type="Texture2D" uid="uid://d1apvpyhli44c" path="res://addons/free-coin-icon-794-thumb.png" id="6_xbff3"]
+[ext_resource type="Texture2D" uid="uid://bgde3qbtyy7b0" path="res://addons/no health bar.png" id="7_4bedg"]
 [ext_resource type="Texture2D" uid="uid://b2otnrmcof7o2" path="res://addons/pixel-art-cloud-background [photoutils.com] (2).png" id="7_tkhtq"]
-[ext_resource type="Texture2D" uid="uid://cjrv4wmmm3x47" path="res://addons/health bar.png" id="8_vu1xw"]
+[ext_resource type="Texture2D" uid="uid://e4xnhtg6u7w6" path="res://addons/health.png" id="8_455wx"]
 [ext_resource type="Texture2D" uid="uid://ce7frgooi6ehd" path="res://addons/empty health bar.png" id="9_hks1h"]
+[ext_resource type="Script" path="res://scenes/menus/game_menu/good_health_bar.gd" id="9_s3t68"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6oeqv"]
 atlas = ExtResource("4_ame2p")
@@ -181,6 +183,22 @@ animations = [{
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
 bg_color = Color(0.813638, 0.524132, 0.267163, 1)
+
+[sub_resource type="GDScript" id="GDScript_wsuv6"]
+script/source = "extends TextureProgressBar
+
+@export var gameState: Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	gameState.badTowerHealthChange.connect(update)
+	update()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func update() -> void:
+	value = gameState.bad_tower_health * 100 / gameState.TOWER_MAX
+"
 
 [node name="GameMenu" type="Control"]
 layout_mode = 3
@@ -362,26 +380,31 @@ offset_right = 1154.0
 offset_bottom = 553.0
 texture = ExtResource("7_tkhtq")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="Good_Health_Bar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("gameState")]
 layout_mode = 0
 offset_right = 449.0
 offset_bottom = 68.0
 nine_patch_stretch = true
-texture_under = ExtResource("8_vu1xw")
-texture_over = ExtResource("9_hks1h")
+texture_under = ExtResource("7_4bedg")
+texture_progress = ExtResource("8_455wx")
+script = ExtResource("9_s3t68")
+gameState = NodePath("..")
 
 [node name="Enemy_AI_React_Time" type="Timer" parent="."]
 autostart = true
 
-[node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
+[node name="Bad_Health_Bar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("gameState")]
 layout_mode = 0
 offset_left = 706.0
 offset_top = -1.0
 offset_right = 1155.0
 offset_bottom = 67.0
 nine_patch_stretch = true
-texture_under = ExtResource("8_vu1xw")
+texture_under = ExtResource("7_4bedg")
 texture_over = ExtResource("9_hks1h")
+texture_progress = ExtResource("8_455wx")
+script = SubResource("GDScript_wsuv6")
+gameState = NodePath("..")
 
 [connection signal="timeout" from="VBoxContainer/Command_Panel/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="HBoxContainer/Q_Button" to="." method="_on_q_pressed"]
