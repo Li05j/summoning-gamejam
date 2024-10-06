@@ -202,12 +202,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Battlefield" type="Node2D" parent="VBoxContainer"]
 script = ExtResource("2_kx6yp")
 
-[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Battlefield"]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.553997, 0.935323, 0.627229, 1)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
 position = Vector2(36.8803, 19.2329)
 scale = Vector2(0.0812419, 0.231127)
@@ -357,7 +351,7 @@ offset_right = 1157.0
 offset_bottom = 544.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
-z_index = -1
+z_index = -9
 layout_mode = 0
 offset_right = 1158.0
 offset_bottom = 490.0
