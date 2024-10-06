@@ -30,8 +30,8 @@ func _on_q_pressed() -> void:
 
 func _on_w_pressed() -> void:
 	summon_slime()
-	print("Summoned Slime with Q")
+	print("Summoned Slime with W")
 
 func _on_e_pressed() -> void:
 	summon_slime()
-	print("Summoned Slime with Q")
+	print("Summoned Slime with E")

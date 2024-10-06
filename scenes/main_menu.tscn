@@ -1,7 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdb751qyj3mhu"]
+[gd_scene load_steps=4 format=3 uid="uid://b7na36eroh1mg"]
 
-[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_8m85a"]
-[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Theme/FlatUI4/kenneyUI.tres" id="2_5l1sd"]
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://addons/FlatUI4/kenneyUI.tres" id="2_5l1sd"]
+
+[sub_resource type="GDScript" id="GDScript_haayo"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_start_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/menus/game_menu/game_menu.tscn\")
+
+func _on_help_button_down() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/help_menu.tscn\")
+
+func _on_exit_pressed() -> void:
+	print(\"Exit Pressed\")
+	get_tree().quit()
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wiuy"]
 bg_color = Color(0.21692, 0.471432, 0.598329, 1)
@@ -13,7 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_8m85a")
+script = SubResource("GDScript_haayo")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
