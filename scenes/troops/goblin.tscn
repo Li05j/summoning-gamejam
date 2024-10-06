@@ -167,7 +167,5 @@ position = Vector2(47, -46)
 scale = Vector2(2.25, 2.21429)
 sprite_frames = SubResource("SpriteFrames_d4ikb")
 animation = &"attack"
-frame_progress = 0.31326
+frame_progress = 0.83362
 script = SubResource("GDScript_8mvcm")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

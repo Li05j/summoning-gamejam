@@ -13,7 +13,6 @@ func _physics_process(delta: float) -> void:
 	if isFriendly and position.x >= 975:
 		goblin.play("attack")
 		velocity.x = 0
-
 	else:
 		velocity.x = direction * SPEED		
 		goblin.play("walk")
