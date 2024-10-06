@@ -10,8 +10,8 @@ const MOVE_SPEED = 75 # Default speed
 const ATTACK_RANGE = 75 # Default DUMMY attack range
 const ATTACK_DMG = 50 # Default atk
 const ATTACK_SPD = 2.5 # Default rate of atk
-const MAX_HP: float = 650.0 # Default hp
-const GOLD_DROP = 100 # Default gold drop upon defeat
+const MAX_HP: float = 500.0 # Default hp
+const GOLD_DROP = 90 # Default gold drop upon defeat
 
 const SPAWN_WAIT = 1
 

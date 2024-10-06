@@ -603,6 +603,7 @@ theme_override_font_sizes/font_size = 200
 text = "R Cost"
 
 [node name="Timer" type="Timer" parent="VBoxContainer/Command_Panel"]
+wait_time = 0.4
 autostart = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

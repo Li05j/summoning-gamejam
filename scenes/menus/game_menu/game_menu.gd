@@ -24,7 +24,7 @@ var enemy_summon_location_Vector2: Vector2;
 var player_current_gold = 100;
 var q_cost = 50;
 var w_cost = 30;
-var e_cost = 200;
+var e_cost = 180;
 var r_cost = 100;
 
 const TOWER_MAX = 1000;
@@ -58,7 +58,7 @@ func _ready() -> void:
 	update_costs()
 
 func randomize_enemy_spawn_timer() -> void:
-	var random_interval = randi_range(1, 3.5) # Generates a random interval between 1 and 5 seconds
+	var random_interval = randi_range(1, 4.5) # Generates a random interval between 1 and 5 seconds
 	enemy_spawn_timer.wait_time = random_interval
 	enemy_spawn_timer.start()
 
@@ -175,7 +175,7 @@ func _on_r_pressed() -> void:
 		r_purchase()
 
 func _on_timer_timeout() -> void:
-	player_current_gold += 10
+	player_current_gold += 5
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
 
 func _on_tower_death_timer_timeout() -> void:
