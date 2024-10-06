@@ -51,9 +51,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_64j8a")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 24.0
-offset_top = 518.0
+offset_top = 568.0
 offset_right = 1284.0
-offset_bottom = 918.0
+offset_bottom = 968.0
 scale = Vector2(0.2, 0.2)
 theme_override_constants/separation = 30
 
@@ -83,6 +83,17 @@ theme = ExtResource("2_i1dq0")
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "E"
+
+[node name="P1 Health" type="ProgressBar" parent="."]
+offset_top = 488.0
+offset_right = 479.0
+offset_bottom = 544.0
+
+[node name="P2 Health" type="ProgressBar" parent="."]
+offset_left = 678.0
+offset_top = 488.0
+offset_right = 1157.0
+offset_bottom = 544.0
 
 [connection signal="pressed" from="HBoxContainer/Q_Button" to="." method="_on_q_pressed"]
 [connection signal="pressed" from="HBoxContainer/W_Button" to="." method="_on_w_pressed"]
