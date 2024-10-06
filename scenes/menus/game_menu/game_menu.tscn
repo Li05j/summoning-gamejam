@@ -47,8 +47,8 @@ offset_bottom = 918.0
 scale = Vector2(0.2, 0.2)
 theme_override_constants/separation = 30
 
-[node name="Q" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(400, 400)
+[node name="Q_Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 250)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_i1dq0")
@@ -56,8 +56,8 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "Q"
 
-[node name="W" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(400, 400)
+[node name="W_Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 250)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_i1dq0")
@@ -65,8 +65,8 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "W"
 
-[node name="E" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(400, 400)
+[node name="E_Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 250)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_i1dq0")
@@ -74,6 +74,6 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "E"
 
-[connection signal="pressed" from="HBoxContainer/Q" to="." method="_on_q_pressed"]
-[connection signal="pressed" from="HBoxContainer/W" to="." method="_on_w_pressed"]
-[connection signal="pressed" from="HBoxContainer/E" to="." method="_on_e_pressed"]
+[connection signal="pressed" from="HBoxContainer/Q_Button" to="." method="_on_q_pressed"]
+[connection signal="pressed" from="HBoxContainer/W_Button" to="." method="_on_w_pressed"]
+[connection signal="pressed" from="HBoxContainer/E_Button" to="." method="_on_e_pressed"]

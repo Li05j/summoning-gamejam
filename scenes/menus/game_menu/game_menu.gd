@@ -1,6 +1,8 @@
 extends Control
 var slime_scene = preload("res://scenes/troops/slime.tscn") # Preload slime scene
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Process is running.")
