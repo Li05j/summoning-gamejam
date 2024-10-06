@@ -139,17 +139,17 @@ func summon_friendly_giant():
 	
 func summon_enemy_slime():
 	var slime_instance = slime_scene.instantiate()
-	slime_instance.set_enemy(enemy_summon_location_Vector2);
+	slime_instance.set_as_enemy(enemy_summon_location_Vector2);
 	get_node("Enemy_Troop_Container").add_child(slime_instance)
 	
 func summon_enemy_goblin():
 	var goblin_instance = goblin_scene.instantiate()
-	goblin_instance.set_enemy(enemy_summon_location_Vector2);
+	goblin_instance.set_as_enemy(enemy_summon_location_Vector2);
 	get_node("Enemy_Troop_Container").add_child(goblin_instance)
 		
 func summon_enemy_giant():
 	var giant_instance = goblin_scene.instantiate()
-	giant_instance.set_enemy(enemy_summon_location_Vector2);
+	giant_instance.set_as_enemy(enemy_summon_location_Vector2);
 	get_node("Enemy_Troop_Container").add_child(giant_instance)
 	
 func r_purchase():
@@ -186,9 +186,6 @@ func _on_timer_timeout() -> void:
 	player_current_gold += 10
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
 
-#func _on_enemy_ai_react_time_timeout() -> void:
-	#summon_enemy_goblin()
-#
 
 func _on_tower_death_timer_timeout() -> void:
 	tower_to_destroy.queue_free()
