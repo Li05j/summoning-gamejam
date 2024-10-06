@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=83 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Texture2D" uid="uid://d23ohac23qeld" path="res://sprites/Fire+Sparks-Sheet.png" id="2_4twqo"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=38 format=3 uid="uid://k1oe0c5vmlkk"]
+[gd_scene load_steps=39 format=3 uid="uid://k1oe0c5vmlkk"]
 
 [ext_resource type="FontFile" uid="uid://cf7g0o2rn05hx" path="res://addons/FlatUI4/kenvector_future.ttf" id="1_0vr60"]
 [ext_resource type="Script" path="res://scenes/menus/defeat_scene.gd" id="1_55gke"]
 [ext_resource type="FontFile" uid="uid://b0mws8gku83oo" path="res://Theme/FlatUI4/kenvector_future.ttf" id="2_bwl0y"]
 [ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://Theme/FlatUI4/UIpack_vector.svg" id="3_s2oj4"]
+[ext_resource type="AudioStream" uid="uid://do81ljk06njkh" path="res://addons/mixkit-horror-lose-2028.wav" id="5_rqy0p"]
 
 [sub_resource type="FontFile" id="31"]
 fallbacks = Array[Font]([ExtResource("2_bwl0y")])
@@ -552,6 +553,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.929412, 0.141176, 0.129412, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rqy0p")
+autoplay = true
 
 [connection signal="pressed" from="Buttons/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]

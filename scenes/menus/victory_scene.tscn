@@ -1,9 +1,10 @@
-[gd_scene load_steps=38 format=3 uid="uid://bp23o08oetah0"]
+[gd_scene load_steps=39 format=3 uid="uid://bp23o08oetah0"]
 
 [ext_resource type="Script" path="res://scenes/menus/victory_scene.gd" id="1_eskgp"]
 [ext_resource type="FontFile" uid="uid://cf7g0o2rn05hx" path="res://addons/FlatUI4/kenvector_future.ttf" id="1_pmoh4"]
 [ext_resource type="FontFile" uid="uid://b0mws8gku83oo" path="res://Theme/FlatUI4/kenvector_future.ttf" id="2_13mkr"]
 [ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://Theme/FlatUI4/UIpack_vector.svg" id="3_3nnln"]
+[ext_resource type="AudioStream" uid="uid://ccg7i7xv1pbub" path="res://addons/success-fanfare-trumpets-6185.mp3" id="5_n8sup"]
 
 [sub_resource type="FontFile" id="FontFile_td3mp"]
 fallbacks = Array[Font]([ExtResource("2_13mkr")])
@@ -549,6 +550,10 @@ grow_vertical = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 color = Color(0.170529, 0.816369, 0.302862, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_n8sup")
+autoplay = true
 
 [connection signal="pressed" from="Buttons/New Game" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]
