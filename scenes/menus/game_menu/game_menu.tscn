@@ -1,4 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsrgy47skt0dq"]
+<<<<<<< HEAD:scenes/game.tscn
+=======
+
+[ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
+>>>>>>> dc0bb5bdd4efcf2b68f8f22fc73fe620a1566453:scenes/menus/game_menu/game_menu.tscn
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xx2n"]
 bg_color = Color(0.868427, 0.508358, 0.558385, 1)
@@ -9,7 +14,10 @@ bg_color = Color(0.881653, 0.527233, 0.310807, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6i3fa"]
 bg_color = Color(0.942858, 0.478426, 0.296759, 1)
 
-[node name="Game" type="Node2D"]
+[node name="GameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_moilo")
 
 [node name="Main" type="Panel" parent="."]
 z_index = -6
