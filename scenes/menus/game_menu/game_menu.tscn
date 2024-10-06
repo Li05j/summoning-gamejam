@@ -237,46 +237,64 @@ theme_override_font_sizes/font_size = 150
 text = "Gold: 0"
 
 [node name="q_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(2.84228, 8.89592)
+position = Vector2(3.22356, 8.65013)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
 [node name="Label" type="Label" parent="VBoxContainer/Command_Panel/q_cost"]
-offset_left = -916.667
-offset_top = -153.509
-offset_right = 366.333
-offset_bottom = 241.491
-theme_override_font_sizes/font_size = 150
+offset_left = -1083.33
+offset_top = -175.439
+offset_right = 199.669
+offset_bottom = 219.561
+theme_override_font_sizes/font_size = 200
 text = "*Q  price*
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="w_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(5.58057, 8.89592)
+position = Vector2(6.1005, 8.71158)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
 [node name="Label" type="Label" parent="VBoxContainer/Command_Panel/w_cost"]
-offset_left = -950.0
-offset_top = -153.509
-offset_right = 437.0
-offset_bottom = 241.491
-theme_override_font_sizes/font_size = 150
+offset_left = -1100.0
+offset_top = -197.369
+offset_right = 287.002
+offset_bottom = 197.631
+theme_override_font_sizes/font_size = 200
 text = "*W  price*
 "
+metadata/_edit_use_anchors_ = true
 
 [node name="e_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(8.0069, 8.95737)
+position = Vector2(9.04676, 8.71158)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
 [node name="Label" type="Label" parent="VBoxContainer/Command_Panel/e_cost"]
-offset_left = -850.0
-offset_top = -175.0
-offset_right = 433.0
-offset_bottom = 220.0
-theme_override_font_sizes/font_size = 150
+offset_left = -1016.66
+offset_top = -197.369
+offset_right = 266.335
+offset_bottom = 197.631
+theme_override_font_sizes/font_size = 200
 text = "*E price*
 "
+metadata/_edit_use_anchors_ = true
+
+[node name="e_cost2" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
+position = Vector2(11.9584, 8.65013)
+scale = Vector2(0.00207972, 0.00280198)
+texture = ExtResource("6_xbff3")
+
+[node name="Label" type="Label" parent="VBoxContainer/Command_Panel/e_cost2"]
+offset_left = -983.331
+offset_top = -175.439
+offset_right = 299.669
+offset_bottom = 219.561
+theme_override_font_sizes/font_size = 200
+text = "*R price*
+"
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -285,7 +303,7 @@ offset_top = 568.0
 offset_right = 1604.0
 offset_bottom = 803.0
 scale = Vector2(0.2, 0.2)
-theme_override_constants/separation = 35
+theme_override_constants/separation = 70
 
 [node name="Q_Button" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(350, 225)
@@ -314,6 +332,15 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "E"
 
+[node name="R_Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(350, 225)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_i1dq0")
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 80
+text = "R"
+
 [node name="P1 Health" type="ProgressBar" parent="."]
 layout_mode = 0
 offset_top = 488.0
@@ -330,3 +357,4 @@ offset_bottom = 544.0
 [connection signal="pressed" from="HBoxContainer/Q_Button" to="." method="_on_q_pressed"]
 [connection signal="pressed" from="HBoxContainer/W_Button" to="." method="_on_w_pressed"]
 [connection signal="pressed" from="HBoxContainer/E_Button" to="." method="_on_e_pressed"]
+[connection signal="pressed" from="HBoxContainer/R_Button" to="." method="_on_e_pressed"]
