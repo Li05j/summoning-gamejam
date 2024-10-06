@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=34 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Theme/FlatUI4/kenneyUI.tres" id="2_i1dq0"]
@@ -370,7 +370,11 @@ nine_patch_stretch = true
 texture_under = ExtResource("8_vu1xw")
 texture_over = ExtResource("9_hks1h")
 
+[node name="Enemy_AI_React_Time" type="Timer" parent="."]
+autostart = true
+
 [node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
+layout_mode = 0
 offset_left = 706.0
 offset_top = -1.0
 offset_right = 1155.0
