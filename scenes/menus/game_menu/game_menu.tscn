@@ -1,9 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsrgy47skt0dq"]
-<<<<<<< HEAD:scenes/game.tscn
-=======
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
->>>>>>> dc0bb5bdd4efcf2b68f8f22fc73fe620a1566453:scenes/menus/game_menu/game_menu.tscn
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xx2n"]
 bg_color = Color(0.868427, 0.508358, 0.558385, 1)
@@ -13,6 +10,14 @@ bg_color = Color(0.881653, 0.527233, 0.310807, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6i3fa"]
 bg_color = Color(0.942858, 0.478426, 0.296759, 1)
+
+[ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xx2n"]
+bg_color = Color(0.261159, 0.176944, 0.0174073, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yop53"]
+bg_color = Color(0.284545, 0.660834, 0.727836, 1)
 
 [node name="GameMenu" type="Control"]
 layout_mode = 3
@@ -50,3 +55,4 @@ offset_right = 1153.0
 offset_bottom = 647.0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_6i3fa")
+
