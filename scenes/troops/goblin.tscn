@@ -1,7 +1,72 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfiow7i22bcmt"]
+[gd_scene load_steps=13 format=3 uid="uid://4i5khnwcry42"]
 
 [ext_resource type="Script" path="res://scenes/troops/goblin.gd" id="1_alw66"]
 [ext_resource type="Texture2D" uid="uid://c73h6712rngmj" path="res://sprites/pinksquare.png" id="2_p88vm"]
+[ext_resource type="Texture2D" uid="uid://kfj8w5ulhml5" path="res://sprites/Troops/Knight/knight walk animation.png" id="3_ngyuo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij2xe"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(0, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4n3m"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(42, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaqqc"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(84, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghkt5"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(126, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kauof"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(168, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iunk4"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(210, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2875w"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(252, 0, 42, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6m3m"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(294, 0, 42, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d4ikb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij2xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4n3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaqqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghkt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kauof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iunk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2875w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6m3m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Goblin" type="CharacterBody2D"]
 script = ExtResource("1_alw66")
@@ -9,3 +74,7 @@ script = ExtResource("1_alw66")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_p88vm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d4ikb")
+frame_progress = 0.777286
