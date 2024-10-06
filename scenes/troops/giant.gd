@@ -9,10 +9,11 @@ const ATTACK_SPD = 2 # Default rate of atk
 const MAX_HP = 200 # Default hp
 const GOLD_DROP = 100 # Default gold drop upon defeat
 
-var friendly_turrent_x = 130 # Default friendly tower x-coord
-var enemy_turrent_x = 975 # Default enemy tower x-coord
+const friendly_turrent_x = 130 # Default friendly tower x-coord
+const enemy_turrent_x = 975 # Default enemy tower x-coord
 
 var current_hp = MAX_HP
+var current_target = null  # Holds the target enemy
 
 # Stuff that will change if enemy
 var is_friendly = true # Default friendly
