@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=83 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Texture2D" uid="uid://d23ohac23qeld" path="res://sprites/Fire+Sparks-Sheet.png" id="2_4twqo"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c1wcihr2i4tdn" path="res://sprites/Troops/Troll/Troll portarit.png" id="10_tou17"]
 [ext_resource type="Texture2D" uid="uid://px1owfda885e" path="res://sprites/red-up arrow.png" id="11_dpk7h"]
 [ext_resource type="Script" path="res://scenes/menus/game_menu/bad_health_bar.gd" id="11_mkcw3"]
+[ext_resource type="AudioStream" uid="uid://u3hkr1gpgmcj" path="res://addons/fight.wav" id="17_rfoq2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icbvd"]
 atlas = ExtResource("2_4twqo")
@@ -524,21 +525,21 @@ size_flags_vertical = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_64j8a")
 
 [node name="total_gold" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(18.522, 2.58274)
+position = Vector2(37.7468, 2.68383)
 scale = Vector2(0.00402864, 0.00584581)
 texture = ExtResource("6_xbff3")
 
 [node name="Label" type="Label" parent="VBoxContainer/Command_Panel/total_gold"]
-offset_left = 318.344
+offset_left = -972.238
 offset_top = -105.113
-offset_right = 1041.34
+offset_right = -249.242
 offset_bottom = 167.887
 theme_override_font_sizes/font_size = 150
 text = "Gold: 0"
 metadata/_edit_use_anchors_ = true
 
 [node name="q_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(3.2707, 4.85646)
+position = Vector2(3.23604, 4.79501)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -552,10 +553,9 @@ offset_right = 249.668
 offset_bottom = 110.123
 theme_override_font_sizes/font_size = 200
 text = "Q Cost"
-metadata/_edit_use_anchors_ = true
 
 [node name="w_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(6.91023, 4.85646)
+position = Vector2(6.87557, 4.79501)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -569,10 +569,9 @@ offset_right = 249.668
 offset_bottom = 110.123
 theme_override_font_sizes/font_size = 200
 text = "W Cost"
-metadata/_edit_use_anchors_ = true
 
 [node name="e_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(10.5843, 4.91798)
+position = Vector2(10.5496, 4.85653)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -586,10 +585,9 @@ offset_right = 249.668
 offset_bottom = 110.123
 theme_override_font_sizes/font_size = 200
 text = "E Cost"
-metadata/_edit_use_anchors_ = true
 
 [node name="r_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
-position = Vector2(14.224, 4.91798)
+position = Vector2(14.1893, 4.85653)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -603,17 +601,16 @@ offset_right = 249.668
 offset_bottom = 110.123
 theme_override_font_sizes/font_size = 200
 text = "R Cost"
-metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="VBoxContainer/Command_Panel"]
 autostart = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 568.0
-offset_right = 1604.0
-offset_bottom = 803.0
+offset_left = 23.0
+offset_top = 567.0
+offset_right = 1948.0
+offset_bottom = 802.0
 scale = Vector2(0.2, 0.2)
 theme_override_constants/separation = 175
 
@@ -722,6 +719,12 @@ gameState = NodePath("..")
 [node name="Friend_Troop_Container" type="Node2D" parent="."]
 
 [node name="Enemy_Troop_Container" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Fight" type="AudioStreamPlayer" parent="AudioStreamPlayer"]
+stream = ExtResource("17_rfoq2")
+autoplay = true
 
 [connection signal="timeout" from="VBoxContainer/Battlefield/Tower_Death_Timer" to="." method="_on_tower_death_timer_timeout"]
 [connection signal="timeout" from="VBoxContainer/Command_Panel/Timer" to="." method="_on_timer_timeout"]

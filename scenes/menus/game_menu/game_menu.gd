@@ -69,7 +69,7 @@ func _on_enemy_spawn_timeout() -> void:
 	
 	if random_enemy < 1.2:
 		summon_enemy_slime()
-	elif random_enemy < 2.4:
+	elif random_enemy < 2.45:
 		summon_enemy_goblin()
 	else:
 		print("SUMMONGIN GIATN FOR ENEMY!")
