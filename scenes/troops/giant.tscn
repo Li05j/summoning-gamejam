@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ctv1pnuby1bcg"]
+[gd_scene load_steps=39 format=3 uid="uid://dvaiy58cn1gbg"]
 
 [ext_resource type="Script" path="res://scenes/troops/giant.gd" id="1_pht17"]
 [ext_resource type="Texture2D" uid="uid://rw1xu5e1p3it" path="res://sprites/Gravity-Sheet.png" id="3_ijols"]

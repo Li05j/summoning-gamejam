@@ -62,6 +62,8 @@ func take_dmg(damage: int) -> bool:
 	current_hp -= damage
 	if current_hp <= 0:
 		deathSound.play()
+		if !is_friendly:
+			get_parent().get_parent().player_current_gold += GOLD_DROP
 		queue_free() # Gracefully deletes this instance, i.e. self destruct
 		return true # Unit died from the attack
 	return false

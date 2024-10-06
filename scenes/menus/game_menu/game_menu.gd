@@ -11,7 +11,6 @@ var giant_scene = preload("res://scenes/troops/giant.tscn")
 @onready var E_Button = $HBoxContainer/E_Button
 @onready var R_Button = $HBoxContainer/R_Button
 
-
 var enemy_spawn_timer: Timer;
 
 var tower_to_destroy = null;
@@ -93,8 +92,6 @@ func _process(delta: float) -> void:
 	E_Button.disabled = player_current_gold < e_cost
 	R_Button.disabled = player_current_gold < r_cost
 		
-		
-		
 # Cancerous WET style here 🤦‍♂️
 func damageGoodTower(damage: int) -> void:
 	if good_tower_health - damage <= 0 and tower_to_destroy == null: # otherwise winner can be overrided
@@ -144,7 +141,7 @@ func summon_enemy_goblin():
 	get_node("Enemy_Troop_Container").add_child(goblin_instance)
 		
 func summon_enemy_giant():
-	var giant_instance = goblin_scene.instantiate()
+	var giant_instance = giant_scene.instantiate()
 	giant_instance.set_as_enemy(enemy_summon_location_Vector2);
 	get_node("Enemy_Troop_Container").add_child(giant_instance)
 	
