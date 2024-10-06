@@ -60,6 +60,7 @@ func r_purchase():
 	q_cost = max(1, floor(q_cost * 0.95))
 	w_cost = max(1, floor(w_cost * 0.95))
 	e_cost = max(1, floor(e_cost * 0.95))
+	r_cost *= 1.05
 	update_costs()
 	
 func update_costs():
