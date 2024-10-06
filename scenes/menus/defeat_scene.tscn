@@ -7,6 +7,9 @@
 
 [sub_resource type="FontFile" id="31"]
 fallbacks = Array[Font]([ExtResource("2_bwl0y")])
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -529,6 +532,7 @@ theme_override_constants/separation = 12
 [node name="New Game" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
 theme = SubResource("Theme_613ah")
 text = "New Game"
 
@@ -546,4 +550,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.929412, 0.141176, 0.129412, 1)
+
+[connection signal="pressed" from="Buttons/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]

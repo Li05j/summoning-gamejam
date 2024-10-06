@@ -10,9 +10,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/menus/game_menu/game_menu.tscn")
-
 func _on_exit_pressed() -> void:
 	print("Exit Pressed")
 	get_tree().quit()
+
+
+func _on_new_game_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menus/game_menu/game_menu.tscn")

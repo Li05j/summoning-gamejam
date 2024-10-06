@@ -17,5 +17,4 @@ func _on_help_button_down() -> void:
 	get_tree().change_scene_to_file("res://scenes/menus/help_menu/help_menu.tscn")
 
 func _on_exit_pressed() -> void:
-	print("Exit Pressed")
 	get_tree().quit()

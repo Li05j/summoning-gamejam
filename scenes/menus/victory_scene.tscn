@@ -189,7 +189,7 @@ texture_margin_right = 1.0
 texture_margin_bottom = 1.0
 region_rect = Rect2(1051, 317, 4, 100)
 
-[sub_resource type="Theme" id="Theme_hil2p"]
+[sub_resource type="Theme" id="Theme_elv67"]
 default_font = SubResource("FontFile_td3mp")
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
@@ -337,7 +337,7 @@ VSlider/styles/grabber_area = SubResource("StyleBoxTexture_cbq5w")
 VSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_cbq5w")
 VSlider/styles/slider = SubResource("StyleBoxTexture_cbq5w")
 
-[sub_resource type="Theme" id="Theme_2ifod"]
+[sub_resource type="Theme" id="Theme_3w2be"]
 default_font = SubResource("FontFile_td3mp")
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_disabled_color = Color(0.9, 0.9, 0.9, 0.2)
@@ -529,13 +529,13 @@ theme_override_constants/separation = 12
 [node name="New Game" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = SubResource("Theme_hil2p")
+theme = SubResource("Theme_elv67")
 text = "New Game"
 
 [node name="Exit" type="Button" parent="Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = SubResource("Theme_2ifod")
+theme = SubResource("Theme_3w2be")
 text = "Exit"
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -546,4 +546,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
 color = Color(0.170529, 0.816369, 0.302862, 1)
+
+[connection signal="pressed" from="Buttons/New Game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Buttons/Exit" to="." method="_on_exit_pressed"]
