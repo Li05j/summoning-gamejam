@@ -1,10 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=6 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://addons/FlatUI4/kenneyUI.tres" id="2_i1dq0"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yop53"]
-bg_color = Color(0, 0.698468, 0.594411, 1)
+[ext_resource type="Script" path="res://scenes/menus/game_menu/battlefield.gd" id="2_kx6yp"]
+[ext_resource type="PackedScene" uid="uid://b48kpod6knumy" path="res://scenes/buildings/base.tscn" id="3_6260x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
 bg_color = Color(0.813638, 0.524132, 0.267163, 1)
@@ -27,12 +26,23 @@ scale = Vector2(28.8501, 16.2742)
 theme_override_constants/separation = -20
 metadata/_edit_use_anchors_ = true
 
-[node name="Main" type="Panel" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_yop53")
+[node name="Battlefield" type="Node2D" parent="VBoxContainer"]
+script = ExtResource("2_kx6yp")
 
-[node name="Bottom Bar" type="Panel" parent="VBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Battlefield"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.553997, 0.935323, 0.627229, 1)
+
+[node name="Base_Left" parent="VBoxContainer/Battlefield" instance=ExtResource("3_6260x")]
+position = Vector2(5, 14)
+scale = Vector2(0.21, 0.375)
+
+[node name="Base_Right" parent="VBoxContainer/Battlefield" instance=ExtResource("3_6260x")]
+position = Vector2(35, 14)
+scale = Vector2(0.21, 0.375)
+
+[node name="Command_Panel" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_vertical = 10
