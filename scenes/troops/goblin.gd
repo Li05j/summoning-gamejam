@@ -7,24 +7,19 @@ const ATTACK_SPD = 0.4 # Default interval between atks in seconds
 const MAX_HP = 50 # Default hp
 const GOLD_DROP = 15 # Default gold drop upon defeat
 
+var friendly_turrent_x = 130 # Default friendly tower x-coord
+var enemy_turrent_x = 975 # Default enemy tower x-coord
+
 var current_hp = MAX_HP
 
 # Stuff that will change if enemy
-var direction = 1 # Default moving right
 var is_friendly = true # Default friendly
-var end_pos = 975 # Default enemy tower x-coord
-	
-# This is basically a constructor.
-# For an enemy, move_direction should be -1 and friendly_status is false.
-func initialize(
-	start_position: Vector2, 
-	move_direction: int, 
-	friendly_status: bool, 
-	end_position: int,
-) -> void:
-	position = start_position
-	direction = move_direction
-	is_friendly = friendly_status
+var direction = 1 # Default moving right
+
+func set_enemy(spawn_pos: Vector2) -> void:
+	is_friendly = false
+	position = spawn_pos
+	direction = -direction
 	
 func take_dmg(damage: int) -> void:
 	current_hp -= damage
@@ -32,7 +27,9 @@ func take_dmg(damage: int) -> void:
 		queue_free() # gracefully deletes this instance, i.e. self destruct
 
 func _physics_process(delta: float) -> void:
-	if is_friendly and position.x >= end_pos:
+	if is_friendly and position.x >= enemy_turrent_x:
+		velocity.x = 0
+	elif !is_friendly and position.x <= friendly_turrent_x:
 		velocity.x = 0
 	else:
 		velocity.x = direction * MOVE_SPEED
