@@ -21,7 +21,7 @@ var command_panel;
 var friendly_summon_location_Vector2: Vector2;
 var enemy_summon_location_Vector2: Vector2;
 
-var player_current_gold = 100;
+var player_current_gold = 1000;
 var q_cost = 50;
 var w_cost = 30;
 var e_cost = 200;
@@ -111,7 +111,6 @@ func damageBadTower(damage: int) -> void:
 	bad_tower_health -= damage
 	badTowerHealthChange.emit()
 	
-
 func summon_friendly_slime():
 	player_current_gold -= q_cost
 	var slime_instance = slime_scene.instantiate()
@@ -178,7 +177,6 @@ func _on_r_pressed() -> void:
 func _on_timer_timeout() -> void:
 	player_current_gold += 10
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
-
 
 func _on_tower_death_timer_timeout() -> void:
 	tower_to_destroy.queue_free()

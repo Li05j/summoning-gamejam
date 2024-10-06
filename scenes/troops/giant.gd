@@ -8,7 +8,7 @@ var spawn_timer: Timer
 
 const MOVE_SPEED = 75 # Default speed
 const ATTACK_RANGE = 75 # Default DUMMY attack range
-const ATTACK_DMG = 45 # Default atk
+const ATTACK_DMG = 50 # Default atk
 const ATTACK_SPD = 2.5 # Default rate of atk
 const MAX_HP: float = 650.0 # Default hp
 const GOLD_DROP = 100 # Default gold drop upon defeat
@@ -113,13 +113,6 @@ func _on_action_timeout() -> void:
 		giant.play("walk")
 	else:
 		giant.play("attack")
-		if is_hitting_tower:
-			if is_friendly:
-				get_parent().get_parent().damageBadTower(ATTACK_DMG)
-			else:
-				get_parent().get_parent().damageGoodTower(ATTACK_DMG)
-		if current_target != null and current_target.take_dmg(ATTACK_DMG):
-			current_target = null
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if giant.animation == "attack":

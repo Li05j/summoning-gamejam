@@ -113,13 +113,6 @@ func _on_action_timeout() -> void:
 		goblin.play("walk")
 	else:
 		goblin.play("attack")
-		if is_hitting_tower:
-			if is_friendly:
-				get_parent().get_parent().damageBadTower(ATTACK_DMG)
-			else:
-				get_parent().get_parent().damageGoodTower(ATTACK_DMG)
-		if current_target != null and current_target.take_dmg(ATTACK_DMG):
-			current_target = null
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if goblin.animation == "attack":
