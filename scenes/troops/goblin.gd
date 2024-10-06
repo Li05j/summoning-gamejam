@@ -5,7 +5,7 @@ extends CharacterBody2D
 var action_timer: Timer
 var spawn_timer: Timer
 
-const MOVE_SPEED = 180 # Default speed
+const MOVE_SPEED = 140 # Default speed
 const ATTACK_RANGE = 5 # Default DUMMY attack range
 const ATTACK_DMG = 5 # Default atk
 const ATTACK_SPD = 0.4 # Default interval between atks in seconds

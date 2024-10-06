@@ -182,7 +182,7 @@ func _on_r_pressed() -> void:
 		r_purchase()
 
 func _on_timer_timeout() -> void:
-	player_current_gold += 5
+	player_current_gold += 10
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
 
 #func _on_enemy_ai_react_time_timeout() -> void:
