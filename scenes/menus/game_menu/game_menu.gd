@@ -6,6 +6,11 @@ var giant_scene = preload("res://scenes/troops/giant.tscn")
 @onready var good_tower = $VBoxContainer/Battlefield/Good_Tower
 @onready var bad_tower = $VBoxContainer/Battlefield/Bad_Tower
 @onready var tower_death_timer = $VBoxContainer/Battlefield/Tower_Death_Timer
+@onready var Q_Button = $HBoxContainer/Q_Button
+@onready var W_Button = $HBoxContainer/W_Button
+@onready var E_Button = $HBoxContainer/E_Button
+@onready var R_Button = $HBoxContainer/R_Button
+
 
 var tower_to_destroy = null;
 
@@ -15,7 +20,7 @@ var command_panel;
 var friendly_summon_location_Vector2: Vector2;
 var enemy_summon_location_Vector2: Vector2;
 
-var player_current_gold = 10000;
+var player_current_gold = 100;
 var q_cost = 50;
 var w_cost = 30;
 var e_cost = 200;
@@ -59,6 +64,12 @@ func _process(delta: float) -> void:
 		damageBadTower(200)
 	if Input.is_action_just_pressed("Discount"): 
 		_on_r_pressed()
+	Q_Button.disabled = player_current_gold < q_cost
+	W_Button.disabled = player_current_gold < w_cost
+	E_Button.disabled = player_current_gold < e_cost
+	R_Button.disabled = player_current_gold < r_cost
+		
+		
 		
 # Cancerous WET style here 🤦‍♂️
 func damageGoodTower(damage: int) -> void:

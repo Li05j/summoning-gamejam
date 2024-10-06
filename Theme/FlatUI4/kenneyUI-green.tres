@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=34 format=3 uid="uid://bnhngmri4tfgr"]
 
-[ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="UIpack_vector.svg" id="1"]
-[ext_resource type="FontFile" uid="uid://gnbkgaf17h02" path="kenvector_future.ttf" id="2"]
+[ext_resource type="Texture2D" uid="uid://d00ws7wljnit4" path="res://Theme/FlatUI4/UIpack_vector.svg" id="1"]
+[ext_resource type="FontFile" uid="uid://b0mws8gku83oo" path="res://Theme/FlatUI4/kenvector_future.ttf" id="2"]
 
 [sub_resource type="FontFile" id="31"]
 fallbacks = Array[Font]([ExtResource("2")])
@@ -11,14 +11,13 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/80/0/ascent = 0.0
+cache/0/80/0/descent = 0.0
+cache/0/80/0/underline_position = 0.0
+cache/0/80/0/underline_thickness = 0.0
+cache/0/80/0/scale = 1.0
 
-[sub_resource type="StyleBoxTexture" id="1"]
-texture = ExtResource("1")
-texture_margin_left = 12.5436
-texture_margin_top = 10.0349
-texture_margin_right = 8.78053
-texture_margin_bottom = 14.2161
-region_rect = Rect2(211, 120, 190, 49)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2jo2"]
 
 [sub_resource type="StyleBoxEmpty" id="2"]
 
@@ -185,7 +184,7 @@ Button/colors/font_hover_color = Color(0.34902, 0.34902, 0.34902, 1)
 Button/colors/font_pressed_color = Color(0.388235, 0.388235, 0.388235, 1)
 Button/constants/h_separation = 2
 Button/fonts/font = SubResource("31")
-Button/styles/disabled = SubResource("1")
+Button/styles/disabled = SubResource("StyleBoxFlat_r2jo2")
 Button/styles/focus = SubResource("2")
 Button/styles/hover = SubResource("3")
 Button/styles/normal = SubResource("4")
