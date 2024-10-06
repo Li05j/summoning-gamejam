@@ -9,8 +9,8 @@ const ATTACK_SPD = 0.4 # Default interval between atks in seconds
 const MAX_HP = 50 # Default hp
 const GOLD_DROP = 15 # Default gold drop upon defeat
 
-const friendly_turrent_x = 130 # Default friendly tower x-coord
-const enemy_turrent_x = 975 # Default enemy tower x-coord
+const friendly_turrent_x = 130 + ATTACK_RANGE # Default friendly tower x-coord
+const enemy_turrent_x = 975 - ATTACK_RANGE # Default enemy tower x-coord
 
 var current_hp = MAX_HP
 var current_target = null  # Holds the target enemy

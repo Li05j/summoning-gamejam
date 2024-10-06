@@ -683,6 +683,10 @@ texture_progress = ExtResource("8_455wx")
 script = ExtResource("11_mkcw3")
 gameState = NodePath("..")
 
+[node name="Friend_Troop_Container" type="Node2D" parent="."]
+
+[node name="Enemy_Troop_Container" type="Node2D" parent="."]
+
 [connection signal="timeout" from="VBoxContainer/Battlefield/Tower_Death_Timer" to="." method="_on_tower_death_timer_timeout"]
 [connection signal="timeout" from="VBoxContainer/Command_Panel/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="HBoxContainer/Q_Button" to="." method="_on_q_pressed"]

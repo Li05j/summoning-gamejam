@@ -3,14 +3,14 @@ extends CharacterBody2D
 @onready var giant = $AnimatedSprite2D
 
 const MOVE_SPEED = 75 # Default speed
-const ATTACK_RANGE = 10 # Default DUMMY attack range
+const ATTACK_RANGE = 60 # Default DUMMY attack range
 const ATTACK_DMG = 35 # Default atk
 const ATTACK_SPD = 2 # Default rate of atk
-const MAX_HP = 200 # Default hp
+const MAX_HP = 500 # Default hp
 const GOLD_DROP = 100 # Default gold drop upon defeat
 
-const friendly_turrent_x = 130 # Default friendly tower x-coord
-const enemy_turrent_x = 975 # Default enemy tower x-coord
+const friendly_turrent_x = 130 + ATTACK_RANGE # Default friendly tower x-coord
+const enemy_turrent_x = 975 - ATTACK_RANGE # Default enemy tower x-coord
 
 var current_hp = MAX_HP
 var current_target = null  # Holds the target enemy

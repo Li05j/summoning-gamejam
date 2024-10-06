@@ -163,7 +163,7 @@ z_index = 1
 script = ExtResource("1_alw66")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(47, -40)
+position = Vector2(16, -40)
 scale = Vector2(2.25, 2.21429)
 sprite_frames = SubResource("SpriteFrames_d4ikb")
 animation = &"walk"

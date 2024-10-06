@@ -4,14 +4,14 @@ extends CharacterBody2D
 @onready var slime = $AnimatedSprite2D
 
 const MOVE_SPEED = 110 # Default speed
-const ATTACK_RANGE = 50 # Default DUMMY attack range
+const ATTACK_RANGE = 150 # Default DUMMY attack range
 const ATTACK_DMG = 15 # Default atk
 const ATTACK_SPD = 1 # Default rate of atk
 const MAX_HP = 35 # Default hp
 const GOLD_DROP = 25 # Default gold drop upon defeat
 
-const friendly_turrent_x = 130 # Default friendly tower x-coord
-const enemy_turrent_x = 975 # Default enemy tower x-coord
+const friendly_turrent_x = 130 + ATTACK_RANGE # Default friendly tower x-coord
+const enemy_turrent_x = 975 - ATTACK_RANGE # Default enemy tower x-coord
 
 var current_hp = MAX_HP
 var current_target = null  # Holds the target enemy
