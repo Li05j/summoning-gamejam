@@ -91,8 +91,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_vjiqr")
 }],
 "loop": true,
-"name": &"default",
-"speed": 7.0
+"name": &"vibe",
+"speed": 11.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iv5eb"]
@@ -176,8 +176,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_pe5n2")
 }],
 "loop": true,
-"name": &"default",
-"speed": 7.0
+"name": &"vibe",
+"speed": 11.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
@@ -206,16 +206,19 @@ script = ExtResource("2_kx6yp")
 
 [node name="Bad_Tower" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
 z_index = -5
-position = Vector2(36.811, 19.5401)
-scale = Vector2(0.0808847, 0.270059)
+position = Vector2(36.915, 17.0461)
+scale = Vector2(0.0808847, 0.309352)
 sprite_frames = SubResource("SpriteFrames_6ddc5")
-frame_progress = 0.987625
+animation = &"vibe"
+frame_progress = 0.70623
 
 [node name="Good_Tower" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
 z_index = -5
-position = Vector2(3.11957, 19.9088)
-scale = Vector2(0.0812419, 0.266986)
+position = Vector2(3.11957, 16.9947)
+scale = Vector2(0.0812419, 0.308617)
 sprite_frames = SubResource("SpriteFrames_1c3a1")
+animation = &"vibe"
+frame_progress = 0.0524225
 
 [node name="Command_Panel" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 6)
@@ -363,18 +366,17 @@ texture = ExtResource("7_tkhtq")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_left = 4.0
-offset_right = 453.0
+offset_right = 449.0
 offset_bottom = 68.0
 nine_patch_stretch = true
 texture_under = ExtResource("8_vu1xw")
 texture_over = ExtResource("9_hks1h")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="TextureProgressBar"]
-offset_left = 695.0
-offset_top = -4.0
-offset_right = 1148.0
-offset_bottom = 64.0
+[node name="TextureProgressBar2" type="TextureProgressBar" parent="."]
+offset_left = 706.0
+offset_top = -1.0
+offset_right = 1155.0
+offset_bottom = 67.0
 nine_patch_stretch = true
 texture_under = ExtResource("8_vu1xw")
 texture_over = ExtResource("9_hks1h")

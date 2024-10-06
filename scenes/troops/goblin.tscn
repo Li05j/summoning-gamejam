@@ -163,9 +163,9 @@ z_index = 1
 script = ExtResource("1_alw66")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(47, -46)
+position = Vector2(47, -40)
 scale = Vector2(2.25, 2.21429)
 sprite_frames = SubResource("SpriteFrames_d4ikb")
-animation = &"attack"
-frame_progress = 0.83362
+animation = &"walk"
+frame_progress = 0.811442
 script = SubResource("GDScript_8mvcm")
