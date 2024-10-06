@@ -161,7 +161,6 @@ func _on_timer_timeout() -> void:
 func _on_enemy_ai_react_time_timeout() -> void:
 	summon_enemy_goblin()
 
-
 func _on_tower_death_timer_timeout() -> void:
 	tower_to_destroy.queue_free()
 	if tower_to_destroy == bad_tower:
