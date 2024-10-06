@@ -5,6 +5,9 @@ var giant_scene = preload("res://scenes/troops/giant.tscn")
 
 @onready var good_tower = $VBoxContainer/Battlefield/Good_Tower
 @onready var bad_tower = $VBoxContainer/Battlefield/Bad_Tower
+@onready var tower_death_timer = $VBoxContainer/Battlefield/Tower_Death_Timer
+
+var tower_to_destroy;
 
 var battlefield;
 var command_panel;
@@ -51,20 +54,31 @@ func _process(delta: float) -> void:
 		_on_w_pressed()
 	if Input.is_action_just_pressed("Summon_3"): 
 		_on_e_pressed()
+	# Done for testing death
 	if Input.is_action_just_pressed("Discount"):
-		damageGoodTower(100)
-		damagebadTower(125)
-		print("damaged tower!")
+		damageGoodTower(125)
+		damageBadTower(100)
 	if Input.is_action_just_pressed("Discount"): 
 		_on_r_pressed()
 		
 func damageGoodTower(damage: int) -> void:
+	if good_tower_health - damage <= 0:
+		good_tower.position.y = good_tower.position.y + 1.75 # fire is a bit off the ground
+		good_tower.play("death")
+		tower_death_timer.start()
+		tower_to_destroy = good_tower
 	good_tower_health -= damage
 	goodTowerHealthChange.emit()
 
-func damagebadTower(damage: int) -> void:
+func damageBadTower(damage: int) -> void:
+	if bad_tower_health - damage <= 0:
+		bad_tower.position.y = bad_tower.position.y + 1.75
+		bad_tower.play("death")
+		tower_death_timer.start()
+		tower_to_destroy = bad_tower
 	bad_tower_health -= damage
 	badTowerHealthChange.emit()
+	
 
 func summon_slime():
 	player_current_gold -= q_cost
@@ -130,3 +144,11 @@ func _on_timer_timeout() -> void:
 
 func _on_enemy_ai_react_time_timeout() -> void:
 	summon_enemy_goblin()
+
+
+func _on_tower_death_timer_timeout() -> void:
+	tower_to_destroy.queue_free()
+	if tower_to_destroy == bad_tower:
+		get_tree().change_scene_to_file("res://scenes/menus/victory_scene.tscn")
+	elif tower_to_destroy == good_tower:
+		get_tree().change_scene_to_file("res://scenes/menus/defeat_scene.tscn")
