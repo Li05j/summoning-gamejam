@@ -7,7 +7,7 @@ var giant_scene = preload("res://scenes/troops/giant.tscn")
 @onready var bad_tower = $VBoxContainer/Battlefield/Bad_Tower
 @onready var tower_death_timer = $VBoxContainer/Battlefield/Tower_Death_Timer
 
-var tower_to_destroy;
+var tower_to_destroy = null;
 
 var battlefield;
 var command_panel;
@@ -55,26 +55,27 @@ func _process(delta: float) -> void:
 		_on_e_pressed()
 	# Done for testing death
 	if Input.is_action_just_pressed("Discount"):
-		damageGoodTower(125)
-		damageBadTower(100)
+		damageGoodTower(100)
+		damageBadTower(200)
 	if Input.is_action_just_pressed("Discount"): 
 		_on_r_pressed()
 		
+# Cancerous WET style here 🤦‍♂️
 func damageGoodTower(damage: int) -> void:
-	if good_tower_health - damage <= 0:
-		good_tower.position.y = good_tower.position.y + 1.75 # fire is a bit off the ground
+	if good_tower_health - damage <= 0 and tower_to_destroy == null: # otherwise winner can be overrided
+		tower_to_destroy = good_tower	
+		good_tower.position.y = good_tower.position.y + 2.187 # fire is a bit off the ground
 		good_tower.play("death")
 		tower_death_timer.start()
-		tower_to_destroy = good_tower
 	good_tower_health -= damage
 	goodTowerHealthChange.emit()
 
 func damageBadTower(damage: int) -> void:
-	if bad_tower_health - damage <= 0:
-		bad_tower.position.y = bad_tower.position.y + 1.75
+	if bad_tower_health - damage <= 0 and tower_to_destroy == null:
+		tower_to_destroy = bad_tower
+		bad_tower.position.y = bad_tower.position.y + 2.187
 		bad_tower.play("death")
 		tower_death_timer.start()
-		tower_to_destroy = bad_tower
 	bad_tower_health -= damage
 	badTowerHealthChange.emit()
 	

@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://e4xnhtg6u7w6" path="res://addons/health.png" id="8_455wx"]
 [ext_resource type="Texture2D" uid="uid://ce7frgooi6ehd" path="res://addons/empty health bar.png" id="9_hks1h"]
 [ext_resource type="Script" path="res://scenes/menus/game_menu/good_health_bar.gd" id="9_s3t68"]
+[ext_resource type="Script" path="res://scenes/menus/game_menu/bad_health_bar.gd" id="11_mkcw3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_icbvd"]
 atlas = ExtResource("2_4twqo")
@@ -475,22 +476,6 @@ animations = [{
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
 bg_color = Color(0.813638, 0.524132, 0.267163, 1)
 
-[sub_resource type="GDScript" id="GDScript_wsuv6"]
-script/source = "extends TextureProgressBar
-
-@export var gameState: Control
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	gameState.badTowerHealthChange.connect(update)
-	update()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func update() -> void:
-	value = gameState.bad_tower_health * 100 / gameState.TOWER_MAX
-"
-
 [node name="GameMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
@@ -516,15 +501,14 @@ z_index = -5
 position = Vector2(36.915, 17.0461)
 scale = Vector2(0.0808847, 0.309352)
 sprite_frames = SubResource("SpriteFrames_6ddc5")
-animation = &"death"
-frame_progress = 0.936153
+animation = &"vibe"
 
 [node name="Good_Tower" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
 z_index = -5
 position = Vector2(3.11957, 16.9947)
 scale = Vector2(0.0812419, 0.308617)
 sprite_frames = SubResource("SpriteFrames_1c3a1")
-animation = &"death"
+animation = &"vibe"
 
 [node name="Tower_Death_Timer" type="Timer" parent="VBoxContainer/Battlefield"]
 wait_time = 1.3
@@ -696,7 +680,7 @@ nine_patch_stretch = true
 texture_under = ExtResource("7_4bedg")
 texture_over = ExtResource("9_hks1h")
 texture_progress = ExtResource("8_455wx")
-script = SubResource("GDScript_wsuv6")
+script = ExtResource("11_mkcw3")
 gameState = NodePath("..")
 
 [connection signal="timeout" from="VBoxContainer/Battlefield/Tower_Death_Timer" to="." method="_on_tower_death_timer_timeout"]
