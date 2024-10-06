@@ -7,8 +7,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"): # Z key is default mapped to ui_accept
-		summon_slime()
 	if Input.is_action_just_pressed("Summon_1"):
 		_on_q_pressed() 
 	if Input.is_action_just_pressed("Summon_2"): 
