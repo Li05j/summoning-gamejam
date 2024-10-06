@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://4i5khnwcry42"]
+[gd_scene load_steps=45 format=3 uid="uid://cfiow7i22bcmt"]
 
 [ext_resource type="Script" path="res://scenes/troops/goblin.gd" id="1_alw66"]
 [ext_resource type="Texture2D" uid="uid://b8j6y18i3j472" path="res://sprites/Troops/Knight/knight 3 improved slash animation.png" id="2_l1a88"]

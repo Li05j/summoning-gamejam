@@ -7,9 +7,9 @@ var spawn_timer: Timer
 
 const MOVE_SPEED = 110 # Default speed
 const ATTACK_RANGE = 160 # Default DUMMY attack range
-const ATTACK_DMG = 15 # Default atk
-const ATTACK_SPD = 1 # Default rate of atk
-const MAX_HP = 35 # Default hp
+const ATTACK_DMG = 20 # Default atk
+const ATTACK_SPD = 2 # Default rate of atk
+const MAX_HP: float = 35.0 # Default hp
 const GOLD_DROP = 25 # Default gold drop upon defeat
 
 const SPAWN_WAIT = 0.6
@@ -34,7 +34,7 @@ func _ready() -> void:
 		
 func _on_spawn_animation_done() -> void:
 	slime.play("walk")
-
+	slime.speed_scale = 0.5
 
 func add_timer() -> void:
 	action_timer = Timer.new()
@@ -81,8 +81,13 @@ func find_target() -> void:
 		if abs(unit.position.x - position.x) <= ATTACK_RANGE:
 			current_target = unit
 			velocity.x = 0 # Stop moving when target is not NULL
+			
+func change_opacity() -> void:
+	var hp_percentage: float = current_hp / MAX_HP
+	slime.modulate.a = lerp(0.25, 1.0, hp_percentage)
 
 func _physics_process(delta: float) -> void:
+	change_opacity()
 	find_target()
 	if is_friendly and position.x >= enemy_turrent_x:
 		is_hitting_tower = true
@@ -103,6 +108,9 @@ func _on_action_timeout() -> void:
 		slime.play("walk")
 	else:
 		slime.play("attack")
+
+func _on_animated_sprite_2d_animation_looped() -> void:
+	if slime.animation == "attack":
 		if is_hitting_tower:
 			if is_friendly:
 				get_parent().get_parent().damageBadTower(ATTACK_DMG)
@@ -110,7 +118,4 @@ func _on_action_timeout() -> void:
 				get_parent().get_parent().damageGoodTower(ATTACK_DMG)
 		if current_target != null and current_target.take_dmg(ATTACK_DMG):
 			current_target = null
-
-func _on_animated_sprite_2d_animation_looped() -> void:
-	if slime.animation == "attack":
 		slime.play("walk")  # Go back to walk after attack finishes

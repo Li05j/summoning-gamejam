@@ -7,9 +7,9 @@ var spawn_timer: Timer
 
 const MOVE_SPEED = 75 # Default speed
 const ATTACK_RANGE = 75 # Default DUMMY attack range
-const ATTACK_DMG = 35 # Default atk
-const ATTACK_SPD = 2 # Default rate of atk
-const MAX_HP = 500 # Default hp
+const ATTACK_DMG = 45 # Default atk
+const ATTACK_SPD = 2.5 # Default rate of atk
+const MAX_HP: float = 650.0 # Default hp
 const GOLD_DROP = 100 # Default gold drop upon defeat
 
 const SPAWN_WAIT = 1
@@ -25,12 +25,10 @@ var is_hitting_tower = false # If it reached the end (i.e. enemy tower)
 var is_friendly = true # Default friendly
 var direction = 1 # Default moving right
 
-
-# Add this function
-
 # Add this function to transition from spawn to walk
 func _on_spawn_animation_done() -> void:
 	giant.play("walk")
+	giant.speed_scale = 0.5
 
 func _ready() -> void:
 	add_timer()
@@ -84,8 +82,13 @@ func find_target() -> void:
 		if abs(unit.position.x - position.x) <= ATTACK_RANGE:
 			current_target = unit
 			velocity.x = 0 # Stop moving when target is not NULL
+			
+func change_opacity() -> void:
+	var hp_percentage: float = current_hp / MAX_HP
+	giant.modulate.a = lerp(0.25, 1.0, hp_percentage)
 
 func _physics_process(delta: float) -> void:
+	change_opacity()
 	find_target()
 	if is_friendly and position.x >= enemy_turrent_x:
 		is_hitting_tower = true
@@ -116,4 +119,11 @@ func _on_action_timeout() -> void:
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if giant.animation == "attack":
+		if is_hitting_tower:
+			if is_friendly:
+				get_parent().get_parent().damageBadTower(ATTACK_DMG)
+			else:
+				get_parent().get_parent().damageGoodTower(ATTACK_DMG)
+		if current_target != null and current_target.take_dmg(ATTACK_DMG):
+			current_target = null
 		giant.play("walk")  # Go back to walk after attack finishes

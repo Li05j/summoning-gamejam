@@ -7,13 +7,12 @@ var spawn_timer: Timer
 
 const MOVE_SPEED = 180 # Default speed
 const ATTACK_RANGE = 35 # Default DUMMY attack range
-const ATTACK_DMG = 5 # Default atk
-const ATTACK_SPD = 0.4 # Default interval between atks in seconds
-const MAX_HP = 50 # Default hp
+const ATTACK_DMG = 3 # Default atk
+const ATTACK_SPD = 0.5 # Default interval between atks in seconds
+const MAX_HP: float = 50.0 # Default hp
 const GOLD_DROP = 15 # Default gold drop upon defeat
 
 const SPAWN_WAIT = 0.8
-
 
 const friendly_turrent_x = 130 + ATTACK_RANGE # Default friendly tower x-coord
 const enemy_turrent_x = 975 - ATTACK_RANGE # Default enemy tower x-coord
@@ -35,6 +34,7 @@ func _ready() -> void:
 		
 func _on_spawn_animation_done() -> void:
 	goblin.play("walk")
+	goblin.speed_scale = 2.0
 
 func add_timer() -> void:
 	action_timer = Timer.new()
@@ -82,7 +82,12 @@ func find_target() -> void:
 			current_target = unit
 			velocity.x = 0 # Stop moving when target is not NULL
 			
+func change_opacity() -> void:
+	var hp_percentage: float = current_hp / MAX_HP
+	goblin.modulate.a = lerp(0.25, 1.0, hp_percentage)
+			
 func _physics_process(delta: float) -> void:
+	change_opacity()
 	find_target()
 	if is_friendly and position.x >= enemy_turrent_x:
 		is_hitting_tower = true
@@ -113,4 +118,11 @@ func _on_action_timeout() -> void:
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if goblin.animation == "attack":
+		if is_hitting_tower:
+			if is_friendly:
+				get_parent().get_parent().damageBadTower(ATTACK_DMG)
+			else:
+				get_parent().get_parent().damageGoodTower(ATTACK_DMG)
+		if current_target != null and current_target.take_dmg(ATTACK_DMG):
+			current_target = null
 		goblin.play("walk")  # Go back to walk after attack finishes
