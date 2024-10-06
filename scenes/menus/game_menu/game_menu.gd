@@ -65,13 +65,14 @@ func randomize_enemy_spawn_timer() -> void:
 
 func _on_enemy_spawn_timeout() -> void:
 	# Choose a random enemy to spawn
-	var random_enemy = randi_range(0, 2) # 0 = slime, 1 = goblin, 2 = giant
+	var random_enemy = randf_range(0, 3) # 0 = slime, 1 = goblin, 2 = giant
 	
-	if random_enemy == 0:
+	if random_enemy < 1.2:
 		summon_enemy_slime()
-	elif random_enemy == 1:
+	elif random_enemy < 2.4:
 		summon_enemy_goblin()
 	else:
+		print("SUMMONGIN GIATN FOR ENEMY!")
 		summon_enemy_giant()
 
 	# Randomize the next enemy spawn interval

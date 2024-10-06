@@ -1,10 +1,9 @@
-[gd_scene load_steps=83 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=82 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Texture2D" uid="uid://d23ohac23qeld" path="res://sprites/Fire+Sparks-Sheet.png" id="2_4twqo"]
 [ext_resource type="Texture2D" uid="uid://c3gdtcekx0fee" path="res://addons/Bad_Guy_Tower.png" id="4_ame2p"]
 [ext_resource type="Texture2D" uid="uid://b5io10hnfju2q" path="res://addons/Good_Guy_Tower.png" id="5_5iork"]
-[ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://Theme/FlatUI4/kenneyUI-green.tres" id="6_r4057"]
 [ext_resource type="Texture2D" uid="uid://d1apvpyhli44c" path="res://addons/free-coin-icon-794-thumb.png" id="6_xbff3"]
 [ext_resource type="Texture2D" uid="uid://bgde3qbtyy7b0" path="res://addons/no health bar.png" id="7_4bedg"]
 [ext_resource type="Texture2D" uid="uid://bdaoovccsps1n" path="res://sprites/Troops/SlimePack/Slime_Spritesheets/Slime Portrati.png" id="7_bta4p"]
@@ -12,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://e4xnhtg6u7w6" path="res://addons/health.png" id="8_455wx"]
 [ext_resource type="Texture2D" uid="uid://be6wedlgc7ahh" path="res://sprites/Troops/Knight/knight portrait.png" id="8_s6uwo"]
 [ext_resource type="Texture2D" uid="uid://ce7frgooi6ehd" path="res://addons/empty health bar.png" id="9_hks1h"]
-[ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://addons/FlatUI4/kenneyUI-green.tres" id="9_ruhha"]
+[ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://Theme/FlatUI4/kenneyUI-green.tres" id="9_ruhha"]
 [ext_resource type="Script" path="res://scenes/menus/game_menu/good_health_bar.gd" id="9_s3t68"]
 [ext_resource type="Texture2D" uid="uid://c1wcihr2i4tdn" path="res://sprites/Troops/Troll/Troll portarit.png" id="10_tou17"]
 [ext_resource type="Texture2D" uid="uid://px1owfda885e" path="res://sprites/red-up arrow.png" id="11_dpk7h"]
@@ -622,7 +621,7 @@ theme_override_constants/separation = 175
 custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
-theme = ExtResource("6_r4057")
+theme = ExtResource("9_ruhha")
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 80
 text = "Q"
@@ -639,7 +638,7 @@ texture = ExtResource("7_bta4p")
 custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
-theme = ExtResource("6_r4057")
+theme = ExtResource("9_ruhha")
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "W"
