@@ -1,43 +1,73 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=5 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xx2n"]
-bg_color = Color(0.261159, 0.176944, 0.0174073, 1)
+[ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://addons/FlatUI4/kenneyUI.tres" id="2_i1dq0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yop53"]
-bg_color = Color(0.284545, 0.660834, 0.727836, 1)
+bg_color = Color(0, 0.698468, 0.594411, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
+bg_color = Color(0.813638, 0.524132, 0.267163, 1)
 
 [node name="GameMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_moilo")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 1146.0
-offset_bottom = 644.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_6xx2n")
-
-[node name="Panel" type="Panel" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -191.0
+offset_right = 40.0
+offset_bottom = 40.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+scale = Vector2(28.8501, 16.2742)
+theme_override_constants/separation = -20
+metadata/_edit_use_anchors_ = true
+
+[node name="Main" type="Panel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_yop53")
 
-[node name="Panel2" type="Panel" parent="Panel"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -644.0
-offset_bottom = -574.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yop53")
+[node name="Bottom Bar" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_64j8a")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_top = 488.0
+offset_right = 1210.0
+offset_bottom = 1303.0
+scale = Vector2(0.2, 0.2)
+theme_override_constants/separation = 2
+
+[node name="Q" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_i1dq0")
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 80
+text = "Q"
+
+[node name="W" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_i1dq0")
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 80
+text = "W"
+
+[node name="E" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("2_i1dq0")
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 80
+text = "E"
