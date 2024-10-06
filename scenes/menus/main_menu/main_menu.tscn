@@ -70,7 +70,7 @@ grow_horizontal = 2
 theme = ExtResource("2_5l1sd")
 theme_type_variation = &"GraphFrameTitleLabel"
 theme_override_font_sizes/font_size = 59
-text = "*Insert Title Here*"
+text = "MONSTER SUMMONER"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -7
