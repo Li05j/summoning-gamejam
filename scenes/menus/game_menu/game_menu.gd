@@ -17,7 +17,7 @@ func _ready() -> void:
 	command_panel = $VBoxContainer/Command_Panel
 	var viewport_y = get_viewport_rect().size.y
 	var ground_y = command_panel.get_global_rect().size.y
-	var offset = Vector2(130, 15) # Offset so the units don't look like they are kissing the floor
+	var offset = Vector2(130, 1) # Offset so the units don't look like they are kissing the floor
 	summon_location_Vector2 = Vector2(offset.x, viewport_y-ground_y-offset.y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
