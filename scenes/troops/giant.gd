@@ -2,18 +2,40 @@ extends CharacterBody2D
 
 @onready var giant = $AnimatedSprite2D
 
-const SPEED = 90
-const direction = 1 # Moving right
-var isFriendly = true
+const MOVE_SPEED = 75 # Default speed
+const ATTACK_RANGE = 10 # Default DUMMY attack range
+const ATTACK_DMG = 35 # Default atk
+const ATTACK_SPD = 2 # Default rate of atk
+const MAX_HP = 200 # Default hp
+const GOLD_DROP = 100 # Default gold drop upon defeat
 
-func setisFriendly(status: bool) -> void:
-	isFriendly = status 
+var friendly_turrent_x = 130 # Default friendly tower x-coord
+var enemy_turrent_x = 975 # Default enemy tower x-coord
 
-func _physics_process(delta: float) -> void:
-	if isFriendly and position.x >= 950:
+var current_hp = MAX_HP
+
+# Stuff that will change if enemy
+var is_friendly = true # Default friendly
+var direction = 1 # Default moving right
+
+func set_enemy(spawn_pos: Vector2) -> void:
+	is_friendly = false
+	position = spawn_pos
+	direction = -direction
+	
+func take_dmg(damage: int) -> void:
+	current_hp -= damage
+	if current_hp <= 0:
+		queue_free() # gracefully deletes this instance, i.e. self destruct
+
+func _physics_process(delta: float) -> void:	
+	if is_friendly and position.x >= enemy_turrent_x:
+		giant.play("attack")
+		velocity.x = 0
+	elif !is_friendly and position.x <= friendly_turrent_x:
 		giant.play("attack")
 		velocity.x = 0
 	else:
-		velocity.x = direction * SPEED		
+		velocity.x = direction * MOVE_SPEED
 		giant.play("walk")
 	move_and_slide()

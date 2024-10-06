@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Theme/FlatUI4/kenneyUI.tres" id="2_i1dq0"]
-[ext_resource type="Script" path="res://scenes/menus/game_menu/battlefield.gd" id="2_kx6yp"]
 [ext_resource type="Texture2D" uid="uid://c3gdtcekx0fee" path="res://addons/Bad_Guy_Tower.png" id="4_ame2p"]
 [ext_resource type="Texture2D" uid="uid://b5io10hnfju2q" path="res://addons/Good_Guy_Tower.png" id="5_5iork"]
 [ext_resource type="Texture2D" uid="uid://d1apvpyhli44c" path="res://addons/free-coin-icon-794-thumb.png" id="6_xbff3"]
@@ -202,7 +201,6 @@ theme_override_constants/separation = -31
 metadata/_edit_use_anchors_ = true
 
 [node name="Battlefield" type="Node2D" parent="VBoxContainer"]
-script = ExtResource("2_kx6yp")
 
 [node name="Bad_Tower" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
 z_index = -5
@@ -386,3 +384,4 @@ texture_over = ExtResource("9_hks1h")
 [connection signal="pressed" from="HBoxContainer/W_Button" to="." method="_on_w_pressed"]
 [connection signal="pressed" from="HBoxContainer/E_Button" to="." method="_on_e_pressed"]
 [connection signal="pressed" from="HBoxContainer/R_Button" to="." method="_on_e_pressed"]
+[connection signal="timeout" from="Enemy_AI_React_Time" to="." method="_on_enemy_ai_react_time_timeout"]
