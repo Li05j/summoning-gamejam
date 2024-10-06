@@ -8,7 +8,7 @@ var command_panel;
 
 var summon_location_Vector2: Vector2;
 
-var player_current_gold = 0;
+var player_current_gold = 10000;
 var q_cost = 50;
 var w_cost = 30;
 var e_cost = 200;
