@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1wfuw1csc2s"]
+[gd_scene load_steps=3 format=3 uid="uid://b1wfuw1csc2s"]
 
+[ext_resource type="Script" path="res://scenes/troops/slime.gd" id="1_83uuv"]
 [ext_resource type="Texture2D" uid="uid://doxufqckemw40" path="res://sprites/blacksquare.png" id="1_leu1x"]
 
 [node name="Slime" type="CharacterBody2D"]
+script = ExtResource("1_83uuv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
