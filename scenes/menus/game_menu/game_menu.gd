@@ -86,5 +86,5 @@ func _on_r_pressed() -> void:
 		r_purchase()
 
 func _on_timer_timeout() -> void:
-	player_current_gold += 2
+	player_current_gold += 20
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
