@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var giant = $AnimatedSprite2D
 
 var action_timer: Timer
+var spawn_timer: Timer
 
 const MOVE_SPEED = 75 # Default speed
 const ATTACK_RANGE = 60 # Default DUMMY attack range
@@ -10,6 +11,8 @@ const ATTACK_DMG = 35 # Default atk
 const ATTACK_SPD = 2 # Default rate of atk
 const MAX_HP = 500 # Default hp
 const GOLD_DROP = 100 # Default gold drop upon defeat
+
+const SPAWN_WAIT = 1
 
 const friendly_turrent_x = 130 + ATTACK_RANGE # Default friendly tower x-coord
 const enemy_turrent_x = 975 - ATTACK_RANGE # Default enemy tower x-coord
@@ -22,10 +25,28 @@ var is_hitting_tower = false # If it reached the end (i.e. enemy tower)
 var is_friendly = true # Default friendly
 var direction = 1 # Default moving right
 
+
+# Add this function
+
+# Add this function to transition from spawn to walk
+func _on_spawn_animation_done() -> void:
+	giant.play("walk")
+
 func _ready() -> void:
 	add_timer()
+	giant.play("spawn")
+	add_spawn_timer()  # Add the spawn timer
 	if not is_friendly:
 		giant.flip_h = true
+
+func add_spawn_timer() -> void:
+	spawn_timer = Timer.new()
+	spawn_timer.wait_time = SPAWN_WAIT
+	spawn_timer.one_shot = true
+	add_child(spawn_timer)
+	spawn_timer.start()
+	spawn_timer.timeout.connect(_on_spawn_animation_done)
+
 		
 func add_timer() -> void:
 	action_timer = Timer.new()
@@ -52,10 +73,11 @@ func _physics_process(delta: float) -> void:
 		is_hitting_tower = true
 		velocity.x = 0
 	else:
-		velocity.x = direction * MOVE_SPEED
-		giant.play("walk")
+		if spawn_timer.is_stopped():
+			velocity.x = direction * MOVE_SPEED
+			giant.play("walk")
 	move_and_slide()
-	
+		
 func _on_action_timeout() -> void:
 	if velocity.x > 0:
 		giant.play("walk")

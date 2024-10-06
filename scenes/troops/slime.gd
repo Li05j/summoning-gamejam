@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var slime = $AnimatedSprite2D
 
 var action_timer: Timer
+var spawn_timer: Timer
 
 const MOVE_SPEED = 110 # Default speed
 const ATTACK_RANGE = 150 # Default DUMMY attack range
@@ -10,6 +11,8 @@ const ATTACK_DMG = 15 # Default atk
 const ATTACK_SPD = 1 # Default rate of atk
 const MAX_HP = 35 # Default hp
 const GOLD_DROP = 25 # Default gold drop upon defeat
+
+const SPAWN_WAIT = 0.6
 
 const friendly_turrent_x = 130 + ATTACK_RANGE # Default friendly tower x-coord
 const enemy_turrent_x = 975 - ATTACK_RANGE # Default enemy tower x-coord
@@ -24,8 +27,14 @@ var direction = 1 # Default moving right
 
 func _ready() -> void:
 	add_timer()
+	slime.play("spawn")
+	add_spawn_timer()  # Add the spawn timer
 	if not is_friendly:
 		slime.flip_h = true
+		
+func _on_spawn_animation_done() -> void:
+	slime.play("walk")
+
 
 func add_timer() -> void:
 	action_timer = Timer.new()
@@ -33,6 +42,15 @@ func add_timer() -> void:
 	action_timer.autostart = true
 	add_child(action_timer)
 	action_timer.timeout.connect(_on_action_timeout)
+
+func add_spawn_timer() -> void:
+	spawn_timer = Timer.new()
+	spawn_timer.wait_time = SPAWN_WAIT
+	spawn_timer.one_shot = true
+	add_child(spawn_timer)
+	spawn_timer.start()
+	spawn_timer.timeout.connect(_on_spawn_animation_done)
+
 
 func set_enemy(spawn_pos: Vector2) -> void:
 	is_friendly = false
@@ -52,10 +70,11 @@ func _physics_process(delta: float) -> void:
 		is_hitting_tower = true
 		velocity.x = 0
 	else:
-		velocity.x = direction * MOVE_SPEED
-		slime.play("walk")
+		if spawn_timer.is_stopped():
+			velocity.x = direction * MOVE_SPEED
+			slime.play("walk")
 	move_and_slide()
-	
+		
 func _on_action_timeout() -> void:
 	if velocity.x > 0:
 		slime.play("walk")
