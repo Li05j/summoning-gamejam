@@ -86,10 +86,6 @@ func _process(delta: float) -> void:
 		_on_w_pressed()
 	if Input.is_action_just_pressed("Summon_3"): 
 		_on_e_pressed()
-	# Done for testing death
-	if Input.is_action_just_pressed("Discount"):
-		damageGoodTower(100)
-		damageBadTower(200)
 	if Input.is_action_just_pressed("Discount"): 
 		_on_r_pressed()
 	Q_Button.disabled = player_current_gold < q_cost

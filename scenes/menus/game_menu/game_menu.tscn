@@ -721,6 +721,7 @@ gameState = NodePath("..")
 [node name="Enemy_Troop_Container" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -9.154
 
 [node name="Fight" type="AudioStreamPlayer" parent="AudioStreamPlayer"]
 stream = ExtResource("17_rfoq2")
