@@ -283,6 +283,6 @@ position = Vector2(34, -36)
 scale = Vector2(2.8375, 2.297)
 sprite_frames = SubResource("SpriteFrames_p48u5")
 animation = &"spawn"
-frame_progress = 0.165959
+frame_progress = 0.369509
 
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

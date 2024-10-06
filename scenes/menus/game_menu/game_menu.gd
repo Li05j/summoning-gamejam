@@ -12,6 +12,8 @@ var giant_scene = preload("res://scenes/troops/giant.tscn")
 @onready var R_Button = $HBoxContainer/R_Button
 
 
+var enemy_spawn_timer: Timer;
+
 var tower_to_destroy = null;
 
 var battlefield;
@@ -48,8 +50,33 @@ func _ready() -> void:
 	friendly_summon_location_Vector2 = Vector2(offset.x, viewport_y-ground_y-offset.y) # Determining summoning position
 	enemy_summon_location_Vector2 = Vector2(975, viewport_y-ground_y-offset.y) # 975 is default enemy spawn point too lazy to make it a global const whatever
 	
+	enemy_spawn_timer = Timer.new()
+	enemy_spawn_timer.one_shot = true  # We will manually restart with random intervals
+	add_child(enemy_spawn_timer)
+	enemy_spawn_timer.timeout.connect(_on_enemy_spawn_timeout)
+	randomize_enemy_spawn_timer()
+	
 	update_costs()
 
+func randomize_enemy_spawn_timer() -> void:
+	var random_interval = randi_range(1, 3.5) # Generates a random interval between 1 and 5 seconds
+	enemy_spawn_timer.wait_time = random_interval
+	enemy_spawn_timer.start()
+
+func _on_enemy_spawn_timeout() -> void:
+	# Choose a random enemy to spawn
+	var random_enemy = randi_range(0, 2) # 0 = slime, 1 = goblin, 2 = giant
+	
+	if random_enemy == 0:
+		summon_enemy_slime()
+	elif random_enemy == 1:
+		summon_enemy_goblin()
+	else:
+		summon_enemy_giant()
+
+	# Randomize the next enemy spawn interval
+	randomize_enemy_spawn_timer()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Summon_1"):
@@ -155,12 +182,12 @@ func _on_r_pressed() -> void:
 		r_purchase()
 
 func _on_timer_timeout() -> void:
-	player_current_gold += 20
+	player_current_gold += 5
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
 
-func _on_enemy_ai_react_time_timeout() -> void:
-	summon_enemy_goblin()
-
+#func _on_enemy_ai_react_time_timeout() -> void:
+	#summon_enemy_goblin()
+#
 
 func _on_tower_death_timer_timeout() -> void:
 	tower_to_destroy.queue_free()

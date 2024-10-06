@@ -6,7 +6,7 @@ var action_timer: Timer
 var spawn_timer: Timer
 
 const MOVE_SPEED = 110 # Default speed
-const ATTACK_RANGE = 150 # Default DUMMY attack range
+const ATTACK_RANGE = 100 # Default DUMMY attack range
 const ATTACK_DMG = 15 # Default atk
 const ATTACK_SPD = 1 # Default rate of atk
 const MAX_HP = 35 # Default hp
