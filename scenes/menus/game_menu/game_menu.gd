@@ -79,33 +79,38 @@ func damageBadTower(damage: int) -> void:
 	badTowerHealthChange.emit()
 	
 
-func summon_slime():
+func summon_friendly_slime():
 	player_current_gold -= q_cost
 	var slime_instance = slime_scene.instantiate()
 	slime_instance.position = friendly_summon_location_Vector2
-	add_child(slime_instance)
+	get_node("Friend_Troop_Container").add_child(slime_instance)
 	
-func summon_goblin():
+func summon_friendly_goblin():
 	player_current_gold -= w_cost
 	var goblin_instance = goblin_scene.instantiate()
 	goblin_instance.position = friendly_summon_location_Vector2
-	add_child(goblin_instance)
+	get_node("Friend_Troop_Container").add_child(goblin_instance)
 
-func summon_giant():
+func summon_friendly_giant():
 	player_current_gold -= e_cost
 	var giant_instance = giant_scene.instantiate()
 	giant_instance.position = friendly_summon_location_Vector2
-	add_child(giant_instance)
+	get_node("Friend_Troop_Container").add_child(giant_instance)
 	
 func summon_enemy_slime():
 	var slime_instance = slime_scene.instantiate()
 	slime_instance.set_enemy(enemy_summon_location_Vector2);
-	add_child(slime_instance)
+	get_node("Enemy_Troop_Container").add_child(slime_instance)
 	
 func summon_enemy_goblin():
 	var goblin_instance = goblin_scene.instantiate()
 	goblin_instance.set_enemy(enemy_summon_location_Vector2);
-	add_child(goblin_instance)
+	get_node("Enemy_Troop_Container").add_child(goblin_instance)
+		
+func summon_enemy_giant():
+	var giant_instance = goblin_scene.instantiate()
+	giant_instance.set_enemy(enemy_summon_location_Vector2);
+	get_node("Enemy_Troop_Container").add_child(giant_instance)
 	
 func r_purchase():
 	player_current_gold -= r_cost
@@ -123,15 +128,15 @@ func update_costs():
 
 func _on_q_pressed() -> void:
 	if player_current_gold >= q_cost:
-		summon_slime()
+		summon_friendly_slime()
 
 func _on_w_pressed() -> void:
 	if player_current_gold >= w_cost:
-		summon_goblin()
+		summon_friendly_goblin()
 
 func _on_e_pressed() -> void:
 	if player_current_gold >= e_cost:
-		summon_giant()
+		summon_friendly_giant()
 		
 func _on_r_pressed() -> void:
 	if player_current_gold >= r_cost:
