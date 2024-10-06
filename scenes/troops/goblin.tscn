@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfiow7i22bcmt"]
+
+[ext_resource type="Script" path="res://scenes/troops/goblin.gd" id="1_alw66"]
+[ext_resource type="Texture2D" uid="uid://c73h6712rngmj" path="res://sprites/pinksquare.png" id="2_p88vm"]
+
+[node name="Goblin" type="CharacterBody2D"]
+script = ExtResource("1_alw66")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_p88vm")
