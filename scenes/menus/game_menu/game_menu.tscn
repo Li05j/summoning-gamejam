@@ -1,9 +1,181 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=32 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://addons/FlatUI4/kenneyUI.tres" id="2_i1dq0"]
 [ext_resource type="Script" path="res://scenes/menus/game_menu/battlefield.gd" id="2_kx6yp"]
 [ext_resource type="PackedScene" uid="uid://b48kpod6knumy" path="res://scenes/buildings/base.tscn" id="3_6260x"]
+[ext_resource type="Texture2D" uid="uid://c3gdtcekx0fee" path="res://addons/Bad_Guy_Tower.png" id="4_ame2p"]
+[ext_resource type="Texture2D" uid="uid://d1apvpyhli44c" path="res://addons/free-coin-icon-794-thumb.png" id="6_xbff3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6oeqv"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(0, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vytbd"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(100, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsgkc"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(200, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07ixg"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(300, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjhmh"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(400, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5me01"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(500, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ielby"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(600, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hkgu"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(700, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgl5e"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(800, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kbx8"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(900, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjiqr"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(1000, 0, 99, 140)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ddc5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6oeqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vytbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsgkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07ixg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjhmh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5me01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ielby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hkgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgl5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kbx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjiqr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j0sm"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(0, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfiqb"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(100, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4vbb"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(200, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6t65"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(300, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mn1si"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(400, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tns4"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(500, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfahd"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(600, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md77k"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(700, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc586"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(800, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35typ"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(900, 0, 99, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqhby"]
+atlas = ExtResource("4_ame2p")
+region = Rect2(1000, 0, 99, 140)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1c3a1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j0sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfiqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4vbb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6t65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mn1si")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tns4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfahd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md77k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc586")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35typ")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqhby")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
 bg_color = Color(0.813638, 0.524132, 0.267163, 1)
@@ -42,6 +214,17 @@ scale = Vector2(0.21, 0.375)
 position = Vector2(35, 14)
 scale = Vector2(0.21, 0.375)
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
+position = Vector2(36.8803, 19.2329)
+scale = Vector2(0.0812419, 0.231127)
+sprite_frames = SubResource("SpriteFrames_6ddc5")
+frame_progress = 0.987625
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
+position = Vector2(3.11957, 18.8642)
+scale = Vector2(0.0812419, 0.231127)
+sprite_frames = SubResource("SpriteFrames_1c3a1")
+
 [node name="Command_Panel" type="Panel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
@@ -55,10 +238,10 @@ offset_top = 568.0
 offset_right = 1284.0
 offset_bottom = 968.0
 scale = Vector2(0.2, 0.2)
-theme_override_constants/separation = 30
+theme_override_constants/separation = 35
 
 [node name="Q_Button" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(400, 250)
+custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_i1dq0")
@@ -67,7 +250,7 @@ theme_override_font_sizes/font_size = 80
 text = "Q"
 
 [node name="W_Button" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(400, 250)
+custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_i1dq0")
@@ -76,13 +259,55 @@ theme_override_font_sizes/font_size = 80
 text = "W"
 
 [node name="E_Button" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(400, 250)
+custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("2_i1dq0")
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "E"
+
+[node name="Free-coin-icon-794-thumb" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(290, 325)
+scale = Vector2(0.3, 0.228)
+texture = ExtResource("6_xbff3")
+
+[node name="Label" type="Label" parent="HBoxContainer/Free-coin-icon-794-thumb"]
+offset_left = -916.667
+offset_top = -153.509
+offset_right = 366.333
+offset_bottom = 241.491
+theme_override_font_sizes/font_size = 150
+text = "*Q  price*
+"
+
+[node name="Free-coin-icon-794-thumb2" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(685, 325)
+scale = Vector2(0.3, 0.228)
+texture = ExtResource("6_xbff3")
+
+[node name="Label" type="Label" parent="HBoxContainer/Free-coin-icon-794-thumb2"]
+offset_left = -950.0
+offset_top = -153.509
+offset_right = 437.0
+offset_bottom = 241.491
+theme_override_font_sizes/font_size = 150
+text = "*W  price*
+"
+
+[node name="Free-coin-icon-794-thumb3" type="Sprite2D" parent="HBoxContainer"]
+position = Vector2(1035, 330)
+scale = Vector2(0.3, 0.228)
+texture = ExtResource("6_xbff3")
+
+[node name="Label" type="Label" parent="HBoxContainer/Free-coin-icon-794-thumb3"]
+offset_left = -850.0
+offset_top = -175.439
+offset_right = 537.0
+offset_bottom = 219.561
+theme_override_font_sizes/font_size = 150
+text = "*E price*
+"
 
 [node name="P1 Health" type="ProgressBar" parent="."]
 offset_top = 488.0
