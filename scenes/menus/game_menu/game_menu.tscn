@@ -1,9 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=32 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="Theme" uid="uid://6shp5ck1tnja" path="res://Theme/FlatUI4/kenneyUI.tres" id="2_i1dq0"]
 [ext_resource type="Script" path="res://scenes/menus/game_menu/battlefield.gd" id="2_kx6yp"]
-[ext_resource type="PackedScene" uid="uid://b48kpod6knumy" path="res://scenes/buildings/base.tscn" id="3_6260x"]
 [ext_resource type="Texture2D" uid="uid://c3gdtcekx0fee" path="res://addons/Bad_Guy_Tower.png" id="4_ame2p"]
 [ext_resource type="Texture2D" uid="uid://b5io10hnfju2q" path="res://addons/Good_Guy_Tower.png" id="5_5iork"]
 [ext_resource type="Texture2D" uid="uid://d1apvpyhli44c" path="res://addons/free-coin-icon-794-thumb.png" id="6_xbff3"]
@@ -207,14 +206,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0.553997, 0.935323, 0.627229, 1)
 
-[node name="Base_Left" parent="VBoxContainer/Battlefield" instance=ExtResource("3_6260x")]
-position = Vector2(2, 26.5)
-scale = Vector2(0.21, 0.375)
-
-[node name="Base_Right" parent="VBoxContainer/Battlefield" instance=ExtResource("3_6260x")]
-position = Vector2(37.9, 26.5)
-scale = Vector2(0.21, 0.375)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
 position = Vector2(36.8803, 19.2329)
 scale = Vector2(0.0812419, 0.231127)
@@ -232,12 +223,67 @@ layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_64j8a")
 
+[node name="total_gold" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
+position = Vector2(18.5441, 1.95241)
+scale = Vector2(0.00402864, 0.00584581)
+texture = ExtResource("6_xbff3")
+
+[node name="Label" type="Label" parent="VBoxContainer/Command_Panel/total_gold"]
+offset_left = 318.344
+offset_top = -105.113
+offset_right = 1041.34
+offset_bottom = 167.887
+theme_override_font_sizes/font_size = 150
+text = "Gold: 0"
+
+[node name="q_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
+position = Vector2(2.84228, 8.89592)
+scale = Vector2(0.00207972, 0.00280198)
+texture = ExtResource("6_xbff3")
+
+[node name="Label" type="Label" parent="VBoxContainer/Command_Panel/q_cost"]
+offset_left = -916.667
+offset_top = -153.509
+offset_right = 366.333
+offset_bottom = 241.491
+theme_override_font_sizes/font_size = 150
+text = "*Q  price*
+"
+
+[node name="w_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
+position = Vector2(5.58057, 8.89592)
+scale = Vector2(0.00207972, 0.00280198)
+texture = ExtResource("6_xbff3")
+
+[node name="Label" type="Label" parent="VBoxContainer/Command_Panel/w_cost"]
+offset_left = -950.0
+offset_top = -153.509
+offset_right = 437.0
+offset_bottom = 241.491
+theme_override_font_sizes/font_size = 150
+text = "*W  price*
+"
+
+[node name="e_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
+position = Vector2(8.0069, 8.95737)
+scale = Vector2(0.00207972, 0.00280198)
+texture = ExtResource("6_xbff3")
+
+[node name="Label" type="Label" parent="VBoxContainer/Command_Panel/e_cost"]
+offset_left = -850.0
+offset_top = -175.0
+offset_right = 433.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 150
+text = "*E price*
+"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 568.0
-offset_right = 1284.0
-offset_bottom = 968.0
+offset_right = 1604.0
+offset_bottom = 803.0
 scale = Vector2(0.2, 0.2)
 theme_override_constants/separation = 35
 
@@ -267,48 +313,6 @@ theme = ExtResource("2_i1dq0")
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "E"
-
-[node name="Free-coin-icon-794-thumb" type="Sprite2D" parent="HBoxContainer"]
-position = Vector2(290, 325)
-scale = Vector2(0.3, 0.228)
-texture = ExtResource("6_xbff3")
-
-[node name="Label" type="Label" parent="HBoxContainer/Free-coin-icon-794-thumb"]
-offset_left = -916.667
-offset_top = -153.509
-offset_right = 366.333
-offset_bottom = 241.491
-theme_override_font_sizes/font_size = 150
-text = "*Q  price*
-"
-
-[node name="Free-coin-icon-794-thumb2" type="Sprite2D" parent="HBoxContainer"]
-position = Vector2(685, 325)
-scale = Vector2(0.3, 0.228)
-texture = ExtResource("6_xbff3")
-
-[node name="Label" type="Label" parent="HBoxContainer/Free-coin-icon-794-thumb2"]
-offset_left = -950.0
-offset_top = -153.509
-offset_right = 437.0
-offset_bottom = 241.491
-theme_override_font_sizes/font_size = 150
-text = "*W  price*
-"
-
-[node name="Free-coin-icon-794-thumb3" type="Sprite2D" parent="HBoxContainer"]
-position = Vector2(1035, 330)
-scale = Vector2(0.3, 0.228)
-texture = ExtResource("6_xbff3")
-
-[node name="Label" type="Label" parent="HBoxContainer/Free-coin-icon-794-thumb3"]
-offset_left = -850.0
-offset_top = -175.439
-offset_right = 537.0
-offset_bottom = 219.561
-theme_override_font_sizes/font_size = 150
-text = "*E price*
-"
 
 [node name="P1 Health" type="ProgressBar" parent="."]
 layout_mode = 0
