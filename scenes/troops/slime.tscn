@@ -138,3 +138,5 @@ scale = Vector2(3.03125, 3.67188)
 sprite_frames = SubResource("SpriteFrames_p48u5")
 animation = &"attack"
 frame_progress = 0.430082
+
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

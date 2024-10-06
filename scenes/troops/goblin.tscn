@@ -169,3 +169,5 @@ sprite_frames = SubResource("SpriteFrames_d4ikb")
 animation = &"walk"
 frame_progress = 0.811442
 script = SubResource("GDScript_8mvcm")
+
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

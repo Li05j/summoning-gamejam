@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
-
 @onready var slime = $AnimatedSprite2D
+
+var action_timer: Timer
 
 const MOVE_SPEED = 110 # Default speed
 const ATTACK_RANGE = 150 # Default DUMMY attack range
@@ -15,14 +16,23 @@ const enemy_turrent_x = 975 - ATTACK_RANGE # Default enemy tower x-coord
 
 var current_hp = MAX_HP
 var current_target = null  # Holds the target enemy
+var is_hitting_tower = false # If it reached the end (i.e. enemy tower)
 
 # Stuff that will change if enemy
 var is_friendly = true # Default friendly
 var direction = 1 # Default moving right
 
 func _ready() -> void:
+	add_timer()
 	if not is_friendly:
 		slime.flip_h = true
+
+func add_timer() -> void:
+	action_timer = Timer.new()
+	action_timer.wait_time = ATTACK_SPD
+	action_timer.autostart = true
+	add_child(action_timer)
+	action_timer.timeout.connect(_on_action_timeout)
 
 func set_enemy(spawn_pos: Vector2) -> void:
 	is_friendly = false
@@ -34,14 +44,29 @@ func take_dmg(damage: int) -> void:
 	if current_hp <= 0:
 		queue_free() # gracefully deletes this instance, i.e. self destruct
 
-func _physics_process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
 	if is_friendly and position.x >= enemy_turrent_x:
-		slime.play("attack")
+		is_hitting_tower = true
 		velocity.x = 0
 	elif !is_friendly and position.x <= friendly_turrent_x:
-		slime.play("attack")
+		is_hitting_tower = true
 		velocity.x = 0
 	else:
 		velocity.x = direction * MOVE_SPEED
 		slime.play("walk")
 	move_and_slide()
+	
+func _on_action_timeout() -> void:
+	if velocity.x > 0:
+		slime.play("walk")
+	else:
+		slime.play("attack")
+		if is_hitting_tower:
+			if is_friendly:
+				get_parent().get_parent().damageBadTower(ATTACK_DMG)
+			else:
+				get_parent().get_parent().damageGoodTower(ATTACK_DMG)
+
+func _on_animated_sprite_2d_animation_looped() -> void:
+	if slime.animation == "attack":
+		slime.play("walk")  # Go back to walk after attack finishes
