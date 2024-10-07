@@ -603,7 +603,7 @@ theme_override_font_sizes/font_size = 200
 text = "R Cost"
 
 [node name="Timer" type="Timer" parent="VBoxContainer/Command_Panel"]
-wait_time = 0.4
+wait_time = 0.3
 autostart = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -702,6 +702,7 @@ script = ExtResource("9_s3t68")
 gameState = NodePath("..")
 
 [node name="Enemy_AI_React_Time" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [node name="Bad_Health_Bar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("gameState")]

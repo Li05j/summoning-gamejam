@@ -11,7 +11,16 @@ var giant_scene = preload("res://scenes/troops/giant.tscn")
 @onready var E_Button = $HBoxContainer/E_Button
 @onready var R_Button = $HBoxContainer/R_Button
 
+const ENEMY_MAX_TIME = 100 # Max chance reached after 100 summons
+const ENEMY_SLIME_TARGET_CHANCE = 35.0
+const ENEMY_GOBLIN_TARGET_CHANCE = 40.0
+const ENEMY_GIANT_TARGET_CHANCE = 25.0
+
 var enemy_spawn_timer: Timer;
+var enemy_spawn_count = 0;
+var enemy_slime_chance = 25.0;
+var enemy_goblin_chance = 75.0;
+var enemy_giant_chance = 0.0;
 
 var tower_to_destroy = null;
 
@@ -22,12 +31,12 @@ var friendly_summon_location_Vector2: Vector2;
 var enemy_summon_location_Vector2: Vector2;
 
 var player_current_gold = 100;
-var q_cost = 50;
+var q_cost = 40;
 var w_cost = 30;
-var e_cost = 180;
+var e_cost = 120;
 var r_cost = 100;
 
-const TOWER_MAX = 1000;
+const TOWER_MAX = 2000;
 var good_tower_health = TOWER_MAX;
 var bad_tower_health = TOWER_MAX;
 
@@ -53,29 +62,13 @@ func _ready() -> void:
 	enemy_spawn_timer.one_shot = true  # We will manually restart with random intervals
 	add_child(enemy_spawn_timer)
 	enemy_spawn_timer.timeout.connect(_on_enemy_spawn_timeout)
-	randomize_enemy_spawn_timer()
+	enemy_spawn_timer.start()
 	
 	update_costs()
 
-func randomize_enemy_spawn_timer() -> void:
-	var random_interval = randi_range(1, 4.5) # Generates a random interval between 1 and 5 seconds
-	enemy_spawn_timer.wait_time = random_interval
+func set_enemy_spawn_time(interval: float) -> void:
+	enemy_spawn_timer.wait_time = interval
 	enemy_spawn_timer.start()
-
-func _on_enemy_spawn_timeout() -> void:
-	# Choose a random enemy to spawn
-	var random_enemy = randf_range(0, 3) # 0 = slime, 1 = goblin, 2 = giant
-	
-	if random_enemy < 1.2:
-		summon_enemy_slime()
-	elif random_enemy < 2.45:
-		summon_enemy_goblin()
-	else:
-		print("SUMMONGIN GIATN FOR ENEMY!")
-		summon_enemy_giant()
-
-	# Randomize the next enemy spawn interval
-	randomize_enemy_spawn_timer()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -175,7 +168,7 @@ func _on_r_pressed() -> void:
 		r_purchase()
 
 func _on_timer_timeout() -> void:
-	player_current_gold += 5
+	player_current_gold += 2
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
 
 func _on_tower_death_timer_timeout() -> void:
@@ -184,3 +177,31 @@ func _on_tower_death_timer_timeout() -> void:
 		get_tree().change_scene_to_file("res://scenes/menus/victory_scene.tscn")
 	elif tower_to_destroy == good_tower:
 		get_tree().change_scene_to_file("res://scenes/menus/defeat_scene.tscn")
+		
+func _on_enemy_spawn_timeout() -> void:
+	# Choose a random enemy to spawn
+	var progress = min(enemy_spawn_count / ENEMY_MAX_TIME, 1)
+	enemy_slime_chance = lerp(enemy_slime_chance, ENEMY_SLIME_TARGET_CHANCE, progress);
+	enemy_goblin_chance = lerp(enemy_goblin_chance, ENEMY_GOBLIN_TARGET_CHANCE, progress);
+	enemy_giant_chance = lerp(enemy_giant_chance, ENEMY_GIANT_TARGET_CHANCE, progress);
+	
+	var random_enemy = randf_range(0, 100) # 0 to 99
+	
+	if random_enemy < enemy_slime_chance:
+		summon_enemy_slime()
+	elif random_enemy < enemy_slime_chance + enemy_goblin_chance:
+		summon_enemy_goblin()
+	else:
+		summon_enemy_giant()
+
+	# Randomize the next enemy spawn interval
+	var random_interval;
+	if enemy_spawn_count < 10:
+		random_interval = randi_range(3, 7) # Generates a random interval between 2 and 7 seconds
+	elif enemy_spawn_count < 25:
+		random_interval = randi_range(2, 6)
+	else:
+		random_interval = randi_range(1, 5)
+	set_enemy_spawn_time(random_interval)
+		
+	enemy_spawn_count += 1;

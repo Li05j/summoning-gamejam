@@ -6,12 +6,11 @@ extends CharacterBody2D
 var action_timer: Timer
 var spawn_timer: Timer
 
-
-const MOVE_SPEED = 180 # Default speed
+const MOVE_SPEED = 100 # Default speed
 const ATTACK_RANGE = 35 # Default DUMMY attack range
-const ATTACK_DMG = 3 # Default atk
+const ATTACK_DMG = 2 # Default atk
 const ATTACK_SPD = 0.5 # Default interval between atks in seconds
-const MAX_HP: float = 50.0 # Default hp
+const MAX_HP: float = 65.0 # Default hp
 const GOLD_DROP = 15 # Default gold drop upon defeat
 
 const SPAWN_WAIT = 0.8
@@ -121,6 +120,6 @@ func _on_animated_sprite_2d_animation_looped() -> void:
 				get_parent().get_parent().damageBadTower(ATTACK_DMG)
 			else:
 				get_parent().get_parent().damageGoodTower(ATTACK_DMG)
-		if current_target != null and current_target.take_dmg(ATTACK_DMG):
+		elif current_target != null and current_target.take_dmg(ATTACK_DMG):
 			current_target = null
 		goblin.play("walk")  # Go back to walk after attack finishes

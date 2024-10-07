@@ -6,12 +6,12 @@ extends CharacterBody2D
 var action_timer: Timer
 var spawn_timer: Timer
 
-const MOVE_SPEED = 75 # Default speed
+const MOVE_SPEED = 35 # Default speed
 const ATTACK_RANGE = 75 # Default DUMMY attack range
-const ATTACK_DMG = 50 # Default atk
-const ATTACK_SPD = 2.5 # Default rate of atk
-const MAX_HP: float = 500.0 # Default hp
-const GOLD_DROP = 90 # Default gold drop upon defeat
+const ATTACK_DMG = 45 # Default atk
+const ATTACK_SPD = 3 # Default rate of atk
+const MAX_HP: float = 400.0 # Default hp
+const GOLD_DROP = 60 # Default gold drop upon defeat
 
 const SPAWN_WAIT = 1
 
@@ -121,6 +121,6 @@ func _on_animated_sprite_2d_animation_looped() -> void:
 				get_parent().get_parent().damageBadTower(ATTACK_DMG)
 			else:
 				get_parent().get_parent().damageGoodTower(ATTACK_DMG)
-		if current_target != null and current_target.take_dmg(ATTACK_DMG):
+		elif current_target != null and current_target.take_dmg(ATTACK_DMG):
 			current_target = null
 		giant.play("walk")  # Go back to walk after attack finishes
