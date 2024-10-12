@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdaoovccsps1n"
-path="res://.godot/imported/Slime Portrati.png-ee85af0b4e3460c0793a1a2d26e1b0d5.ctex"
+path="res://.godot/imported/Slime Portrati.png-b606aed5381cd832746d098208cfcf5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Troops/SlimePack/Slime_Spritesheets/Slime Portrati.png"
-dest_files=["res://.godot/imported/Slime Portrati.png-ee85af0b4e3460c0793a1a2d26e1b0d5.ctex"]
+source_file="res://sprites/Troops/Slime/Slime Portrati.png"
+dest_files=["res://.godot/imported/Slime Portrati.png-b606aed5381cd832746d098208cfcf5d.ctex"]
 
 [params]
 

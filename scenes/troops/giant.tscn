@@ -25,6 +25,14 @@ region = Rect2(226, 231, 113, 77)
 atlas = ExtResource("3_mbjtd")
 region = Rect2(339, 231, 113, 77)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lmiy"]
+atlas = ExtResource("3_mbjtd")
+region = Rect2(339, 0, 113, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n1yt"]
+atlas = ExtResource("3_mbjtd")
+region = Rect2(0, 154, 113, 77)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_otr67"]
 atlas = ExtResource("3_ijols")
 region = Rect2(0, 0, 96, 80)
@@ -105,10 +113,6 @@ region = Rect2(192, 320, 96, 80)
 atlas = ExtResource("3_ijols")
 region = Rect2(288, 320, 96, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1lmiy"]
-atlas = ExtResource("3_mbjtd")
-region = Rect2(339, 0, 113, 77)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_h83fm"]
 atlas = ExtResource("3_mbjtd")
 region = Rect2(0, 77, 113, 77)
@@ -124,10 +128,6 @@ region = Rect2(226, 77, 113, 77)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2xdd7"]
 atlas = ExtResource("3_mbjtd")
 region = Rect2(339, 77, 113, 77)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8n1yt"]
-atlas = ExtResource("3_mbjtd")
-region = Rect2(0, 154, 113, 77)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6rkb"]
 atlas = ExtResource("3_mbjtd")
@@ -158,6 +158,17 @@ animations = [{
 "loop": true,
 "name": &"attack",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lmiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n1yt")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -259,11 +270,11 @@ z_index = -1
 script = ExtResource("1_pht17")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(48, -94)
+position = Vector2(-35, -94)
 scale = Vector2(2.13108, 2.54302)
 sprite_frames = SubResource("SpriteFrames_8bhu4")
-animation = &"spawn"
-frame_progress = 0.340115
+animation = &"idle"
+autoplay = "idle"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hc2b1")

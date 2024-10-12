@@ -30,7 +30,7 @@ var command_panel;
 var friendly_summon_location_Vector2: Vector2;
 var enemy_summon_location_Vector2: Vector2;
 
-var player_current_gold = 100;
+var player_current_gold = Constants.STARTING_GOLD;
 var q_cost = 40;
 var w_cost = 30;
 var e_cost = 120;

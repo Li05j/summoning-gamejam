@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccrhwn1w5ihtm"
-path="res://.godot/imported/Slime_Attack.png-b084bbcea42d0b33ee88ff2b8735eb59.ctex"
+uid="uid://o7loxxx148qt"
+path="res://.godot/imported/Slime_Hurt.png-a67a15c3beddd0ff2c50b6d85655b8fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Troops/SlimePack/Slime_Spritesheets/Slime_Attack.png"
-dest_files=["res://.godot/imported/Slime_Attack.png-b084bbcea42d0b33ee88ff2b8735eb59.ctex"]
+source_file="res://sprites/Troops/Slime/Slime_Hurt.png"
+dest_files=["res://.godot/imported/Slime_Hurt.png-a67a15c3beddd0ff2c50b6d85655b8fe.ctex"]
 
 [params]
 

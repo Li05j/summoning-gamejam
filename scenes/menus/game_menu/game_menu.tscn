@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b5io10hnfju2q" path="res://addons/Good_Guy_Tower.png" id="5_5iork"]
 [ext_resource type="Texture2D" uid="uid://d1apvpyhli44c" path="res://addons/free-coin-icon-794-thumb.png" id="6_xbff3"]
 [ext_resource type="Texture2D" uid="uid://bgde3qbtyy7b0" path="res://addons/no health bar.png" id="7_4bedg"]
-[ext_resource type="Texture2D" uid="uid://bdaoovccsps1n" path="res://sprites/Troops/SlimePack/Slime_Spritesheets/Slime Portrati.png" id="7_bta4p"]
+[ext_resource type="Texture2D" uid="uid://bdaoovccsps1n" path="res://sprites/Troops/Slime/Slime Portrati.png" id="7_bta4p"]
 [ext_resource type="Texture2D" uid="uid://b2otnrmcof7o2" path="res://addons/pixel-art-cloud-background [photoutils.com] (2).png" id="7_tkhtq"]
 [ext_resource type="Texture2D" uid="uid://e4xnhtg6u7w6" path="res://addons/health.png" id="8_455wx"]
 [ext_resource type="Texture2D" uid="uid://be6wedlgc7ahh" path="res://sprites/Troops/Knight/knight portrait.png" id="8_s6uwo"]

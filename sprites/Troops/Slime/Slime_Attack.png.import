@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fl6ift7bx5ju"
-path="res://.godot/imported/Tileset_A.png-51aac5a905095c61a8c6f95aa5f80400.ctex"
+uid="uid://ccrhwn1w5ihtm"
+path="res://.godot/imported/Slime_Attack.png-45c41f3a1a93b86793f30fc151430c95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Troops/SlimePack/Misc/Tileset_A.png"
-dest_files=["res://.godot/imported/Tileset_A.png-51aac5a905095c61a8c6f95aa5f80400.ctex"]
+source_file="res://sprites/Troops/Slime/Slime_Attack.png"
+dest_files=["res://.godot/imported/Slime_Attack.png-45c41f3a1a93b86793f30fc151430c95.ctex"]
 
 [params]
 

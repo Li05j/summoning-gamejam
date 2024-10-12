@@ -1,0 +1,8 @@
+const STARTING_GOLD = 1000
+
+const SLIME_PRICE = 40
+const GOBLIN_PRICE = 30
+const GIANT_PRICE = 120
+
+const FRIENDLY_BASE_X = 130
+const ENEMY_BASE_X = 975

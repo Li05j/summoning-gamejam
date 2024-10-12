@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0bisgd4my5fu"
-path="res://.godot/imported/Slime Portrait.png-745e213c842892737d4c4759484eced1.ctex"
+uid="uid://dn2sqexdjdgoh"
+path="res://.godot/imported/Slime_Throw.png-9fbd24da56d4618c595cebc0d55d4de4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Troops/SlimePack/Slime_Spritesheets/Slime Portrait.png"
-dest_files=["res://.godot/imported/Slime Portrait.png-745e213c842892737d4c4759484eced1.ctex"]
+source_file="res://sprites/Troops/Slime/Slime_Throw.png"
+dest_files=["res://.godot/imported/Slime_Throw.png-9fbd24da56d4618c595cebc0d55d4de4.ctex"]
 
 [params]
 
