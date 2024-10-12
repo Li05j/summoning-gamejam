@@ -486,7 +486,24 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_moilo")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="NonUI" type="Node2D" parent="."]
+
+[node name="Enemy_AI_React_Time" type="Timer" parent="NonUI"]
+wait_time = 5.0
+autostart = true
+
+[node name="Friend_Troop_Container" type="Node2D" parent="NonUI"]
+
+[node name="Enemy_Troop_Container" type="Node2D" parent="NonUI"]
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+z_index = -14
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 553.0
+texture = ExtResource("7_tkhtq")
+
+[node name="VBoxScreenLayout" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -499,37 +516,37 @@ scale = Vector2(28.8501, 16.2742)
 theme_override_constants/separation = -31
 metadata/_edit_use_anchors_ = true
 
-[node name="Battlefield" type="Node2D" parent="VBoxContainer"]
+[node name="Battlefield" type="Node2D" parent="VBoxScreenLayout"]
 
-[node name="Bad_Tower" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
+[node name="Bad_Tower" type="AnimatedSprite2D" parent="VBoxScreenLayout/Battlefield"]
 z_index = -5
 position = Vector2(36.915, 17.0461)
 scale = Vector2(0.0808847, 0.309352)
 sprite_frames = SubResource("SpriteFrames_6ddc5")
 animation = &"vibe"
 
-[node name="Good_Tower" type="AnimatedSprite2D" parent="VBoxContainer/Battlefield"]
+[node name="Good_Tower" type="AnimatedSprite2D" parent="VBoxScreenLayout/Battlefield"]
 z_index = -5
 position = Vector2(3.11957, 16.9947)
 scale = Vector2(0.0812419, 0.308617)
 sprite_frames = SubResource("SpriteFrames_1c3a1")
 animation = &"vibe"
 
-[node name="Tower_Death_Timer" type="Timer" parent="VBoxContainer/Battlefield"]
+[node name="Tower_Death_Timer" type="Timer" parent="VBoxScreenLayout/Battlefield"]
 wait_time = 1.3
 
-[node name="Command_Panel" type="Panel" parent="VBoxContainer"]
+[node name="CommandPanel" type="Panel" parent="VBoxScreenLayout"]
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_64j8a")
 
-[node name="total_gold" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
+[node name="total_gold" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
 position = Vector2(37.7468, 2.68383)
 scale = Vector2(0.00402864, 0.00584581)
 texture = ExtResource("6_xbff3")
 
-[node name="Label" type="Label" parent="VBoxContainer/Command_Panel/total_gold"]
+[node name="Label" type="Label" parent="VBoxScreenLayout/CommandPanel/total_gold"]
 offset_left = -972.238
 offset_top = -105.113
 offset_right = -249.242
@@ -538,12 +555,12 @@ theme_override_font_sizes/font_size = 150
 text = "Gold: 0"
 metadata/_edit_use_anchors_ = true
 
-[node name="q_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
+[node name="q_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
 position = Vector2(3.23604, 4.79501)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
-[node name="Label" type="Label" parent="VBoxContainer/Command_Panel/q_cost"]
+[node name="Label" type="Label" parent="VBoxScreenLayout/CommandPanel/q_cost"]
 anchors_preset = -1
 anchor_top = 0.127674
 anchor_bottom = 0.127674
@@ -554,12 +571,12 @@ offset_bottom = 110.123
 theme_override_font_sizes/font_size = 200
 text = "Q Cost"
 
-[node name="w_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
+[node name="w_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
 position = Vector2(6.87557, 4.79501)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
-[node name="Label" type="Label" parent="VBoxContainer/Command_Panel/w_cost"]
+[node name="Label" type="Label" parent="VBoxScreenLayout/CommandPanel/w_cost"]
 anchors_preset = -1
 anchor_top = 0.127674
 anchor_bottom = 0.127674
@@ -570,12 +587,12 @@ offset_bottom = 110.123
 theme_override_font_sizes/font_size = 200
 text = "W Cost"
 
-[node name="e_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
+[node name="e_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
 position = Vector2(10.5496, 4.85653)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
-[node name="Label" type="Label" parent="VBoxContainer/Command_Panel/e_cost"]
+[node name="Label" type="Label" parent="VBoxScreenLayout/CommandPanel/e_cost"]
 anchors_preset = -1
 anchor_top = 0.127674
 anchor_bottom = 0.127674
@@ -586,12 +603,12 @@ offset_bottom = 110.123
 theme_override_font_sizes/font_size = 200
 text = "E Cost"
 
-[node name="r_cost" type="Sprite2D" parent="VBoxContainer/Command_Panel"]
+[node name="r_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
 position = Vector2(14.1893, 4.85653)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
-[node name="Label" type="Label" parent="VBoxContainer/Command_Panel/r_cost"]
+[node name="Label" type="Label" parent="VBoxScreenLayout/CommandPanel/r_cost"]
 anchors_preset = -1
 anchor_top = 0.127674
 anchor_bottom = 0.127674
@@ -602,11 +619,11 @@ offset_bottom = 110.123
 theme_override_font_sizes/font_size = 200
 text = "R Cost"
 
-[node name="Timer" type="Timer" parent="VBoxContainer/Command_Panel"]
+[node name="GoldTimer" type="Timer" parent="VBoxScreenLayout/CommandPanel"]
 wait_time = 0.3
 autostart = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxButtonLayout" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 23.0
 offset_top = 567.0
@@ -615,7 +632,7 @@ offset_bottom = 802.0
 scale = Vector2(0.2, 0.2)
 theme_override_constants/separation = 175
 
-[node name="Q_Button" type="Button" parent="HBoxContainer"]
+[node name="Q_Button" type="Button" parent="HBoxButtonLayout"]
 custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
@@ -624,7 +641,7 @@ theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 80
 text = "Q"
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Q_Button"]
+[node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/Q_Button"]
 layout_mode = 0
 offset_left = 50.0
 offset_top = -75.0
@@ -632,7 +649,7 @@ offset_right = 275.0
 offset_bottom = 185.0
 texture = ExtResource("7_bta4p")
 
-[node name="W_Button" type="Button" parent="HBoxContainer"]
+[node name="W_Button" type="Button" parent="HBoxButtonLayout"]
 custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
@@ -641,14 +658,14 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "W"
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/W_Button"]
+[node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/W_Button"]
 layout_mode = 0
 offset_left = 40.0
 offset_right = 325.0
 offset_bottom = 220.0
 texture = ExtResource("8_s6uwo")
 
-[node name="E_Button" type="Button" parent="HBoxContainer"]
+[node name="E_Button" type="Button" parent="HBoxButtonLayout"]
 custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
@@ -657,7 +674,7 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
 text = "E"
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/E_Button"]
+[node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/E_Button"]
 layout_mode = 0
 offset_left = 45.0
 offset_top = 15.0
@@ -665,7 +682,7 @@ offset_right = 290.0
 offset_bottom = 205.0
 texture = ExtResource("10_tou17")
 
-[node name="R_Button" type="Button" parent="HBoxContainer"]
+[node name="R_Button" type="Button" parent="HBoxButtonLayout"]
 custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
@@ -675,7 +692,7 @@ theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 150
 text = "⬆️"
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/R_Button"]
+[node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/R_Button"]
 layout_mode = 0
 offset_left = 120.0
 offset_top = 15.0
@@ -683,13 +700,6 @@ offset_right = 240.0
 offset_bottom = 195.0
 texture = ExtResource("11_dpk7h")
 expand_mode = 1
-
-[node name="TextureRect" type="TextureRect" parent="."]
-z_index = -14
-layout_mode = 0
-offset_right = 1154.0
-offset_bottom = 553.0
-texture = ExtResource("7_tkhtq")
 
 [node name="Good_Health_Bar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("gameState")]
 layout_mode = 0
@@ -700,10 +710,6 @@ texture_under = ExtResource("7_4bedg")
 texture_progress = ExtResource("8_455wx")
 script = ExtResource("9_s3t68")
 gameState = NodePath("..")
-
-[node name="Enemy_AI_React_Time" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
 
 [node name="Bad_Health_Bar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("gameState")]
 layout_mode = 0
@@ -718,21 +724,17 @@ texture_progress = ExtResource("8_455wx")
 script = ExtResource("11_mkcw3")
 gameState = NodePath("..")
 
-[node name="Friend_Troop_Container" type="Node2D" parent="."]
-
-[node name="Enemy_Troop_Container" type="Node2D" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="."]
 volume_db = -9.154
 
-[node name="Fight" type="AudioStreamPlayer" parent="AudioStreamPlayer"]
+[node name="Fight" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource("17_rfoq2")
 autoplay = true
 
-[connection signal="timeout" from="VBoxContainer/Battlefield/Tower_Death_Timer" to="." method="_on_tower_death_timer_timeout"]
-[connection signal="timeout" from="VBoxContainer/Command_Panel/Timer" to="." method="_on_timer_timeout"]
-[connection signal="pressed" from="HBoxContainer/Q_Button" to="." method="_on_q_pressed"]
-[connection signal="pressed" from="HBoxContainer/W_Button" to="." method="_on_w_pressed"]
-[connection signal="pressed" from="HBoxContainer/E_Button" to="." method="_on_e_pressed"]
-[connection signal="pressed" from="HBoxContainer/R_Button" to="." method="_on_e_pressed"]
-[connection signal="timeout" from="Enemy_AI_React_Time" to="." method="_on_enemy_ai_react_time_timeout"]
+[connection signal="timeout" from="NonUI/Enemy_AI_React_Time" to="." method="_on_enemy_ai_react_time_timeout"]
+[connection signal="timeout" from="VBoxScreenLayout/Battlefield/Tower_Death_Timer" to="." method="_on_tower_death_timer_timeout"]
+[connection signal="timeout" from="VBoxScreenLayout/CommandPanel/GoldTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="HBoxButtonLayout/Q_Button" to="." method="_on_q_pressed"]
+[connection signal="pressed" from="HBoxButtonLayout/W_Button" to="." method="_on_w_pressed"]
+[connection signal="pressed" from="HBoxButtonLayout/E_Button" to="." method="_on_e_pressed"]
+[connection signal="pressed" from="HBoxButtonLayout/R_Button" to="." method="_on_e_pressed"]

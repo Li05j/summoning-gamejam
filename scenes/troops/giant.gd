@@ -2,8 +2,8 @@ extends "./base_troop.gd"
 
 func _ready() -> void:
 	MOVE_SPEED = 35
-	ATTACK_RANGE = 75
-	ATTACK_DMG = 60
+	ATTACK_RANGE = 750
+	ATTACK_DMG = 600
 	ATTACK_SPD = 3
 	MAX_HP = 500
 	GOLD_DROP = Constants.GOBLIN_PRICE / 2

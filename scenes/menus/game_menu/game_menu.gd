@@ -3,13 +3,13 @@ var slime_scene = preload("res://scenes/troops/slime.tscn") # Preload slime scen
 var goblin_scene = preload("res://scenes/troops/goblin.tscn")
 var giant_scene = preload("res://scenes/troops/giant.tscn")
 
-@onready var good_tower = $VBoxContainer/Battlefield/Good_Tower
-@onready var bad_tower = $VBoxContainer/Battlefield/Bad_Tower
-@onready var tower_death_timer = $VBoxContainer/Battlefield/Tower_Death_Timer
-@onready var Q_Button = $HBoxContainer/Q_Button
-@onready var W_Button = $HBoxContainer/W_Button
-@onready var E_Button = $HBoxContainer/E_Button
-@onready var R_Button = $HBoxContainer/R_Button
+@onready var good_tower = $VBoxScreenLayout/Battlefield/Good_Tower
+@onready var bad_tower = $VBoxScreenLayout/Battlefield/Bad_Tower
+@onready var tower_death_timer = $VBoxScreenLayout/Battlefield/Tower_Death_Timer
+@onready var Q_Button = $HBoxButtonLayout/Q_Button
+@onready var W_Button = $HBoxButtonLayout/W_Button
+@onready var E_Button = $HBoxButtonLayout/E_Button
+@onready var R_Button = $HBoxButtonLayout/R_Button
 
 const ENEMY_MAX_TIME = 100 # Max chance reached after 100 summons
 const ENEMY_SLIME_TARGET_CHANCE = 35.0
@@ -45,8 +45,8 @@ signal badTowerHealthChange
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	battlefield = $VBoxContainer/Battlefield
-	command_panel = $VBoxContainer/Command_Panel
+	battlefield = $VBoxScreenLayout/Battlefield
+	command_panel = $VBoxScreenLayout/CommandPanel
 	
 	good_tower.play("vibe")
 	bad_tower.play("vibe")
@@ -108,34 +108,34 @@ func summon_friendly_slime():
 	player_current_gold -= q_cost
 	var slime_instance = slime_scene.instantiate()
 	slime_instance.position = friendly_summon_location_Vector2
-	get_node("Friend_Troop_Container").add_child(slime_instance)
+	get_node("NonUI/Friend_Troop_Container").add_child(slime_instance)
 	
 func summon_friendly_goblin():
 	player_current_gold -= w_cost
 	var goblin_instance = goblin_scene.instantiate()
 	goblin_instance.position = friendly_summon_location_Vector2
-	get_node("Friend_Troop_Container").add_child(goblin_instance)
+	get_node("NonUI/Friend_Troop_Container").add_child(goblin_instance)
 
 func summon_friendly_giant():
 	player_current_gold -= e_cost
 	var giant_instance = giant_scene.instantiate()
 	giant_instance.position = friendly_summon_location_Vector2
-	get_node("Friend_Troop_Container").add_child(giant_instance)
+	get_node("NonUI/Friend_Troop_Container").add_child(giant_instance)
 	
 func summon_enemy_slime():
 	var slime_instance = slime_scene.instantiate()
 	slime_instance.set_as_enemy(enemy_summon_location_Vector2);
-	get_node("Enemy_Troop_Container").add_child(slime_instance)
+	get_node("NonUI/Enemy_Troop_Container").add_child(slime_instance)
 	
 func summon_enemy_goblin():
 	var goblin_instance = goblin_scene.instantiate()
 	goblin_instance.set_as_enemy(enemy_summon_location_Vector2);
-	get_node("Enemy_Troop_Container").add_child(goblin_instance)
+	get_node("NonUI/Enemy_Troop_Container").add_child(goblin_instance)
 		
 func summon_enemy_giant():
 	var giant_instance = giant_scene.instantiate()
 	giant_instance.set_as_enemy(enemy_summon_location_Vector2);
-	get_node("Enemy_Troop_Container").add_child(giant_instance)
+	get_node("NonUI/Enemy_Troop_Container").add_child(giant_instance)
 	
 func r_purchase():
 	player_current_gold -= r_cost
