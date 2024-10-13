@@ -16,3 +16,8 @@ func take_dmg(dmg: int) -> bool:
 		get_parent().get_node("base_sprite/").play("destroyed")
 		return true
 	return false
+
+func _on_auto_regen_timer_timeout() -> void:
+	value += 3
+	if value > max_value:
+		value = max_value

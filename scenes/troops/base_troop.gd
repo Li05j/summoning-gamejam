@@ -87,6 +87,8 @@ func take_dmg(damage: int) -> bool:
 		deathSound.play()
 		if !is_friendly:
 			game_menu.player_current_gold += GOLD_DROP
+		else:
+			game_menu.get_node("NonUI/EnemyAI/").enemy_current_gold += GOLD_DROP
 		queue_free() # Gracefully deletes this instance, i.e. self destruct
 		return true # Unit died from the attack
 	return false
@@ -127,10 +129,10 @@ func _on_action_timeout() -> void:
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if sprite.animation == "attack":
-		if is_hitting_tower:
-			game_menu.damage_base(ATTACK_DMG, is_friendly)
-		elif current_target != null and current_target.take_dmg(ATTACK_DMG):
+		if current_target != null and current_target.take_dmg(ATTACK_DMG):
 			current_target = null
+		elif is_hitting_tower:
+			game_menu.damage_base(ATTACK_DMG, is_friendly)
 		sprite.play("walk")  # Go back to walk after attack finishes
 
 # ONLY START action timer when attacking - the attack and attack speed thing needs to be overhauled

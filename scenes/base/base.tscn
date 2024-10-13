@@ -325,7 +325,12 @@ texture_under = ExtResource("5_h6k21")
 texture_progress = ExtResource("6_0agxv")
 script = ExtResource("4_dmlvt")
 
+[node name="auto_regen_timer" type="Timer" parent="base_hp_bar"]
+autostart = true
+
 [node name="base_sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -66)
 sprite_frames = SubResource("SpriteFrames_8h876")
 animation = &"destroyed"
+
+[connection signal="timeout" from="base_hp_bar/auto_regen_timer" to="base_hp_bar" method="_on_auto_regen_timer_timeout"]

@@ -1,7 +1,7 @@
 extends "./base_troop.gd"
 
 func _ready() -> void:
-	MOVE_SPEED = 150
+	MOVE_SPEED = 100
 	ATTACK_RANGE = 30
 	ATTACK_DMG = 3
 	ATTACK_SPD = 0.5

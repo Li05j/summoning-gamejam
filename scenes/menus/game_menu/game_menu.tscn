@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=14 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
+[ext_resource type="PackedScene" uid="uid://i8t04i3pu053" path="res://scenes/enemy_AI/enemy_AI.tscn" id="2_svb7b"]
 [ext_resource type="Script" path="res://scenes/menus/game_menu/battlefield.gd" id="3_70k0e"]
 [ext_resource type="PackedScene" uid="uid://qlvpdxknnqsp" path="res://scenes/base/base.tscn" id="3_v2rvl"]
 [ext_resource type="Texture2D" uid="uid://d1apvpyhli44c" path="res://addons/free-coin-icon-794-thumb.png" id="6_xbff3"]
@@ -25,6 +26,8 @@ script = ExtResource("1_moilo")
 [node name="Friend_Troop_Container" type="Node2D" parent="NonUI"]
 
 [node name="Enemy_Troop_Container" type="Node2D" parent="NonUI"]
+
+[node name="EnemyAI" parent="NonUI" instance=ExtResource("2_svb7b")]
 
 [node name="BackgroundImage" type="TextureRect" parent="."]
 z_index = -14
@@ -67,6 +70,19 @@ custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_64j8a")
+
+[node name="game_time" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
+position = Vector2(32.5129, 2.62238)
+scale = Vector2(0.00402864, 0.00584581)
+
+[node name="Label" type="Label" parent="VBoxScreenLayout/CommandPanel/game_time"]
+offset_left = -696.913
+offset_top = -115.624
+offset_right = 26.083
+offset_bottom = 157.376
+theme_override_font_sizes/font_size = 150
+text = "Time: 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="total_gold" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
 position = Vector2(37.7468, 2.68383)
@@ -147,7 +163,6 @@ theme_override_font_sizes/font_size = 200
 text = "R Cost"
 
 [node name="GoldTimer" type="Timer" parent="VBoxScreenLayout/CommandPanel"]
-wait_time = 0.3
 autostart = true
 
 [node name="HBoxButtonLayout" type="HBoxContainer" parent="."]
