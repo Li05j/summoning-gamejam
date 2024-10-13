@@ -95,12 +95,10 @@ func damage_base(dmg: int, is_troop_friend: bool) -> void:
 	if !is_troop_friend:
 		if friend_base.get_node("base_hp_bar").take_dmg(dmg) and win == null:
 			win = false
-			friend_base.get_node("base_sprite").play("destroyed")
 			base_burn_timer.start()
 	else:
 		if enemy_base.get_node("base_hp_bar").take_dmg(dmg) and win == null:
 			win = true
-			enemy_base.get_node("base_sprite").play("destroyed")
 			base_burn_timer.start()
 
 func r_purchase() -> void:
