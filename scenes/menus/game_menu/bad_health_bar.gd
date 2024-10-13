@@ -10,4 +10,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update() -> void:
-	value = gameState.bad_tower_health * 100 / gameState.TOWER_MAX
+	value = gameState.bad_tower_health * 100 / Constants.BASE_MAX_HP

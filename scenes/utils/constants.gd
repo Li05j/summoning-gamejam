@@ -4,5 +4,9 @@ const SLIME_PRICE = 40
 const GOBLIN_PRICE = 30
 const GIANT_PRICE = 120
 
-const FRIENDLY_BASE_X = 130
-const ENEMY_BASE_X = 975
+const GOLD_MINE_PRICE = 0
+const LAB_PRICE = 50
+
+const BASE_MAX_HP = 10000
+const FRIENDLY_BASE_X = 200
+const ENEMY_BASE_X = 1030

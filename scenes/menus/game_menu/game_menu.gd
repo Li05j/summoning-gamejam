@@ -6,6 +6,7 @@ var giant_scene = preload("res://scenes/troops/giant.tscn")
 @onready var good_tower = $VBoxScreenLayout/Battlefield/Good_Tower
 @onready var bad_tower = $VBoxScreenLayout/Battlefield/Bad_Tower
 @onready var tower_death_timer = $VBoxScreenLayout/Battlefield/Tower_Death_Timer
+
 @onready var Q_Button = $HBoxButtonLayout/Q_Button
 @onready var W_Button = $HBoxButtonLayout/W_Button
 @onready var E_Button = $HBoxButtonLayout/E_Button
@@ -31,14 +32,13 @@ var friendly_summon_location_Vector2: Vector2;
 var enemy_summon_location_Vector2: Vector2;
 
 var player_current_gold = Constants.STARTING_GOLD;
-var q_cost = 40;
-var w_cost = 30;
-var e_cost = 120;
-var r_cost = 100;
+var q_cost = Constants.SLIME_PRICE;
+var w_cost = Constants.GOBLIN_PRICE;
+var e_cost = Constants.GIANT_PRICE;
+var r_cost = Constants.LAB_PRICE;
 
-const TOWER_MAX = 2000;
-var good_tower_health = TOWER_MAX;
-var bad_tower_health = TOWER_MAX;
+var good_tower_health = Constants.BASE_MAX_HP;
+var bad_tower_health = Constants.BASE_MAX_HP;
 
 signal goodTowerHealthChange
 signal badTowerHealthChange
@@ -54,9 +54,10 @@ func _ready() -> void:
 	var viewport_y = get_viewport_rect().size.y
 	var ground_y = command_panel.get_global_rect().size.y
 
-	var offset = Vector2(130, -5) # Offset so the units don't look like they are kissing the floor
-	friendly_summon_location_Vector2 = Vector2(offset.x, viewport_y-ground_y-offset.y) # Determining summoning position
-	enemy_summon_location_Vector2 = Vector2(975, viewport_y-ground_y-offset.y) # 975 is default enemy spawn point too lazy to make it a global const whatever
+	# Determining summoning position
+	var offset_y = -5
+	friendly_summon_location_Vector2 = Vector2(Constants.FRIENDLY_BASE_X, viewport_y-ground_y-offset_y)
+	enemy_summon_location_Vector2 = Vector2(Constants.ENEMY_BASE_X, viewport_y-ground_y-offset_y)
 	
 	enemy_spawn_timer = Timer.new()
 	enemy_spawn_timer.one_shot = true  # We will manually restart with random intervals
@@ -65,10 +66,6 @@ func _ready() -> void:
 	enemy_spawn_timer.start()
 	
 	update_costs()
-
-func set_enemy_spawn_time(interval: float) -> void:
-	enemy_spawn_timer.wait_time = interval
-	enemy_spawn_timer.start()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -85,6 +82,10 @@ func _process(delta: float) -> void:
 	E_Button.disabled = player_current_gold < e_cost
 	R_Button.disabled = player_current_gold < r_cost
 		
+func set_enemy_spawn_time(interval: float) -> void:
+	enemy_spawn_timer.wait_time = interval
+	enemy_spawn_timer.start()
+
 # Cancerous WET style here 🤦‍♂️
 func damageGoodTower(damage: int) -> void:
 	if good_tower_health - damage <= 0 and tower_to_destroy == null: # otherwise winner can be overrided

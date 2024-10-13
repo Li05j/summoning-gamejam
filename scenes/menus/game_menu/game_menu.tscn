@@ -702,7 +702,6 @@ texture = ExtResource("11_dpk7h")
 expand_mode = 1
 
 [node name="Good_Health_Bar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("gameState")]
-layout_mode = 0
 offset_right = 449.0
 offset_bottom = 68.0
 nine_patch_stretch = true
@@ -712,7 +711,6 @@ script = ExtResource("9_s3t68")
 gameState = NodePath("..")
 
 [node name="Bad_Health_Bar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("gameState")]
-layout_mode = 0
 offset_left = 706.0
 offset_top = -1.0
 offset_right = 1155.0
