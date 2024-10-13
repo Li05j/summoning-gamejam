@@ -1,11 +1,18 @@
-extends Node2D
+extends TextureProgressBar
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Friend_Base/base_sprite.play("friend_base")
-	$Enemy_Base/base_sprite.play("enemy_base")
-	$Enemy_Base/base_hp_bar.position.x = Constants.ENEMY_BASE_HP_BAR_X_OFFSET
-	
+	min_value = 0
+	max_value = Constants.BASE_MAX_HP
+	value = max_value
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func take_dmg(dmg: int) -> bool:
+	value -= dmg
+	if value <= min_value:
+		return true
+	return false

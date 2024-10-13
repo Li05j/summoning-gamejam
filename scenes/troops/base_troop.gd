@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 @onready var deathSound = $AudioStreamPlayer
 
+var game_menu;
+
 var action_timer: Timer
 var spawn_timer: Timer
 
@@ -35,6 +37,8 @@ func _ready() -> void:
 	current_hp = MAX_HP
 	attack_friend_base_x = Constants.FRIENDLY_BASE_X + ATTACK_RANGE
 	attack_enemy_base_x = Constants.ENEMY_BASE_X - ATTACK_RANGE
+	
+	game_menu = get_tree().root.get_node("GameMenu")
 	
 	if not is_friendly:
 		sprite.flip_h = true # flip sprite to face left
@@ -82,7 +86,7 @@ func take_dmg(damage: int) -> bool:
 	if current_hp <= 0:
 		deathSound.play()
 		if !is_friendly:
-			get_tree().root.get_node("GameMenu").player_current_gold += GOLD_DROP
+			game_menu.player_current_gold += GOLD_DROP
 		queue_free() # Gracefully deletes this instance, i.e. self destruct
 		return true # Unit died from the attack
 	return false
@@ -99,7 +103,7 @@ func find_target() -> void:
 		container_name = "Enemy_Troop_Container"
 	else:
 		container_name = "Friend_Troop_Container"
-	container_node = get_tree().root.get_node("GameMenu/NonUI/" + container_name)
+	container_node = game_menu.get_node("NonUI/" + container_name)
 
 	for unit in container_node.get_children():
 		if abs(unit.position.x - position.x) <= ATTACK_RANGE:
@@ -124,10 +128,7 @@ func _on_action_timeout() -> void:
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if sprite.animation == "attack":
 		if is_hitting_tower:
-			if is_friendly:
-				get_tree().root.get_node("GameMenu").damageBadTower(ATTACK_DMG)
-			else:
-				get_tree().root.get_node("GameMenu").damageGoodTower(ATTACK_DMG)
+			game_menu.damage_base(ATTACK_DMG, is_friendly)
 		elif current_target != null and current_target.take_dmg(ATTACK_DMG):
 			current_target = null
 		sprite.play("walk")  # Go back to walk after attack finishes

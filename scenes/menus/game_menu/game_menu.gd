@@ -1,16 +1,19 @@
 extends Control
+
 var slime_scene = preload("res://scenes/troops/slime.tscn") # Preload slime scene
 var goblin_scene = preload("res://scenes/troops/goblin.tscn")
 var giant_scene = preload("res://scenes/troops/giant.tscn")
 
-@onready var good_tower = $VBoxScreenLayout/Battlefield/Good_Tower
-@onready var bad_tower = $VBoxScreenLayout/Battlefield/Bad_Tower
-@onready var tower_death_timer = $VBoxScreenLayout/Battlefield/Tower_Death_Timer
+@onready var friend_base = $VBoxScreenLayout/Battlefield/Friend_Base
+@onready var enemy_base = $VBoxScreenLayout/Battlefield/Enemy_Base
+@onready var base_burn_timer = $VBoxScreenLayout/Battlefield/Base_Burn_Timer
 
 @onready var Q_Button = $HBoxButtonLayout/Q_Button
 @onready var W_Button = $HBoxButtonLayout/W_Button
 @onready var E_Button = $HBoxButtonLayout/E_Button
 @onready var R_Button = $HBoxButtonLayout/R_Button
+
+#########################################################
 
 const ENEMY_MAX_TIME = 100 # Max chance reached after 100 summons
 const ENEMY_SLIME_TARGET_CHANCE = 35.0
@@ -23,7 +26,9 @@ var enemy_slime_chance = 25.0;
 var enemy_goblin_chance = 75.0;
 var enemy_giant_chance = 0.0;
 
-var tower_to_destroy = null;
+#########################################################
+
+var win = null;
 
 var battlefield;
 var command_panel;
@@ -37,19 +42,10 @@ var w_cost = Constants.GOBLIN_PRICE;
 var e_cost = Constants.GIANT_PRICE;
 var r_cost = Constants.LAB_PRICE;
 
-var good_tower_health = Constants.BASE_MAX_HP;
-var bad_tower_health = Constants.BASE_MAX_HP;
-
-signal goodTowerHealthChange
-signal badTowerHealthChange
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	battlefield = $VBoxScreenLayout/Battlefield
 	command_panel = $VBoxScreenLayout/CommandPanel
-	
-	good_tower.play("vibe")
-	bad_tower.play("vibe")
 	
 	var viewport_y = get_viewport_rect().size.y
 	var ground_y = command_panel.get_global_rect().size.y
@@ -58,12 +54,16 @@ func _ready() -> void:
 	var offset_y = -5
 	friendly_summon_location_Vector2 = Vector2(Constants.FRIENDLY_BASE_X, viewport_y-ground_y-offset_y)
 	enemy_summon_location_Vector2 = Vector2(Constants.ENEMY_BASE_X, viewport_y-ground_y-offset_y)
+
+	#########################################################
 	
 	enemy_spawn_timer = Timer.new()
 	enemy_spawn_timer.one_shot = true  # We will manually restart with random intervals
 	add_child(enemy_spawn_timer)
 	enemy_spawn_timer.timeout.connect(_on_enemy_spawn_timeout)
 	enemy_spawn_timer.start()
+	
+	#########################################################
 	
 	update_costs()
 	
@@ -91,7 +91,19 @@ func summon_troop(scene, friend: bool):
 		troop_instance.set_as_enemy(enemy_summon_location_Vector2)
 		get_node("NonUI/Enemy_Troop_Container").add_child(troop_instance)
 	
-func r_purchase():
+func damage_base(dmg: int, is_troop_friend: bool) -> void:
+	if !is_troop_friend:
+		if friend_base.get_node("base_hp_bar").take_dmg(dmg) and win == null:
+			win = false
+			friend_base.get_node("base_sprite").play("destroyed")
+			base_burn_timer.start()
+	else:
+		if enemy_base.get_node("base_hp_bar").take_dmg(dmg) and win == null:
+			win = true
+			enemy_base.get_node("base_sprite").play("destroyed")
+			base_burn_timer.start()
+
+func r_purchase() -> void:
 	player_current_gold -= r_cost
 	q_cost = max(1, floor(q_cost * 0.95))
 	w_cost = max(1, floor(w_cost * 0.95))
@@ -128,36 +140,17 @@ func _on_add_gold_timer_timeout() -> void:
 	player_current_gold += 2
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
 	
+func _on_base_burn_timer_timeout() -> void:
+	if win:
+		get_tree().change_scene_to_file("res://scenes/menus/notice_menu/victory_scene.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/menus/notice_menu/defeat_scene.tscn")
+	
 #########################################################
 
 func set_enemy_spawn_time(interval: float) -> void:
 	enemy_spawn_timer.wait_time = interval
 	enemy_spawn_timer.start()
-
-func damageGoodTower(damage: int) -> void:
-	if good_tower_health - damage <= 0 and tower_to_destroy == null: # otherwise winner can be overrided
-		tower_to_destroy = good_tower	
-		good_tower.position.y = good_tower.position.y + 2.187 # fire is a bit off the ground
-		good_tower.play("death")
-		tower_death_timer.start()
-	good_tower_health -= damage
-	goodTowerHealthChange.emit()
-
-func damageBadTower(damage: int) -> void:
-	if bad_tower_health - damage <= 0 and tower_to_destroy == null:
-		tower_to_destroy = bad_tower
-		bad_tower.position.y = bad_tower.position.y + 2.187
-		bad_tower.play("death")
-		tower_death_timer.start()
-	bad_tower_health -= damage
-	badTowerHealthChange.emit()
-
-func _on_tower_death_timer_timeout() -> void:
-	tower_to_destroy.queue_free()
-	if tower_to_destroy == bad_tower:
-		get_tree().change_scene_to_file("res://scenes/menus/victory_scene.tscn")
-	elif tower_to_destroy == good_tower:
-		get_tree().change_scene_to_file("res://scenes/menus/defeat_scene.tscn")
 		
 func _on_enemy_spawn_timeout() -> void:
 	# Choose a random enemy to spawn
@@ -186,3 +179,5 @@ func _on_enemy_spawn_timeout() -> void:
 	set_enemy_spawn_time(random_interval)
 		
 	enemy_spawn_count += 1;
+	
+#########################################################
