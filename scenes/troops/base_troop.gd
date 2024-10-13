@@ -25,14 +25,9 @@ var current_hp: int
 var current_target = null  		# Holds the current target enemy
 var is_hitting_tower = false 	# If it reached the end (i.e. enemy tower)
 
-# Stuff that will change if enemy
+# Stuff that will change if enemy, use set_as_enemy()
 var is_friendly = true 			# Default friendly troop
 var direction = 1 				# Default moving right, -1 is moving left
-
-# Transition from spawn to walk after spawning
-func _on_spawn_animation_done() -> void:
-	sprite.play("walk")
-	sprite.speed_scale = SPEED_SCALE
 
 func _ready() -> void:
 	add_timer()
@@ -44,6 +39,23 @@ func _ready() -> void:
 	if not is_friendly:
 		sprite.flip_h = true # flip sprite to face left
 	sprite.play("spawn")
+	
+func _physics_process(delta: float) -> void:
+	change_opacity()
+	find_target()
+	if is_friendly and position.x >= attack_enemy_base_x:
+		is_hitting_tower = true
+		velocity.x = 0
+	elif !is_friendly and position.x <= attack_friend_base_x:
+		is_hitting_tower = true
+		velocity.x = 0
+	elif current_target:
+		velocity.x = 0
+	else:
+		if spawn_timer.is_stopped():
+			velocity.x = direction * MOVE_SPEED
+			sprite.play("walk")
+	move_and_slide()
 
 func add_timer() -> void:
 	action_timer = Timer.new()
@@ -97,23 +109,11 @@ func find_target() -> void:
 func change_opacity() -> void:
 	var hp_percentage: float = current_hp / MAX_HP
 	sprite.modulate.a = lerp(0.25, 1.0, hp_percentage)
-
-func _physics_process(delta: float) -> void:
-	change_opacity()
-	find_target()
-	if is_friendly and position.x >= attack_enemy_base_x:
-		is_hitting_tower = true
-		velocity.x = 0
-	elif !is_friendly and position.x <= attack_friend_base_x:
-		is_hitting_tower = true
-		velocity.x = 0
-	elif current_target:
-		velocity.x = 0
-	else:
-		if spawn_timer.is_stopped():
-			velocity.x = direction * MOVE_SPEED
-			sprite.play("walk")
-	move_and_slide()
+	
+# Transition from spawn to walk after spawning
+func _on_spawn_animation_done() -> void:
+	sprite.play("walk")
+	sprite.speed_scale = SPEED_SCALE
 		
 func _on_action_timeout() -> void:
 	if velocity.x > 0:

@@ -488,10 +488,6 @@ script = ExtResource("1_moilo")
 
 [node name="NonUI" type="Node2D" parent="."]
 
-[node name="Enemy_AI_React_Time" type="Timer" parent="NonUI"]
-wait_time = 5.0
-autostart = true
-
 [node name="Friend_Troop_Container" type="Node2D" parent="NonUI"]
 
 [node name="Enemy_Troop_Container" type="Node2D" parent="NonUI"]
@@ -729,9 +725,8 @@ volume_db = -9.154
 stream = ExtResource("17_rfoq2")
 autoplay = true
 
-[connection signal="timeout" from="NonUI/Enemy_AI_React_Time" to="." method="_on_enemy_ai_react_time_timeout"]
 [connection signal="timeout" from="VBoxScreenLayout/Battlefield/Tower_Death_Timer" to="." method="_on_tower_death_timer_timeout"]
-[connection signal="timeout" from="VBoxScreenLayout/CommandPanel/GoldTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="VBoxScreenLayout/CommandPanel/GoldTimer" to="." method="_on_add_gold_timer_timeout"]
 [connection signal="pressed" from="HBoxButtonLayout/Q_Button" to="." method="_on_q_pressed"]
 [connection signal="pressed" from="HBoxButtonLayout/W_Button" to="." method="_on_w_pressed"]
 [connection signal="pressed" from="HBoxButtonLayout/E_Button" to="." method="_on_e_pressed"]

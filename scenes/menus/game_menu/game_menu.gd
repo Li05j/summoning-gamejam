@@ -81,62 +81,15 @@ func _process(delta: float) -> void:
 	W_Button.disabled = player_current_gold < w_cost
 	E_Button.disabled = player_current_gold < e_cost
 	R_Button.disabled = player_current_gold < r_cost
-		
-func set_enemy_spawn_time(interval: float) -> void:
-	enemy_spawn_timer.wait_time = interval
-	enemy_spawn_timer.start()
-
-# Cancerous WET style here 🤦‍♂️
-func damageGoodTower(damage: int) -> void:
-	if good_tower_health - damage <= 0 and tower_to_destroy == null: # otherwise winner can be overrided
-		tower_to_destroy = good_tower	
-		good_tower.position.y = good_tower.position.y + 2.187 # fire is a bit off the ground
-		good_tower.play("death")
-		tower_death_timer.start()
-	good_tower_health -= damage
-	goodTowerHealthChange.emit()
-
-func damageBadTower(damage: int) -> void:
-	if bad_tower_health - damage <= 0 and tower_to_destroy == null:
-		tower_to_destroy = bad_tower
-		bad_tower.position.y = bad_tower.position.y + 2.187
-		bad_tower.play("death")
-		tower_death_timer.start()
-	bad_tower_health -= damage
-	badTowerHealthChange.emit()
 	
-func summon_friendly_slime():
-	player_current_gold -= q_cost
-	var slime_instance = slime_scene.instantiate()
-	slime_instance.position = friendly_summon_location_Vector2
-	get_node("NonUI/Friend_Troop_Container").add_child(slime_instance)
-	
-func summon_friendly_goblin():
-	player_current_gold -= w_cost
-	var goblin_instance = goblin_scene.instantiate()
-	goblin_instance.position = friendly_summon_location_Vector2
-	get_node("NonUI/Friend_Troop_Container").add_child(goblin_instance)
-
-func summon_friendly_giant():
-	player_current_gold -= e_cost
-	var giant_instance = giant_scene.instantiate()
-	giant_instance.position = friendly_summon_location_Vector2
-	get_node("NonUI/Friend_Troop_Container").add_child(giant_instance)
-	
-func summon_enemy_slime():
-	var slime_instance = slime_scene.instantiate()
-	slime_instance.set_as_enemy(enemy_summon_location_Vector2);
-	get_node("NonUI/Enemy_Troop_Container").add_child(slime_instance)
-	
-func summon_enemy_goblin():
-	var goblin_instance = goblin_scene.instantiate()
-	goblin_instance.set_as_enemy(enemy_summon_location_Vector2);
-	get_node("NonUI/Enemy_Troop_Container").add_child(goblin_instance)
-		
-func summon_enemy_giant():
-	var giant_instance = giant_scene.instantiate()
-	giant_instance.set_as_enemy(enemy_summon_location_Vector2);
-	get_node("NonUI/Enemy_Troop_Container").add_child(giant_instance)
+func summon_troop(scene, friend: bool):
+	var troop_instance = scene.instantiate()
+	if friend:
+		troop_instance.position = friendly_summon_location_Vector2
+		get_node("NonUI/Friend_Troop_Container").add_child(troop_instance)
+	else:
+		troop_instance.set_as_enemy(enemy_summon_location_Vector2)
+		get_node("NonUI/Enemy_Troop_Container").add_child(troop_instance)
 	
 func r_purchase():
 	player_current_gold -= r_cost
@@ -154,23 +107,50 @@ func update_costs():
 
 func _on_q_pressed() -> void:
 	if player_current_gold >= q_cost:
-		summon_friendly_slime()
+		player_current_gold -= q_cost
+		summon_troop(slime_scene, true)
 
 func _on_w_pressed() -> void:
 	if player_current_gold >= w_cost:
-		summon_friendly_goblin()
+		player_current_gold -= w_cost
+		summon_troop(goblin_scene, true)
 
 func _on_e_pressed() -> void:
 	if player_current_gold >= e_cost:
-		summon_friendly_giant()
+		player_current_gold -= e_cost
+		summon_troop(giant_scene, true)
 		
 func _on_r_pressed() -> void:
 	if player_current_gold >= r_cost:
 		r_purchase()
 
-func _on_timer_timeout() -> void:
+func _on_add_gold_timer_timeout() -> void:
 	player_current_gold += 2
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
+	
+#########################################################
+
+func set_enemy_spawn_time(interval: float) -> void:
+	enemy_spawn_timer.wait_time = interval
+	enemy_spawn_timer.start()
+
+func damageGoodTower(damage: int) -> void:
+	if good_tower_health - damage <= 0 and tower_to_destroy == null: # otherwise winner can be overrided
+		tower_to_destroy = good_tower	
+		good_tower.position.y = good_tower.position.y + 2.187 # fire is a bit off the ground
+		good_tower.play("death")
+		tower_death_timer.start()
+	good_tower_health -= damage
+	goodTowerHealthChange.emit()
+
+func damageBadTower(damage: int) -> void:
+	if bad_tower_health - damage <= 0 and tower_to_destroy == null:
+		tower_to_destroy = bad_tower
+		bad_tower.position.y = bad_tower.position.y + 2.187
+		bad_tower.play("death")
+		tower_death_timer.start()
+	bad_tower_health -= damage
+	badTowerHealthChange.emit()
 
 func _on_tower_death_timer_timeout() -> void:
 	tower_to_destroy.queue_free()
@@ -189,11 +169,11 @@ func _on_enemy_spawn_timeout() -> void:
 	var random_enemy = randf_range(0, 100) # 0 to 99
 	
 	if random_enemy < enemy_slime_chance:
-		summon_enemy_slime()
+		summon_troop(slime_scene, false)
 	elif random_enemy < enemy_slime_chance + enemy_goblin_chance:
-		summon_enemy_goblin()
+		summon_troop(goblin_scene, false)
 	else:
-		summon_enemy_giant()
+		summon_troop(giant_scene, false)
 
 	# Randomize the next enemy spawn interval
 	var random_interval;
