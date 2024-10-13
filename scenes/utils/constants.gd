@@ -1,6 +1,6 @@
 const STARTING_GOLD = 100
 
-const SLIME_PRICE = 40
+const SLIME_PRICE = 45
 const GOBLIN_PRICE = 30
 const GIANT_PRICE = 120
 
