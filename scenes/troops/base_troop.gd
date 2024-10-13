@@ -23,6 +23,7 @@ var spawn_timer: Timer
 var attack_friend_base_x: int
 var attack_enemy_base_x: int
 
+var is_invincible = true
 var current_hp: int
 var current_target = null  		# Holds the current target enemy
 var is_hitting_tower = false 	# If it reached the end (i.e. enemy tower)
@@ -82,6 +83,9 @@ func set_as_enemy(spawn_pos: Vector2) -> void:
 	direction = -direction
 	
 func take_dmg(damage: int) -> bool:
+	if is_invincible:
+		return false # unit is still spawning
+		
 	current_hp -= damage
 	if current_hp <= 0:
 		deathSound.play()
@@ -120,6 +124,7 @@ func change_opacity() -> void:
 func _on_spawn_animation_done() -> void:
 	sprite.play("walk")
 	sprite.speed_scale = SPEED_SCALE
+	is_invincible = false
 		
 func _on_action_timeout() -> void:
 	if velocity.x > 0:

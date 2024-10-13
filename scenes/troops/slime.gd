@@ -6,7 +6,7 @@ func _ready() -> void:
 	ATTACK_DMG = 30
 	ATTACK_SPD = 2.5
 	MAX_HP = 35
-	GOLD_DROP = Constants.SLIME_PRICE / 2
+	GOLD_DROP = Constants.SLIME_PRICE / 3
 	SPAWN_WAIT = 0.8
 	SPEED_SCALE = 1.0
 	super()

@@ -12,7 +12,7 @@ var enemy_base_hp_bar
 var timer_step: int # [0,100], when step > 100, AI will make a move, else, random gen step size
 
 var enemy_current_gold = Constants.STARTING_GOLD
-var enemy_income = 4
+var enemy_income = 5
 
 var mode = AIState.CONSERVATIVE;
 var mode_changes = 0
@@ -170,9 +170,9 @@ func _on_gold_timer_timeout() -> void:
 func _on_master_timer_timeout() -> void:
 	mode = update_ai_behavior()
 	mode_changes += 1
-	if (mode_changes == 3):
+	if (mode_changes == 4):
 		enemy_income += 1
-	if (mode_changes == 7):
+	if (mode_changes == 8):
 		enemy_income += 1
 	print("current mode " + str(mode))
 	print("current gold " + str(enemy_current_gold))
