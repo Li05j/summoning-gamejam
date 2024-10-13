@@ -1,4 +1,4 @@
-const STARTING_GOLD = 100
+const STARTING_GOLD = 75
 
 const SLIME_PRICE = 45
 const GOBLIN_PRICE = 30
