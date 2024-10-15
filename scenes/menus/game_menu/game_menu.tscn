@@ -245,6 +245,7 @@ expand_mode = 1
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 volume_db = -9.57
+autoplay = true
 
 [node name="Fight" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource("17_rfoq2")
