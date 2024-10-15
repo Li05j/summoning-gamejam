@@ -46,6 +46,10 @@ region = Rect2(640, 40, 40, 40)
 atlas = ExtResource("2_l1a88")
 region = Rect2(720, 40, 40, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghkt5"]
+atlas = ExtResource("3_ngyuo")
+region = Rect2(126, 0, 42, 42)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rewe7"]
 atlas = ExtResource("3_uchjt")
 region = Rect2(32, 26, 32, 26)
@@ -138,10 +142,6 @@ region = Rect2(42, 0, 42, 42)
 atlas = ExtResource("3_ngyuo")
 region = Rect2(84, 0, 42, 42)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ghkt5"]
-atlas = ExtResource("3_ngyuo")
-region = Rect2(126, 0, 42, 42)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_kauof"]
 atlas = ExtResource("3_ngyuo")
 region = Rect2(168, 0, 42, 42)
@@ -194,6 +194,17 @@ animations = [{
 "loop": true,
 "name": &"attack",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aierh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghkt5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -313,8 +324,9 @@ script = ExtResource("1_alw66")
 position = Vector2(-32, -40)
 scale = Vector2(2.25, 2.21429)
 sprite_frames = SubResource("SpriteFrames_d4ikb")
-animation = &"walk"
+animation = &"idle"
 autoplay = "walk"
+frame_progress = 0.309959
 script = SubResource("GDScript_8mvcm")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

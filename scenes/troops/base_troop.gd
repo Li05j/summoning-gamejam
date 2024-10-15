@@ -5,7 +5,7 @@ extends CharacterBody2D
 
 var game_menu;
 
-var action_timer: Timer
+var attack_timer: Timer
 var spawn_timer: Timer
 var invincible_timer: Timer
 
@@ -27,14 +27,14 @@ var attack_enemy_base_x: int
 var is_invincible = true
 var current_hp: int
 var current_target = null  		# Holds the current target enemy
-var is_hitting_tower = false 	# If it reached the end (i.e. enemy tower)
+var is_hitting_base = false 	# If it reached the end (i.e. enemy tower)
 
 # Stuff that will change if enemy, use set_as_enemy()
 var is_friendly = true 			# Default friendly troop
 var direction = 1 				# Default moving right, -1 is moving left
 
 func _ready() -> void:
-	add_action_timer()
+	add_attack_timer()
 	add_invincible_timer()
 	add_spawn_timer()
 	current_hp = MAX_HP
@@ -49,26 +49,14 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	find_target()
-	if is_friendly and position.x >= attack_enemy_base_x:
-		is_hitting_tower = true
-		velocity.x = 0
-	elif !is_friendly and position.x <= attack_friend_base_x:
-		is_hitting_tower = true
-		velocity.x = 0
-	elif current_target:
-		velocity.x = 0
-	else:
-		if spawn_timer.is_stopped():
-			velocity.x = direction * MOVE_SPEED
-			sprite.play("walk")
 	move_and_slide()
 
-func add_action_timer() -> void:
-	action_timer = Timer.new()
-	action_timer.wait_time = ATTACK_SPD
-	action_timer.autostart = true
-	action_timer.timeout.connect(_on_action_timeout)
-	add_child(action_timer)
+func add_attack_timer() -> void:
+	attack_timer = Timer.new()
+	attack_timer.wait_time = ATTACK_SPD
+	attack_timer.one_shot = true
+	attack_timer.timeout.connect(_on_attack_timer_timeout)
+	add_child(attack_timer)
 	
 func add_spawn_timer() -> void:
 	spawn_timer = Timer.new()
@@ -107,7 +95,11 @@ func take_dmg(damage: int) -> bool:
 	return false
 
 func find_target() -> void:
-	if is_instance_valid(current_target):
+	if !spawn_timer.is_stopped():
+		return # don't do anything while spawning
+	
+	# Check if target is still valid (not dead yet)
+	if current_target and is_instance_valid(current_target):
 		return
 	else:
 		current_target = null
@@ -123,11 +115,36 @@ func find_target() -> void:
 	for unit in container_node.get_children():
 		if abs(unit.position.x - position.x) <= ATTACK_RANGE and !unit.is_invincible:
 			current_target = unit
-			velocity.x = 0 # Stop moving when target is not NULL
+			is_hitting_base = false # Stop hitting base - prio hitting units
+			attack()
+			return # Found target, no need to continue searching
 			
+	# If no units are in sight but the tower is
+	if is_hitting_base:
+		return
+
+	# If didn't find target at all
+	if is_friendly and position.x >= attack_enemy_base_x:
+		is_hitting_base = true
+		attack()
+	elif !is_friendly and position.x <= attack_friend_base_x:
+		is_hitting_base = true
+		attack()
+	else:
+		if spawn_timer.is_stopped():
+			velocity.x = direction * MOVE_SPEED
+			attack_timer.stop()
+			sprite.play("walk")
+			
+# A light visual indicator of unit's HP
 func change_opacity() -> void:
 	var hp_percentage: float = current_hp / MAX_HP
 	sprite.modulate.a = lerp(0.25, 1.0, hp_percentage)
+			
+func attack() -> void:
+	velocity.x = 0
+	if attack_timer.is_stopped():
+		sprite.play("attack")
 	
 # Transition from spawn to walk after spawning
 func _on_spawn_animation_done() -> void:
@@ -138,19 +155,14 @@ func _on_spawn_animation_done() -> void:
 func _on_invincible_timeout() -> void:
 	is_invincible = false
 		
-func _on_action_timeout() -> void:
-	if velocity.x > 0:
-		sprite.play("walk")
-	else:
-		sprite.play("attack")
+func _on_attack_timer_timeout() -> void:
+	attack()
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if sprite.animation == "attack":
 		if current_target != null and current_target.take_dmg(ATTACK_DMG):
 			current_target = null
-		elif is_hitting_tower:
+		elif is_hitting_base:
 			game_menu.damage_base(ATTACK_DMG, is_friendly)
-		sprite.play("walk")  # Go back to walk after attack finishes
-
-# ONLY START action timer when attacking - the attack and attack speed thing needs to be overhauled
-# target selection could be better, need more thought on these
+		sprite.play("idle")  # Idle while waiting for next attack
+		attack_timer.start()
