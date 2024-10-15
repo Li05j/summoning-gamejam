@@ -95,7 +95,7 @@ offset_top = -105.113
 offset_right = -249.242
 offset_bottom = 167.887
 theme_override_font_sizes/font_size = 150
-text = "Gold: 0"
+text = "Gold: 50"
 metadata/_edit_use_anchors_ = true
 
 [node name="q_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
@@ -248,7 +248,6 @@ volume_db = -9.57
 
 [node name="Fight" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource("17_rfoq2")
-autoplay = true
 
 [connection signal="timeout" from="VBoxScreenLayout/Battlefield/Base_Burn_Timer" to="." method="_on_base_burn_timer_timeout"]
 [connection signal="timeout" from="VBoxScreenLayout/CommandPanel/GoldTimer" to="." method="_on_add_gold_timer_timeout"]

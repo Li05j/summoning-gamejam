@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func update_ai_behavior() -> AIState:
-	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.25:
+	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.33:
 		return AIState.ALLIN
 
 	var conserve_base_chance = 100

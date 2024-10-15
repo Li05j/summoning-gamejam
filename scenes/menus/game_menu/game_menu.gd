@@ -79,10 +79,10 @@ func damage_base(dmg: int, is_troop_friend: bool) -> void:
 
 func r_purchase() -> void:
 	player_current_gold -= r_cost
-	q_cost = max(1, floor(q_cost * 0.96))
-	w_cost = max(1, floor(w_cost * 0.96))
-	e_cost = max(1, floor(e_cost * 0.96))
-	r_cost = floor(r_cost * 1.1)
+	q_cost = max(1, floor(q_cost * GLOBAL_C.LAB_RATE))
+	w_cost = max(1, floor(w_cost * GLOBAL_C.LAB_RATE))
+	e_cost = max(1, floor(e_cost * GLOBAL_C.LAB_RATE))
+	r_cost = floor(r_cost * GLOBAL_C.BUILDING_COST_INCREASE_RATE)
 	update_costs()
 	
 func update_costs():

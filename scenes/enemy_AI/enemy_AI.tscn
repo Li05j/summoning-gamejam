@@ -9,7 +9,7 @@ script = ExtResource("1_8xsrn")
 autostart = true
 
 [node name="MasterTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 10.0
 autostart = true
 
 [node name="DecisionTimer" type="Timer" parent="."]

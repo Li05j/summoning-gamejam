@@ -1,5 +1,5 @@
 const SLIME = {
-	"COST": 45,
+	"COST": 50,
 	"GOLD_DROP": 15,
 	"MOVE_SPEED": 60,
 	"MAX_HP": 30,

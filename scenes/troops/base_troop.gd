@@ -7,6 +7,7 @@ var game_menu;
 
 var action_timer: Timer
 var spawn_timer: Timer
+var invincible_timer: Timer
 
 @export var MOVE_SPEED: int 	# Movement speed
 @export var ATTACK_RANGE: int 	# Attack range
@@ -33,8 +34,9 @@ var is_friendly = true 			# Default friendly troop
 var direction = 1 				# Default moving right, -1 is moving left
 
 func _ready() -> void:
-	add_timer()
-	add_spawn_timer()  # Add the spawn timer
+	add_action_timer()
+	add_invincible_timer()
+	add_spawn_timer()
 	current_hp = MAX_HP
 	attack_friend_base_x = GLOBAL_C.FRIENDLY_BASE_X + ATTACK_RANGE
 	attack_enemy_base_x = GLOBAL_C.ENEMY_BASE_X - ATTACK_RANGE
@@ -46,7 +48,6 @@ func _ready() -> void:
 	sprite.play("spawn")
 	
 func _physics_process(delta: float) -> void:
-	change_opacity()
 	find_target()
 	if is_friendly and position.x >= attack_enemy_base_x:
 		is_hitting_tower = true
@@ -62,20 +63,27 @@ func _physics_process(delta: float) -> void:
 			sprite.play("walk")
 	move_and_slide()
 
-func add_timer() -> void:
+func add_action_timer() -> void:
 	action_timer = Timer.new()
 	action_timer.wait_time = ATTACK_SPD
 	action_timer.autostart = true
-	add_child(action_timer)
 	action_timer.timeout.connect(_on_action_timeout)
+	add_child(action_timer)
 	
 func add_spawn_timer() -> void:
 	spawn_timer = Timer.new()
 	spawn_timer.wait_time = SPAWN_WAIT
 	spawn_timer.one_shot = true
+	spawn_timer.timeout.connect(_on_spawn_animation_done)
 	add_child(spawn_timer)
 	spawn_timer.start()
-	spawn_timer.timeout.connect(_on_spawn_animation_done)
+	
+func add_invincible_timer() -> void:
+	invincible_timer = Timer.new()
+	invincible_timer.wait_time = 0.5 # extra 0.5 sec invincible time
+	invincible_timer.one_shot = true
+	invincible_timer.timeout.connect(_on_invincible_timeout)
+	add_child(invincible_timer)
 
 func set_as_enemy(spawn_pos: Vector2) -> void:
 	is_friendly = false
@@ -87,6 +95,7 @@ func take_dmg(damage: int) -> bool:
 		return false # unit is still spawning
 		
 	current_hp -= damage
+	change_opacity()
 	if current_hp <= 0:
 		deathSound.play()
 		if !is_friendly:
@@ -112,7 +121,7 @@ func find_target() -> void:
 	container_node = game_menu.get_node("NonUI/" + container_name)
 
 	for unit in container_node.get_children():
-		if abs(unit.position.x - position.x) <= ATTACK_RANGE:
+		if abs(unit.position.x - position.x) <= ATTACK_RANGE and !unit.is_invincible:
 			current_target = unit
 			velocity.x = 0 # Stop moving when target is not NULL
 			
@@ -124,6 +133,9 @@ func change_opacity() -> void:
 func _on_spawn_animation_done() -> void:
 	sprite.play("walk")
 	sprite.speed_scale = SPEED_SCALE
+	invincible_timer.start()
+	
+func _on_invincible_timeout() -> void:
 	is_invincible = false
 		
 func _on_action_timeout() -> void:
