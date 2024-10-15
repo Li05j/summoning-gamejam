@@ -1,11 +1,7 @@
 const STARTING_GOLD = 75
 
-const SLIME_PRICE = 45
-const GOBLIN_PRICE = 30
-const GIANT_PRICE = 120
-
-const GOLD_MINE_PRICE = 0
-const LAB_PRICE = 75
+const GOLD_MINE_COST = -1
+const LAB_COST =75
 
 const BASE_MAX_HP = 2000
 const FRIENDLY_BASE_X = 200

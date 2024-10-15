@@ -244,7 +244,7 @@ texture = ExtResource("11_dpk7h")
 expand_mode = 1
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
-volume_db = -9.154
+volume_db = -9.57
 
 [node name="Fight" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource("17_rfoq2")

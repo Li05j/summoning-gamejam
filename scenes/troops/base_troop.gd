@@ -36,8 +36,8 @@ func _ready() -> void:
 	add_timer()
 	add_spawn_timer()  # Add the spawn timer
 	current_hp = MAX_HP
-	attack_friend_base_x = Constants.FRIENDLY_BASE_X + ATTACK_RANGE
-	attack_enemy_base_x = Constants.ENEMY_BASE_X - ATTACK_RANGE
+	attack_friend_base_x = GLOBAL_C.FRIENDLY_BASE_X + ATTACK_RANGE
+	attack_enemy_base_x = GLOBAL_C.ENEMY_BASE_X - ATTACK_RANGE
 	
 	game_menu = get_tree().root.get_node("GameMenu")
 	

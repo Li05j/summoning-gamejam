@@ -22,11 +22,11 @@ var friendly_summon_location_Vector2: Vector2;
 var enemy_summon_location_Vector2: Vector2;
 
 var time = 0
-var player_current_gold = Constants.STARTING_GOLD;
-var q_cost = Constants.SLIME_PRICE;
-var w_cost = Constants.GOBLIN_PRICE;
-var e_cost = Constants.GIANT_PRICE;
-var r_cost = Constants.LAB_PRICE;
+var player_current_gold = GLOBAL_C.STARTING_GOLD;
+var q_cost = MONSTER_T.SLIME.COST
+var w_cost = MONSTER_T.GOBLIN.COST
+var e_cost = MONSTER_T.GIANT.COST
+var r_cost = GLOBAL_C.LAB_COST
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,8 +38,8 @@ func _ready() -> void:
 
 	# Determining summoning position
 	var offset_y = -5
-	friendly_summon_location_Vector2 = Vector2(Constants.FRIENDLY_BASE_X, viewport_y-ground_y-offset_y)
-	enemy_summon_location_Vector2 = Vector2(Constants.ENEMY_BASE_X, viewport_y-ground_y-offset_y)
+	friendly_summon_location_Vector2 = Vector2(GLOBAL_C.FRIENDLY_BASE_X, viewport_y-ground_y-offset_y)
+	enemy_summon_location_Vector2 = Vector2(GLOBAL_C.ENEMY_BASE_X, viewport_y-ground_y-offset_y)
 	
 	update_costs()
 	

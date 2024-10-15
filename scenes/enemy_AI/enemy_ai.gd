@@ -11,7 +11,7 @@ var enemy_base_hp_bar
 
 var timer_step: int # [0,100], when step > 100, AI will make a move, else, random gen step size
 
-var enemy_current_gold = Constants.STARTING_GOLD
+var enemy_current_gold = GLOBAL_C.STARTING_GOLD
 var enemy_income = 4
 
 var mode = AIState.CONSERVATIVE;
@@ -91,39 +91,39 @@ func perform_action() -> void:
 	var giant_base_chance = 100
 	var do_nothing_base_chance = 100
 	
-	if enemy_current_gold < Constants.GIANT_PRICE:
+	if enemy_current_gold < MONSTER_T.GIANT.COST:
 		giant_base_chance = 0	
-	if enemy_current_gold < Constants.GOBLIN_PRICE:
+	if enemy_current_gold < MONSTER_T.GOBLIN.COST:
 		goblin_base_chance = 0
-	if enemy_current_gold < Constants.SLIME_PRICE:
+	if enemy_current_gold < MONSTER_T.SLIME.COST:
 		slime_base_chance = 0
 		
 	match mode:
 		AIState.CONSERVATIVE:
 			do_nothing_base_chance *= 2
-			if enemy_current_gold > Constants.GIANT_PRICE * 3:
+			if enemy_current_gold > MONSTER_T.GIANT.COST * 3:
 				giant_base_chance *= 2
 			else:
 				giant_base_chance /= 5
-			if enemy_current_gold > Constants.GOBLIN_PRICE * 10:
+			if enemy_current_gold > MONSTER_T.GOBLIN.COST * 10:
 				goblin_base_chance *= 2
 			else:
 				goblin_base_chance /= 5
-			if enemy_current_gold > Constants.SLIME_PRICE * 7:
+			if enemy_current_gold > MONSTER_T.SLIME.COST * 7:
 				slime_base_chance *= 2
 			else:
 				slime_base_chance /= 5
 		AIState.BALANCED:
 			do_nothing_base_chance * 2
-			if enemy_current_gold > Constants.GIANT_PRICE * 2:
+			if enemy_current_gold > MONSTER_T.GIANT.COST * 2:
 				giant_base_chance *= 2
 			else:
 				giant_base_chance /= 3
-			if enemy_current_gold > Constants.GOBLIN_PRICE * 5:
+			if enemy_current_gold > MONSTER_T.GOBLIN.COST * 5:
 				goblin_base_chance *= 2
 			else:
 				goblin_base_chance /= 3
-			if enemy_current_gold > Constants.SLIME_PRICE * 4:
+			if enemy_current_gold > MONSTER_T.SLIME.COST * 4:
 				slime_base_chance *= 2
 			else:
 				slime_base_chance /= 3
@@ -137,13 +137,13 @@ func perform_action() -> void:
 	var total_chance = giant_base_chance + goblin_base_chance + slime_base_chance + do_nothing_base_chance
 	var random_state = randf_range(0, total_chance) # 0 to 99
 	if random_state < slime_base_chance:
-		enemy_current_gold -= Constants.SLIME_PRICE
+		enemy_current_gold -= MONSTER_T.SLIME.COST
 		game_menu.summon_troop(game_menu.slime_scene, false)
 	elif random_state < slime_base_chance + goblin_base_chance:
-		enemy_current_gold -= Constants.GOBLIN_PRICE
+		enemy_current_gold -= MONSTER_T.GOBLIN.COST
 		game_menu.summon_troop(game_menu.goblin_scene, false)
 	elif random_state < slime_base_chance + goblin_base_chance + giant_base_chance:
-		enemy_current_gold -= Constants.GIANT_PRICE
+		enemy_current_gold -= MONSTER_T.GIANT.COST
 		game_menu.summon_troop(game_menu.giant_scene, false)
 	else:
 		print("did nothing")
