@@ -18,6 +18,6 @@ func take_dmg(dmg: int) -> bool:
 	return false
 
 func _on_auto_regen_timer_timeout() -> void:
-	value += 1
+	value += 2
 	if value > max_value:
 		value = max_value

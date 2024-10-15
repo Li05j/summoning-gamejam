@@ -41,18 +41,19 @@ func _ready() -> void:
 	friendly_summon_location_Vector2 = Vector2(GLOBAL_C.FRIENDLY_BASE_X, viewport_y-ground_y-offset_y)
 	enemy_summon_location_Vector2 = Vector2(GLOBAL_C.ENEMY_BASE_X, viewport_y-ground_y-offset_y)
 	
-	update_costs()
+	update_gold_text()
+	update_costs_text()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Summon_1"):
-		_on_q_pressed() 
+		_on_key_pressed("Summon_1") 
 	if Input.is_action_just_pressed("Summon_2"): 
-		_on_w_pressed()
+		_on_key_pressed("Summon_2")
 	if Input.is_action_just_pressed("Summon_3"): 
-		_on_e_pressed()
-	if Input.is_action_just_pressed("Discount"): 
-		_on_r_pressed()
+		_on_key_pressed("Summon_3")
+	if Input.is_action_just_pressed("Lab_purchase"): 
+		_on_key_pressed("Lab_purchase")
 	Q_Button.disabled = player_current_gold < q_cost
 	W_Button.disabled = player_current_gold < w_cost
 	E_Button.disabled = player_current_gold < e_cost
@@ -83,37 +84,42 @@ func r_purchase() -> void:
 	w_cost = max(1, floor(w_cost * GLOBAL_C.LAB_RATE))
 	e_cost = max(1, floor(e_cost * GLOBAL_C.LAB_RATE))
 	r_cost = floor(r_cost * GLOBAL_C.BUILDING_COST_INCREASE_RATE)
-	update_costs()
+	update_costs_text()
 	
-func update_costs():
+func update_costs_text():
 	command_panel.get_node("q_cost/Label").text = "Q Cost: " + str(q_cost)
 	command_panel.get_node("w_cost/Label").text = "W Cost: " + str(w_cost)
 	command_panel.get_node("e_cost/Label").text = "E Cost: " + str(e_cost)
 	command_panel.get_node("r_cost/Label").text = "R Cost: " + str(r_cost)
+	
+func update_gold_text():
+	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
 
-func _on_q_pressed() -> void:
-	if player_current_gold >= q_cost:
-		player_current_gold -= q_cost
-		summon_troop(slime_scene, true)
-
-func _on_w_pressed() -> void:
-	if player_current_gold >= w_cost:
-		player_current_gold -= w_cost
-		summon_troop(goblin_scene, true)
-
-func _on_e_pressed() -> void:
-	if player_current_gold >= e_cost:
-		player_current_gold -= e_cost
-		summon_troop(giant_scene, true)
-		
-func _on_r_pressed() -> void:
-	if player_current_gold >= r_cost:
-		r_purchase()
+func _on_key_pressed(key: String) -> void:
+	match key:
+		"Summon_1":
+			if player_current_gold >= q_cost:
+				player_current_gold -= q_cost
+				summon_troop(slime_scene, true)
+		"Summon_2":
+			if player_current_gold >= w_cost:
+				player_current_gold -= w_cost
+				summon_troop(goblin_scene, true)
+		"Summon_3":
+			if player_current_gold >= e_cost:
+				player_current_gold -= e_cost
+				summon_troop(giant_scene, true)
+		"Lab_purchase":
+			if player_current_gold >= r_cost:
+				r_purchase()
+		_:
+			return
+	update_gold_text()
 
 func _on_add_gold_timer_timeout() -> void:
 	player_current_gold += 5
 	time += 1
-	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
+	update_gold_text()
 	command_panel.get_node("game_time/Label").text = "Time: " + str(time)
 	
 func _on_base_burn_timer_timeout() -> void:

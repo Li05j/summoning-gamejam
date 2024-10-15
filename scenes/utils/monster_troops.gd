@@ -1,13 +1,13 @@
 const SLIME = {
 	"COST": 50,
-	"GOLD_DROP": 15,
+	"GOLD_DROP": 16,
 	"MOVE_SPEED": 60,
-	"MAX_HP": 30,
-	"ATTACK_DMG": 25,
-	"ATTACK_SPD": 3.0,
+	"MAX_HP": 25,
+	"ATTACK_DMG": 20,
+	"ATTACK_SPD": 2.5,
 	"ATTACK_RANGE": 150,
 	"SPAWN_WAIT": 0.8,
-	"SPEED_SCALE": 1.0,
+	"SPEED_SCALE": 0.75,
 }
 
 const GOBLIN = {
