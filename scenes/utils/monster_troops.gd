@@ -1,8 +1,9 @@
 const SLIME = {
-	"COST": 50,
+	"NAME": "SLIME",
+	"COST": 0,
 	"GOLD_DROP": 16,
 	"MOVE_SPEED": 60,
-	"MAX_HP": 25,
+	"MAX_HP": 5,
 	"ATTACK_DMG": 20,
 	"ATTACK_SPD": 2.5,
 	"ATTACK_RANGE": 150,
@@ -11,10 +12,11 @@ const SLIME = {
 }
 
 const GOBLIN = {
-	"COST": 30,
+	"NAME": "GOBLIN",
+	"COST": 0,
 	"GOLD_DROP": 10,
 	"MOVE_SPEED": 100,
-	"MAX_HP": 65,
+	"MAX_HP": 5,
 	"ATTACK_DMG": 4,
 	"ATTACK_SPD": 0.4,
 	"ATTACK_RANGE": 30,
@@ -23,10 +25,11 @@ const GOBLIN = {
 }
 
 const GIANT = {
-	"COST": 120,
+	"NAME": "GIANT",
+	"COST": 10,
 	"GOLD_DROP": 40,
-	"MOVE_SPEED": 60,
-	"MAX_HP": 450,
+	"MOVE_SPEED": 25,
+	"MAX_HP": 50,
 	"ATTACK_DMG": 60,
 	"ATTACK_SPD": 3.0,
 	"ATTACK_RANGE": 75,

@@ -1,13 +1,16 @@
 extends CharacterBody2D
 
 @onready var sprite = $AnimatedSprite2D
-@onready var deathSound = $AudioStreamPlayer
+@onready var deathSound = $death
 
 var game_menu;
 
 var attack_timer: Timer
 var spawn_timer: Timer
 var invincible_timer: Timer
+var dead_sfx_timer: Timer
+
+@export var NAME: String		# Name of the troop
 
 @export var MOVE_SPEED: int 	# Movement speed
 @export var ATTACK_RANGE: int 	# Attack range
@@ -24,6 +27,7 @@ var invincible_timer: Timer
 var attack_friend_base_x: int
 var attack_enemy_base_x: int
 
+var is_dead = false
 var is_invincible = true
 var current_hp: int
 var current_target = null  		# Holds the current target enemy
@@ -37,19 +41,25 @@ func _ready() -> void:
 	add_attack_timer()
 	add_invincible_timer()
 	add_spawn_timer()
+	add_dead_sfx_timer()
+	
 	current_hp = MAX_HP
 	attack_friend_base_x = GLOBAL_C.FRIENDLY_BASE_X + ATTACK_RANGE
 	attack_enemy_base_x = GLOBAL_C.ENEMY_BASE_X - ATTACK_RANGE
 	
 	game_menu = get_tree().root.get_node("GameMenu")
 	
+	deathSound.bus = "SFX"
+	deathSound.max_polyphony = 5
+	
 	if not is_friendly:
 		sprite.flip_h = true # flip sprite to face left
 	sprite.play("spawn")
 	
 func _physics_process(delta: float) -> void:
-	find_target()
-	move_and_slide()
+	if !is_dead:
+		find_target()
+		move_and_slide()
 
 func add_attack_timer() -> void:
 	attack_timer = Timer.new()
@@ -72,6 +82,13 @@ func add_invincible_timer() -> void:
 	invincible_timer.one_shot = true
 	invincible_timer.timeout.connect(_on_invincible_timeout)
 	add_child(invincible_timer)
+	
+func add_dead_sfx_timer() -> void:
+	dead_sfx_timer = Timer.new()
+	dead_sfx_timer.wait_time = deathSound.stream.get_length()
+	dead_sfx_timer.one_shot = true
+	dead_sfx_timer.timeout.connect(_on_dead_sfx_timer_timeout) # Gracefully deletes this instance after timer, i.e. self destruct
+	add_child(dead_sfx_timer)
 
 func set_as_enemy(spawn_pos: Vector2) -> void:
 	is_friendly = false
@@ -79,27 +96,28 @@ func set_as_enemy(spawn_pos: Vector2) -> void:
 	direction = -direction
 	
 func take_dmg(damage: int) -> bool:
-	if is_invincible:
-		return false # unit is still spawning
-		
+	if is_invincible || is_dead:
+		return false # unit is still spawning or unit is already dead
+	
 	current_hp -= damage
 	change_opacity()
 	if current_hp <= 0:
-		deathSound.play()
 		if !is_friendly:
 			game_menu.player_current_gold += GOLD_DROP
 		else:
 			game_menu.get_node("NonUI/EnemyAI/").enemy_current_gold += GOLD_DROP
-		queue_free() # Gracefully deletes this instance, i.e. self destruct
+		this_troop_is_dead()
 		return true # Unit died from the attack
 	return false
 
 func find_target() -> void:
-	if !spawn_timer.is_stopped():
-		return # don't do anything while spawning
+	if !spawn_timer.is_stopped() or is_dead:
+		return # don't do anything while spawning or dead
 	
 	# Check if target is still valid (not dead yet)
 	if current_target and is_instance_valid(current_target):
+		if current_target.is_dead:
+			current_target = null # target is playing its death sound
 		return
 	else:
 		current_target = null
@@ -113,7 +131,7 @@ func find_target() -> void:
 	container_node = game_menu.get_node("NonUI/" + container_name)
 
 	for unit in container_node.get_children():
-		if abs(unit.position.x - position.x) <= ATTACK_RANGE and !unit.is_invincible:
+		if abs(unit.position.x - position.x) <= ATTACK_RANGE and !unit.is_invincible and !unit.is_dead:
 			current_target = unit
 			is_hitting_base = false # Stop hitting base - prio hitting units
 			attack()
@@ -136,15 +154,23 @@ func find_target() -> void:
 			attack_timer.stop()
 			sprite.play("walk")
 			
+func this_troop_is_dead() -> void:
+	is_dead = true
+	sprite.play("idle")
+	sprite.modulate.a = 0
+	dead_sfx_timer.start()
+	deathSound.play()
+			
 # A light visual indicator of unit's HP
 func change_opacity() -> void:
 	var hp_percentage: float = current_hp / MAX_HP
 	sprite.modulate.a = lerp(0.25, 1.0, hp_percentage)
 			
 func attack() -> void:
-	velocity.x = 0
-	if attack_timer.is_stopped():
-		sprite.play("attack")
+	if !is_dead: # only attack when not dead
+		velocity.x = 0
+		if attack_timer.is_stopped():
+			sprite.play("attack")
 	
 # Transition from spawn to walk after spawning
 func _on_spawn_animation_done() -> void:
@@ -157,9 +183,13 @@ func _on_invincible_timeout() -> void:
 		
 func _on_attack_timer_timeout() -> void:
 	attack()
+	
+func _on_dead_sfx_timer_timeout() -> void:
+	print("Dead... " + NAME)
+	queue_free()
 
 func _on_animated_sprite_2d_animation_looped() -> void:
-	if sprite.animation == "attack":
+	if !is_dead and sprite.animation == "attack":
 		if current_target != null and current_target.take_dmg(ATTACK_DMG):
 			current_target = null
 		elif is_hitting_base:

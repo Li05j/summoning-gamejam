@@ -275,10 +275,10 @@ scale = Vector2(2.13108, 2.54302)
 sprite_frames = SubResource("SpriteFrames_8bhu4")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.611317
+frame_progress = 0.379448
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hc2b1")
-volume_db = 24.0
+bus = &"SFX"
 
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

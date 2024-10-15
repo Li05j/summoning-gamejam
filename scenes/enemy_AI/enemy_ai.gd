@@ -11,8 +11,8 @@ var enemy_base_hp_bar
 
 var timer_step: int # [0,100], when step > 100, AI will make a move, else, random gen step size
 
-var enemy_current_gold = GLOBAL_C.STARTING_GOLD
-var enemy_income = 4
+var enemy_current_gold: int = GLOBAL_C.STARTING_GOLD
+var enemy_income: int = 4
 
 var mode = AIState.CONSERVATIVE;
 var mode_changes = 0
@@ -27,7 +27,13 @@ func _process(delta: float) -> void:
 	pass
 	
 func update_ai_behavior() -> AIState:
+	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.66:
+		enemy_current_gold += 50 + mode_changes * 10
+		return AIState.ALLIN
+		
 	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.33:
+		enemy_current_gold += 100 + mode_changes * 25
+		enemy_income += 1
 		return AIState.ALLIN
 
 	var conserve_base_chance = 100
@@ -60,6 +66,10 @@ func update_ai_behavior() -> AIState:
 	elif enemy_base_hp_bar.value < 50:
 		balanced_base_chance += 75
 		aggressive_base_chance += 40
+		allin_base_chance += 40
+	elif enemy_base_hp_bar.value < 25:
+		conserve_base_chance = 0
+		aggressive_base_chance += 75
 		allin_base_chance += 40
 		
 	match mode:
@@ -170,14 +180,15 @@ func _on_gold_timer_timeout() -> void:
 func _on_master_timer_timeout() -> void:
 	mode = update_ai_behavior()
 	mode_changes += 1
-	if (mode_changes == 3):
+	if (mode_changes + 1) % 4 == 0:
 		enemy_income += 1
-	if (mode_changes == 7):
-		enemy_income += 1
-	if (mode_changes == 11):
-		enemy_income += 1
+		
+	if mode_changes % 6 == 0:
+		enemy_current_gold += mode_changes * 100 / 6
+
 	print("current mode " + str(mode))
 	print("current gold " + str(enemy_current_gold))
+	print("current income " + str(enemy_income))
 
 func _on_decision_timer_timeout() -> void:
 	var r = randf_range(0, 1)

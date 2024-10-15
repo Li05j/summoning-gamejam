@@ -21,7 +21,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_moilo")
 
-[node name="NonUI" type="Node2D" parent="."]
+[node name="NonUI" type="Node" parent="."]
 
 [node name="Friend_Troop_Container" type="Node2D" parent="NonUI"]
 
@@ -162,6 +162,22 @@ offset_bottom = 110.123
 theme_override_font_sizes/font_size = 200
 text = "R Cost"
 
+[node name="f_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
+position = Vector2(17.8271, 4.85645)
+scale = Vector2(0.00207972, 0.00280198)
+texture = ExtResource("6_xbff3")
+
+[node name="Label" type="Label" parent="VBoxScreenLayout/CommandPanel/f_cost"]
+anchors_preset = -1
+anchor_top = 0.127674
+anchor_bottom = 0.127674
+offset_left = -1233.33
+offset_top = -218.877
+offset_right = 249.67
+offset_bottom = 110.123
+theme_override_font_sizes/font_size = 200
+text = "F Cost"
+
 [node name="GoldTimer" type="Timer" parent="VBoxScreenLayout/CommandPanel"]
 autostart = true
 
@@ -243,16 +259,38 @@ offset_bottom = 195.0
 texture = ExtResource("11_dpk7h")
 expand_mode = 1
 
-[node name="BGM" type="AudioStreamPlayer" parent="."]
-volume_db = -9.57
-autoplay = true
+[node name="F_Button" type="Button" parent="HBoxButtonLayout"]
+custom_minimum_size = Vector2(350, 225)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("9_ruhha")
+theme_override_colors/font_color = Color(0.277656, 0.499023, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 150
+text = "⬆️"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/F_Button"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 15.0
+offset_right = 240.0
+offset_bottom = 195.0
+texture = ExtResource("11_dpk7h")
+expand_mode = 1
+
+[node name="BGM" type="Node" parent="."]
 
 [node name="Fight" type="AudioStreamPlayer" parent="BGM"]
 stream = ExtResource("17_rfoq2")
+volume_db = -10.0
+autoplay = true
+bus = &"BGM"
 
 [connection signal="timeout" from="VBoxScreenLayout/Battlefield/Base_Burn_Timer" to="." method="_on_base_burn_timer_timeout"]
 [connection signal="timeout" from="VBoxScreenLayout/CommandPanel/GoldTimer" to="." method="_on_add_gold_timer_timeout"]
-[connection signal="pressed" from="HBoxButtonLayout/Q_Button" to="." method="_on_q_pressed"]
-[connection signal="pressed" from="HBoxButtonLayout/W_Button" to="." method="_on_w_pressed"]
-[connection signal="pressed" from="HBoxButtonLayout/E_Button" to="." method="_on_e_pressed"]
-[connection signal="pressed" from="HBoxButtonLayout/R_Button" to="." method="_on_e_pressed"]
+[connection signal="pressed" from="HBoxButtonLayout/Q_Button" to="." method="_on_key_pressed" binds= ["Summon_1"]]
+[connection signal="pressed" from="HBoxButtonLayout/W_Button" to="." method="_on_key_pressed" binds= ["Summon_2"]]
+[connection signal="pressed" from="HBoxButtonLayout/E_Button" to="." method="_on_key_pressed" binds= ["Summon_3"]]
+[connection signal="pressed" from="HBoxButtonLayout/R_Button" to="." method="_on_key_pressed" binds= ["Lab_purchase"]]
+[connection signal="pressed" from="HBoxButtonLayout/F_Button" to="." method="_on_key_pressed" binds= ["Gold_Mine_purchase"]]
+[connection signal="finished" from="BGM/Fight" to="." method="_on_fight_bgm_finished"]
