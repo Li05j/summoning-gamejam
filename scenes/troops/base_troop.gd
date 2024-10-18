@@ -139,10 +139,9 @@ func attack_if_any_target_in_range() -> void:
 			return # There exist a target in range, start attack animation
 			
 	# If nothing is found
-	if spawn_timer.is_stopped():
-		velocity.x = direction * TROOP_OBJ.get("MOVE_SPEED", -1)
-		attack_timer.stop()
-		sprite.play("walk")
+	velocity.x = direction * TROOP_OBJ.get("MOVE_SPEED", -1)
+	attack_timer.stop()
+	sprite.play("walk")
 	
 func attack() -> void:
 	if !is_dead and !is_cc: # only attack when not dead and not cc'd
@@ -186,6 +185,7 @@ func change_opacity() -> void:
 func _on_spawn_animation_done() -> void:
 	sprite.play("walk")
 	sprite.speed_scale = TROOP_OBJ.get("SPEED_SCALE", -1)
+	velocity.x = direction * TROOP_OBJ.get("MOVE_SPEED", -1)
 	invincible_timer.start()
 	# TODO: free spawn timer
 	
