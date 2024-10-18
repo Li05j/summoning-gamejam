@@ -27,9 +27,9 @@ var enemy_summon_location_Vector2: Vector2;
 var time: int = 0
 var player_current_gold: int = GLOBAL_C.STARTING_GOLD;
 var gold_step: int = 5
-var q_cost: int = MONSTER_T.SLIME.COST
-var w_cost: int = MONSTER_T.GOBLIN.COST
-var e_cost: int = MONSTER_T.GIANT.COST
+var q_cost: int = T.MONSTER_T.get("SLIME").get("COST")
+var w_cost: int = T.MONSTER_T.get("GOBLIN").get("COST")
+var e_cost: int = T.MONSTER_T.get("GIANT").get("COST")
 var r_cost: int = GLOBAL_C.LAB_COST
 var f_cost: int = GLOBAL_C.GOLD_MINE_COST
 
@@ -65,8 +65,18 @@ func _process(delta: float) -> void:
 	R_Button.disabled = player_current_gold < r_cost
 	F_Button.disabled = player_current_gold < f_cost
 	
-func summon_troop(scene, friend: bool):
-	var troop_instance = scene.instantiate()
+func summon_troop(troop: String, friend: bool):
+	var troop_instance;
+	match troop:
+		"SLIME":
+			troop_instance = slime_scene.instantiate()
+		"GOBLIN":
+			troop_instance = goblin_scene.instantiate()
+		"GIANT":
+			troop_instance = giant_scene.instantiate()
+		_:
+			push_error("Invalid troop name: " + troop)
+	
 	if friend:
 		troop_instance.position = friendly_summon_location_Vector2
 		get_node("NonUI/Friend_Troop_Container").add_child(troop_instance)
@@ -114,15 +124,15 @@ func _on_key_pressed(key: String) -> void:
 		"Summon_1":
 			if player_current_gold >= q_cost:
 				player_current_gold -= q_cost
-				summon_troop(slime_scene, true)
+				summon_troop("SLIME", true)
 		"Summon_2":
 			if player_current_gold >= w_cost:
 				player_current_gold -= w_cost
-				summon_troop(goblin_scene, true)
+				summon_troop("GOBLIN", true)
 		"Summon_3":
 			if player_current_gold >= e_cost:
 				player_current_gold -= e_cost
-				summon_troop(giant_scene, true)
+				summon_troop("GIANT", true)
 		"Lab_purchase":
 			if player_current_gold >= r_cost:
 				r_purchase()

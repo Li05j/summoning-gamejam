@@ -10,18 +10,7 @@ var spawn_timer: Timer
 var invincible_timer: Timer
 var dead_sfx_timer: Timer
 
-@export var NAME: String		# Name of the troop
-
-@export var MOVE_SPEED: int 	# Movement speed
-@export var ATTACK_RANGE: int 	# Attack range
-@export var ATTACK_DMG: int 	# Atk damage
-@export var ATTACK_SPD: float 	# Attack every ATTACK_SPD seconds, i.e. rate
-@export var MAX_HP: float 		# Max hp
-@export var GOLD_DROP: int 		# Gold drop on death
-
-@export var SPAWN_WAIT: float	# Spawn animation time in seconds
-# Animation rate - low rate means animation loop takes longer, i.e. also affects attack prep time
-@export var SPEED_SCALE: float
+@export var TROOP_OBJ: Dictionary	# All the stat info about the troop
 
 # Range where tropp will start attacking the base
 var attack_friend_base_x: int
@@ -43,9 +32,9 @@ func _ready() -> void:
 	add_spawn_timer()
 	add_dead_sfx_timer()
 	
-	current_hp = MAX_HP
-	attack_friend_base_x = GLOBAL_C.FRIENDLY_BASE_X + ATTACK_RANGE
-	attack_enemy_base_x = GLOBAL_C.ENEMY_BASE_X - ATTACK_RANGE
+	current_hp = TROOP_OBJ.get("MAX_HP", -1)
+	attack_friend_base_x = GLOBAL_C.FRIENDLY_BASE_X + TROOP_OBJ.get("ATTACK_RANGE", -1)
+	attack_enemy_base_x = GLOBAL_C.ENEMY_BASE_X - TROOP_OBJ.get("ATTACK_RANGE", -1)
 	
 	game_menu = get_tree().root.get_node("GameMenu")
 	
@@ -63,14 +52,14 @@ func _physics_process(delta: float) -> void:
 
 func add_attack_timer() -> void:
 	attack_timer = Timer.new()
-	attack_timer.wait_time = ATTACK_SPD
+	attack_timer.wait_time = TROOP_OBJ.get("ATTACK_SPD", -1)
 	attack_timer.one_shot = true
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	add_child(attack_timer)
 	
 func add_spawn_timer() -> void:
 	spawn_timer = Timer.new()
-	spawn_timer.wait_time = SPAWN_WAIT
+	spawn_timer.wait_time = TROOP_OBJ.get("SPAWN_WAIT", -1)
 	spawn_timer.one_shot = true
 	spawn_timer.timeout.connect(_on_spawn_animation_done)
 	add_child(spawn_timer)
@@ -103,9 +92,9 @@ func take_dmg(damage: int) -> bool:
 	change_opacity()
 	if current_hp <= 0:
 		if !is_friendly:
-			game_menu.player_current_gold += GOLD_DROP
+			game_menu.player_current_gold += TROOP_OBJ.get("GOLD_DROP", -1)
 		else:
-			game_menu.get_node("NonUI/EnemyAI/").enemy_current_gold += GOLD_DROP
+			game_menu.get_node("NonUI/EnemyAI/").enemy_current_gold += TROOP_OBJ.get("GOLD_DROP", -1)
 		this_troop_is_dead()
 		return true # Unit died from the attack
 	return false
@@ -131,7 +120,7 @@ func find_target() -> void:
 	container_node = game_menu.get_node("NonUI/" + container_name)
 
 	for unit in container_node.get_children():
-		if abs(unit.position.x - position.x) <= ATTACK_RANGE and !unit.is_invincible and !unit.is_dead:
+		if abs(unit.position.x - position.x) <= TROOP_OBJ.get("ATTACK_RANGE", -1) and !unit.is_invincible and !unit.is_dead:
 			current_target = unit
 			is_hitting_base = false # Stop hitting base - prio hitting units
 			attack()
@@ -150,7 +139,7 @@ func find_target() -> void:
 		attack()
 	else:
 		if spawn_timer.is_stopped():
-			velocity.x = direction * MOVE_SPEED
+			velocity.x = direction * TROOP_OBJ.get("MOVE_SPEED", -1)
 			attack_timer.stop()
 			sprite.play("walk")
 			
@@ -163,7 +152,7 @@ func this_troop_is_dead() -> void:
 			
 # A light visual indicator of unit's HP
 func change_opacity() -> void:
-	var hp_percentage: float = current_hp / MAX_HP
+	var hp_percentage: float = current_hp / TROOP_OBJ.get("MAX_HP", -1)
 	sprite.modulate.a = lerp(0.25, 1.0, hp_percentage)
 			
 func attack() -> void:
@@ -175,7 +164,7 @@ func attack() -> void:
 # Transition from spawn to walk after spawning
 func _on_spawn_animation_done() -> void:
 	sprite.play("walk")
-	sprite.speed_scale = SPEED_SCALE
+	sprite.speed_scale = TROOP_OBJ.get("SPEED_SCALE", -1)
 	invincible_timer.start()
 	
 func _on_invincible_timeout() -> void:
@@ -185,14 +174,14 @@ func _on_attack_timer_timeout() -> void:
 	attack()
 	
 func _on_dead_sfx_timer_timeout() -> void:
-	print("Dead... " + NAME)
+	print("Dead... " + TROOP_OBJ.get("NAME", -1))
 	queue_free()
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if !is_dead and sprite.animation == "attack":
-		if current_target != null and current_target.take_dmg(ATTACK_DMG):
+		if current_target != null and current_target.take_dmg(TROOP_OBJ.get("ATTACK_DMG", -1)):
 			current_target = null
 		elif is_hitting_base:
-			game_menu.damage_base(ATTACK_DMG, is_friendly)
+			game_menu.damage_base(TROOP_OBJ.get("ATTACK_DMG", -1), is_friendly)
 		sprite.play("idle")  # Idle while waiting for next attack
 		attack_timer.start()

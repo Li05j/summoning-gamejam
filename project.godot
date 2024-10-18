@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GLOBAL_C="*res://scenes/utils/global_constants.gd"
-MONSTER_T="*res://scenes/utils/monster_troops.gd"
+T="*res://scenes/utils/troops.gd"
 
 [input]
 

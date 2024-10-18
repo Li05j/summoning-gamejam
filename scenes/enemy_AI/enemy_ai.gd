@@ -14,8 +14,11 @@ var timer_step: int # [0,100], when step > 100, AI will make a move, else, rando
 var enemy_current_gold: int = GLOBAL_C.STARTING_GOLD
 var enemy_income: int = 4
 
-var mode = AIState.CONSERVATIVE;
+var mode = AIState.CONSERVATIVE
 var mode_changes = 0
+
+var monster_troops: Dictionary = T.MONSTER_T
+var action_weights: Dictionary # dictionary of summoning chances for each troop
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -95,68 +98,56 @@ func perform_action() -> void:
 	if (timer_step < MAX_STEP):
 		return
 	
+	action_weights.clear()
 	timer_step -= MAX_STEP
-	var slime_base_chance = 100
-	var goblin_base_chance = 100
-	var giant_base_chance = 100
+
 	var do_nothing_base_chance = 100
 	
-	if enemy_current_gold < MONSTER_T.GIANT.COST:
-		giant_base_chance = 0	
-	if enemy_current_gold < MONSTER_T.GOBLIN.COST:
-		goblin_base_chance = 0
-	if enemy_current_gold < MONSTER_T.SLIME.COST:
-		slime_base_chance = 0
+	for troop in monster_troops:
+		var chance = 0
+		action_weights[troop] = 0
+		if enemy_current_gold > monster_troops[troop].get("COST", INF):
+			chance += 100
+		else:
+			continue
 		
-	match mode:
-		AIState.CONSERVATIVE:
-			do_nothing_base_chance *= 2
-			if enemy_current_gold > MONSTER_T.GIANT.COST * 3:
-				giant_base_chance *= 2
-			else:
-				giant_base_chance /= 5
-			if enemy_current_gold > MONSTER_T.GOBLIN.COST * 10:
-				goblin_base_chance *= 2
-			else:
-				goblin_base_chance /= 5
-			if enemy_current_gold > MONSTER_T.SLIME.COST * 7:
-				slime_base_chance *= 2
-			else:
-				slime_base_chance /= 5
-		AIState.BALANCED:
-			do_nothing_base_chance * 2
-			if enemy_current_gold > MONSTER_T.GIANT.COST * 2:
-				giant_base_chance *= 2
-			else:
-				giant_base_chance /= 3
-			if enemy_current_gold > MONSTER_T.GOBLIN.COST * 5:
-				goblin_base_chance *= 2
-			else:
-				goblin_base_chance /= 3
-			if enemy_current_gold > MONSTER_T.SLIME.COST * 4:
-				slime_base_chance *= 2
-			else:
-				slime_base_chance /= 3
-		AIState.AGGRESSIVE:
-			do_nothing_base_chance *= 1
-		AIState.ALLIN:
-			do_nothing_base_chance /= 2
+		match mode:
+			AIState.CONSERVATIVE:
+				do_nothing_base_chance += 30
+				if enemy_current_gold > monster_troops[troop].get("COST", INF) * 5:
+					chance *= 2
+				else:
+					chance /= 5
+			AIState.BALANCED:
+				do_nothing_base_chance += 15
+				if enemy_current_gold > monster_troops[troop].get("COST", INF) * 2.5:
+					chance *= 2
+				else:
+					chance /= 5
+		action_weights[troop] = chance
 			
 	print("performing action... mode " + str(mode))
+	
+	var total_weight = 0
+	for key in action_weights:
+		total_weight += action_weights[key]
+	
+	var rand_value = randf_range(0, total_weight + do_nothing_base_chance)
+	var cumulative_weight = 0
+	var the_chosen_one: String = ""
+	for key in action_weights:
+		cumulative_weight += action_weights[key]
+		if rand_value <= cumulative_weight:
+			the_chosen_one = key
+			break
 			
-	var total_chance = giant_base_chance + goblin_base_chance + slime_base_chance + do_nothing_base_chance
-	var random_state = randf_range(0, total_chance) # 0 to 99
-	if random_state < slime_base_chance:
-		enemy_current_gold -= MONSTER_T.SLIME.COST
-		game_menu.summon_troop(game_menu.slime_scene, false)
-	elif random_state < slime_base_chance + goblin_base_chance:
-		enemy_current_gold -= MONSTER_T.GOBLIN.COST
-		game_menu.summon_troop(game_menu.goblin_scene, false)
-	elif random_state < slime_base_chance + goblin_base_chance + giant_base_chance:
-		enemy_current_gold -= MONSTER_T.GIANT.COST
-		game_menu.summon_troop(game_menu.giant_scene, false)
-	else:
+	if the_chosen_one == "":
 		print("did nothing")
+		return
+	else:
+		enemy_current_gold -= T.MONSTER_T.get(the_chosen_one).get("COST")
+		game_menu.summon_troop(the_chosen_one, false)
+		print("summoned " + the_chosen_one + ", gold: " + str(enemy_current_gold))
 		
 func allin_step_calc(r: float) -> int:
 	var step = 10 + r * MAX_STEP
