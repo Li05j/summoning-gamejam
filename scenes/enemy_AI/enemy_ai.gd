@@ -4,7 +4,7 @@ extends Node2D
 
 enum AIState { ALLIN, AGGRESSIVE, BALANCED, CONSERVATIVE }
 
-const MAX_STEP = 100
+const MAX_STEP = 100 # Step for decision - when MAX_STEP, ai makes a new decision
 
 var game_menu
 var enemy_base_hp_bar
@@ -29,6 +29,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+# This looks ugly as fuck
 func update_ai_behavior() -> AIState:
 	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.66:
 		enemy_current_gold += 50 + mode_changes * 10
@@ -84,7 +85,7 @@ func update_ai_behavior() -> AIState:
 			allin_base_chance = 0
 		
 	var total_chance = conserve_base_chance + balanced_base_chance + aggressive_base_chance + allin_base_chance
-	var random_state = randf_range(0, total_chance) # 0 to 99
+	var random_state = randf_range(0, total_chance)
 	if random_state < conserve_base_chance:
 		return AIState.CONSERVATIVE
 	elif random_state < conserve_base_chance + balanced_base_chance:
@@ -93,6 +94,7 @@ func update_ai_behavior() -> AIState:
 		return AIState.AGGRESSIVE
 	else:
 		return AIState.ALLIN
+# The code above looks ugly as fuck
 		
 func perform_action() -> void:
 	if (timer_step < MAX_STEP):

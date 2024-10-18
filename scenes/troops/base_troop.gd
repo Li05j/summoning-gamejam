@@ -21,7 +21,6 @@ var is_dead = false
 var is_cc = false
 var is_invincible = true
 var current_hp: float
-#var current_target = null  		# Holds the current target enemy
 var is_hitting_base = false 	# If it reached the end (i.e. enemy tower)
 
 # Stuff that will change if enemy, use set_as_enemy()
@@ -215,12 +214,6 @@ func change_opacity() -> void:
 	var hp_percentage: float = current_hp / TROOP_OBJ.get("MAX_HP", -1)
 	sprite.modulate.a = lerp(0.25, 1.0, hp_percentage)
 	
-# When unit is cc'd
-func set_is_controlled() -> void:
-	is_cc = true
-	attack_timer.stop()
-	sprite.play("idle")
-	
 # Transition from spawn to walk after spawning
 func _on_spawn_animation_done() -> void:
 	sprite.play("walk")
@@ -234,10 +227,41 @@ func _on_attack_timer_timeout() -> void:
 	attack()
 	
 func _on_dead_sfx_timer_timeout() -> void:
-	queue_free()
+	self.queue_free()
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if !is_dead and sprite.animation == "attack":
 		resolve_attack()
 		sprite.play("idle")  # Idle while waiting for next attack
 		attack_timer.start()
+
+##########################################################
+##### All CC interactions #####
+##########################################################
+
+# When unit is cc'd or free of cc
+func set_cc(cc: bool) -> void:
+	if cc and TROOP_OBJ.get("CC_IMMUNE", false) == false:
+		is_cc = true
+		attack_timer.stop()
+		sprite.play("idle")
+	if !cc:
+		is_cc = false
+		
+func knockback(duration: float, fluc_bound: float) -> void:
+	set_cc(true)
+	velocity.x = -direction * TROOP_OBJ.get("MOVE_SPEED", -1)
+	
+	var fluc = randf_range(-fluc_bound, fluc_bound)
+	
+	var knockback_timer = Timer.new()
+	knockback_timer.name = "knockback_timer"
+	knockback_timer.wait_time = duration + fluc
+	knockback_timer.one_shot = true
+	knockback_timer.timeout.connect(Callable(self, "_on_cc_timeout").bind(knockback_timer.name))
+	add_child(knockback_timer)
+	knockback_timer.start()
+
+func _on_cc_timeout(timer_name: String) -> void:
+	set_cc(false)
+	get_node(timer_name).queue_free()

@@ -5,6 +5,7 @@ func _ready() -> void:
 	super()
 
 func attack_special_effects(troop) -> void:
-	#troop.set_is_controlled()
-	#troop.velocity.x = -direction * GLOBAL_C.KNOCK_BACK_SPEED
-	pass
+	# knockback duration is 1.25 - 1.75 seconds, a bit of rng
+	var knockback_duration = 1.5 # seconds
+	var fluc_bound = 0.25 # seconds
+	troop.knockback(knockback_duration, fluc_bound)
