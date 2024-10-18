@@ -17,6 +17,9 @@ var dead_sfx_timer: Timer
 var attack_friend_base_x: int
 var attack_enemy_base_x: int
 
+# The ground
+var ground_y: int
+
 var is_dead = false
 var is_cc = false
 var is_invincible = true
@@ -39,6 +42,8 @@ func _ready() -> void:
 	
 	game_menu = get_tree().root.get_node("GameMenu")
 	
+	ground_y = position.y
+	
 	deathSound.bus = "SFX"
 	deathSound.max_polyphony = 5
 	
@@ -52,6 +57,10 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if !is_dead:
+		if position.y < ground_y:
+			velocity.y += GLOBAL_C.GRAVITY_Y * delta
+		else:
+			position.y = ground_y
 		attack_if_any_target_in_range()
 		move_and_slide()
 
@@ -241,7 +250,7 @@ func _on_animated_sprite_2d_animation_looped() -> void:
 
 # When unit is cc'd or free of cc
 func set_cc(cc: bool) -> void:
-	if cc and TROOP_OBJ.get("CC_IMMUNE", false) == false:
+	if cc:
 		is_cc = true
 		attack_timer.stop()
 		sprite.play("idle")
@@ -249,13 +258,16 @@ func set_cc(cc: bool) -> void:
 		is_cc = false
 		
 func knockback(duration: float, fluc_bound: float) -> void:
-	if !spawn_timer.is_stopped(): # do not knockback when unit is still spawning
+	if !spawn_timer.is_stopped(): # do not knockback when troop is still spawning
+		return
+	if TROOP_OBJ.get("CC_IMMUNE", false) == true: # do not knockback if troop is cc immune
 		return
 	
 	set_cc(true)
-	velocity.x = -direction * TROOP_OBJ.get("MOVE_SPEED", -1)
 	
 	var fluc = randf_range(-fluc_bound, fluc_bound)
+	velocity.x = -direction * TROOP_OBJ.get("MOVE_SPEED", -1)
+	velocity.y = -GLOBAL_C.GRAVITY_Y * ((duration + fluc) / 2)
 	
 	var knockback_timer = Timer.new()
 	knockback_timer.name = "knockback_timer"
@@ -267,5 +279,6 @@ func knockback(duration: float, fluc_bound: float) -> void:
 
 func _on_cc_timeout(timer_name: String) -> void:
 	set_cc(false)
+	velocity.y = 0
 	if get_node(timer_name) and is_instance_valid(get_node(timer_name)):
 		get_node(timer_name).queue_free()
