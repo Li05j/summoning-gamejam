@@ -124,6 +124,9 @@ func perform_action() -> void:
 					chance *= 2
 				else:
 					chance /= 5
+			AIState.ALLIN:
+				chance *= 1.5
+				
 		action_weights[troop] = chance
 			
 	print("performing action... mode " + str(mode))
@@ -169,6 +172,7 @@ func _on_gold_timer_timeout() -> void:
 	enemy_current_gold += enemy_income
 
 func _on_master_timer_timeout() -> void:
+	var prev_mode = mode
 	mode = update_ai_behavior()
 	mode_changes += 1
 	if (mode_changes + 1) % 4 == 0:
@@ -177,9 +181,11 @@ func _on_master_timer_timeout() -> void:
 	if mode_changes % 6 == 0:
 		enemy_current_gold += mode_changes * 90 / 6
 
-	print("current mode " + str(mode))
+	print("###################################")
+	print("mode changed... " + str(prev_mode) + " -> " + str(mode))
 	print("current gold " + str(enemy_current_gold))
 	print("current income " + str(enemy_income))
+	print("###################################")
 
 func _on_decision_timer_timeout() -> void:
 	var r = randf_range(0, 1)

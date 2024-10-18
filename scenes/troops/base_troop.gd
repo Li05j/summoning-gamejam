@@ -18,7 +18,7 @@ var attack_enemy_base_x: int
 
 var is_dead = false
 var is_invincible = true
-var current_hp: int
+var current_hp: float
 var current_target = null  		# Holds the current target enemy
 var is_hitting_base = false 	# If it reached the end (i.e. enemy tower)
 
@@ -174,7 +174,6 @@ func _on_attack_timer_timeout() -> void:
 	attack()
 	
 func _on_dead_sfx_timer_timeout() -> void:
-	print("Dead... " + TROOP_OBJ.get("NAME", -1))
 	queue_free()
 
 func _on_animated_sprite_2d_animation_looped() -> void:
