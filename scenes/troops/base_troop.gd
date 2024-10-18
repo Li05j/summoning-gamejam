@@ -72,7 +72,7 @@ func add_spawn_timer() -> void:
 	
 func add_invincible_timer() -> void:
 	invincible_timer = Timer.new()
-	invincible_timer.wait_time = 0.5 # extra 0.5 sec invincible time
+	invincible_timer.wait_time = 1.0 # extra 1.0 sec invincible time
 	invincible_timer.one_shot = true
 	invincible_timer.timeout.connect(_on_invincible_timeout)
 	add_child(invincible_timer)
@@ -249,6 +249,9 @@ func set_cc(cc: bool) -> void:
 		is_cc = false
 		
 func knockback(duration: float, fluc_bound: float) -> void:
+	if !spawn_timer.is_stopped(): # do not knockback when unit is still spawning
+		return
+	
 	set_cc(true)
 	velocity.x = -direction * TROOP_OBJ.get("MOVE_SPEED", -1)
 	
