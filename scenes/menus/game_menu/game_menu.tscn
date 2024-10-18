@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=14 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="PackedScene" uid="uid://i8t04i3pu053" path="res://scenes/enemy_AI/enemy_AI.tscn" id="2_svb7b"]
@@ -15,9 +15,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
 bg_color = Color(0.813638, 0.524132, 0.267163, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3istf"]
-size = Vector2(52.4782, 3.07234)
 
 [node name="GameMenu" type="Control"]
 layout_mode = 3
@@ -73,12 +70,6 @@ custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_64j8a")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="VBoxScreenLayout/CommandPanel"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VBoxScreenLayout/CommandPanel/StaticBody2D"]
-position = Vector2(21.6637, 1.57779)
-shape = SubResource("RectangleShape2D_3istf")
 
 [node name="game_time" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
 position = Vector2(32.5129, 2.62238)

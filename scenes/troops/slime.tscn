@@ -291,10 +291,10 @@ animations = [{
 script = ExtResource("1_83uuv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-45, -30)
+position = Vector2(-45, -36)
 scale = Vector2(2.8375, 2.297)
 sprite_frames = SubResource("SpriteFrames_p48u5")
-animation = &"spawn"
+animation = &"walk"
 autoplay = "idle"
 
 [node name="death" type="AudioStreamPlayer" parent="."]

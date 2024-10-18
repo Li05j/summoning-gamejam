@@ -321,10 +321,10 @@ z_index = 1
 script = ExtResource("1_alw66")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-32, -30)
+position = Vector2(-32, -38)
 scale = Vector2(2.25, 2.21429)
 sprite_frames = SubResource("SpriteFrames_d4ikb")
-animation = &"spawn"
+animation = &"walk"
 autoplay = "walk"
 script = SubResource("GDScript_8mvcm")
 

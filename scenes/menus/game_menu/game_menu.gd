@@ -39,7 +39,7 @@ func _ready() -> void:
 	var ground_y = command_panel.get_global_rect().size.y
 
 	# Determining summoning position
-	var offset_y = -5
+	var offset_y = 0
 	friendly_summon_location_Vector2 = Vector2(GLOBAL_C.FRIENDLY_BASE_X, viewport_y-ground_y-offset_y)
 	enemy_summon_location_Vector2 = Vector2(GLOBAL_C.ENEMY_BASE_X, viewport_y-ground_y-offset_y)
 	

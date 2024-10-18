@@ -270,12 +270,11 @@ z_index = -1
 script = ExtResource("1_pht17")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-35, -94)
+position = Vector2(-35, -91)
 scale = Vector2(2.13108, 2.54302)
 sprite_frames = SubResource("SpriteFrames_8bhu4")
-animation = &"attack"
+animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.580784
 
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hc2b1")
