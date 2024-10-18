@@ -21,7 +21,7 @@ var attack_enemy_base_x: int
 var ground_y: int
 
 var is_dead = false
-var is_cc = false
+var is_cc = true
 var is_invincible = true
 var current_hp: float
 var is_hitting_base = false 	# If it reached the end (i.e. enemy tower)
@@ -47,6 +47,9 @@ func _ready() -> void:
 	deathSound.bus = "SFX"
 	deathSound.max_polyphony = 5
 	
+	sprite.animation_looped.connect(_on_animated_sprite_2d_animation_looped)
+	sprite.frame_changed.connect(_on_sprite_attack_frame_change)
+	
 	if !is_friendly:
 		sprite.flip_h = true # flip sprite to face left
 		target_troop_container = game_menu.get_node("NonUI/Friend_Troop_Container")
@@ -61,6 +64,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y += GLOBAL_C.GRAVITY_Y * delta
 		else:
 			position.y = ground_y
+			
 		attack_if_any_target_in_range()
 		move_and_slide()
 
@@ -162,54 +166,6 @@ func resolve_attack() -> void:
 				break
 		if !is_hitting_unit and is_hitting_base:
 			game_menu.damage_base(TROOP_OBJ.get("ATTACK_DMG", -1), is_friendly)
-	
-# This is meant to be a virtual function - override if troop has special effects
-func attack_special_effects(troop) -> void:
-	pass
-
-#func find_target() -> void:
-	#if !spawn_timer.is_stopped() or is_dead:
-		#return # don't do anything while spawning or dead
-	#
-	## Check if target is still valid (not dead yet)
-	#if current_target and is_instance_valid(current_target):
-		#if current_target.is_dead:
-			#current_target = null # target is playing its death sound
-		#return
-	#else:
-		#current_target = null
-		#
-	#var container_name;
-	#var container_node;
-	#if is_friendly:
-		#container_name = "Enemy_Troop_Container"
-	#else:
-		#container_name = "Friend_Troop_Container"
-	#container_node = game_menu.get_node("NonUI/" + container_name)
-#
-	#for unit in container_node.get_children():
-		#if abs(unit.position.x - position.x) <= TROOP_OBJ.get("ATTACK_RANGE", -1) and !unit.is_invincible and !unit.is_dead:
-			#current_target = unit
-			#is_hitting_base = false # Stop hitting base - prio hitting units
-			#attack()
-			#return # Found target, no need to continue searching
-			#
-	## If no units are in sight but the tower is
-	#if is_hitting_base:
-		#return
-#
-	## If didn't find target at all
-	#if is_friendly and position.x >= attack_enemy_base_x:
-		#is_hitting_base = true
-		#attack()
-	#elif !is_friendly and position.x <= attack_friend_base_x:
-		#is_hitting_base = true
-		#attack()
-	#else:
-		#if spawn_timer.is_stopped():
-			#velocity.x = direction * TROOP_OBJ.get("MOVE_SPEED", -1)
-			#attack_timer.stop()
-			#sprite.play("walk")
 
 func this_troop_is_dead() -> void:
 	is_dead = true
@@ -228,9 +184,14 @@ func _on_spawn_animation_done() -> void:
 	sprite.play("walk")
 	sprite.speed_scale = TROOP_OBJ.get("SPEED_SCALE", -1)
 	invincible_timer.start()
+	# TODO: free spawn timer
 	
 func _on_invincible_timeout() -> void:
+	# Currently, invincible is only on spawn, so we can unset both invincible and cc upon timeout
+	# If we can make troops invincible in other ways in the future, this needs to change
+	# Also, if this is a 1 time thing, we need to free the timer too
 	is_invincible = false
+	is_cc = false
 
 func _on_attack_timer_timeout() -> void:
 	attack()
@@ -240,9 +201,13 @@ func _on_dead_sfx_timer_timeout() -> void:
 
 func _on_animated_sprite_2d_animation_looped() -> void:
 	if !is_dead and sprite.animation == "attack":
+		sprite.play("idle")  	# Idle while waiting for next attack
+		attack_timer.start()	# Basic attack cooldown
+
+func _on_sprite_attack_frame_change() -> void:
+	# Deal damage on a specific attack animation frame
+	if !is_dead and sprite.animation == "attack" and sprite.frame == TROOP_OBJ.get("ATTACK_FRAME", 0):
 		resolve_attack()
-		sprite.play("idle")  # Idle while waiting for next attack
-		attack_timer.start()
 
 ##########################################################
 ##### All CC interactions #####
@@ -282,3 +247,10 @@ func _on_cc_timeout(timer_name: String) -> void:
 	velocity.y = 0
 	if get_node(timer_name) and is_instance_valid(get_node(timer_name)):
 		get_node(timer_name).queue_free()
+
+##########################################################
+##### Virtual Functions #####
+##########################################################
+
+func attack_special_effects(troop) -> void:
+	pass

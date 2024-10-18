@@ -301,5 +301,3 @@ frame_progress = 0.903301
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_l866f")
 bus = &"SFX"
-
-[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

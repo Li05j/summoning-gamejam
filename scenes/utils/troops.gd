@@ -6,6 +6,7 @@
 # ATTACK_DMG: int 		# Atk damage
 # ATTACK_SPD: float 	# Attack every ATTACK_SPD seconds, i.e. rate
 # ATTACK_RANGE: int 	# Attack range
+# ATTACK_FRAME: int		# The frame that attack should be resolved
 # SPAWN_WAIT: float	# Spawn animation time in seconds
 ## Animation rate - low rate means animation loop takes longer, i.e. also affects attack prep time
 # SPEED_SCALE: float
@@ -22,6 +23,7 @@ const MONSTER_T = {
 		"ATTACK_DMG": 25,
 		"ATTACK_SPD": 2.5,
 		"ATTACK_RANGE": 150,
+		"ATTACK_FRAME": 5,
 		"SPAWN_WAIT": 0.8,
 		"SPEED_SCALE": 0.75,
 		"IS_AOE": false,
@@ -37,6 +39,7 @@ const MONSTER_T = {
 		"ATTACK_DMG": 5,
 		"ATTACK_SPD": 0.5,
 		"ATTACK_RANGE": 30,
+		"ATTACK_FRAME": 6,
 		"SPAWN_WAIT": 0.8,
 		"SPEED_SCALE": 2.0,
 		"IS_AOE": false,
@@ -47,11 +50,12 @@ const MONSTER_T = {
 		"NAME": "Giant",
 		"COST": 60,
 		"GOLD_DROP": 43,
-		"MOVE_SPEED": 125,
+		"MOVE_SPEED": 25,
 		"MAX_HP": 450,
 		"ATTACK_DMG": 35,
 		"ATTACK_SPD": 3.0,
 		"ATTACK_RANGE": 75,
+		"ATTACK_FRAME": 3,
 		"SPAWN_WAIT": 2.0,
 		"SPEED_SCALE": 0.5,
 		"IS_AOE": true,
