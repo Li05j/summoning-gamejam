@@ -158,6 +158,9 @@ func resolve_attack() -> void:
 			if is_instance_valid(unit):
 				unit.take_dmg(TROOP_OBJ.get("ATTACK_DMG", -1))
 				attack_special_effects(unit)
+		# Deal damage to base regardless how many targets are in range
+		if is_hitting_base:
+			game_menu.damage_base(TROOP_OBJ.get("ATTACK_DMG", -1), is_friendly)
 	else:
 		var is_hitting_unit = false
 		for unit in target_troop_container.get_children():

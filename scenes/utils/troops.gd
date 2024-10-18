@@ -48,11 +48,11 @@ const MONSTER_T = {
 	},
 	"GIANT": {
 		"NAME": "Giant",
-		"COST": 130,
+		"COST": 120,
 		"GOLD_DROP": 43,
 		"MOVE_SPEED": 25,
 		"MAX_HP": 450,
-		"ATTACK_DMG": 35,
+		"ATTACK_DMG": 25,
 		"ATTACK_SPD": 3.0,
 		"ATTACK_RANGE": 75,
 		"ATTACK_FRAME": 3,
