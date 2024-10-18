@@ -267,4 +267,5 @@ func knockback(duration: float, fluc_bound: float) -> void:
 
 func _on_cc_timeout(timer_name: String) -> void:
 	set_cc(false)
-	get_node(timer_name).queue_free()
+	if get_node(timer_name) and is_instance_valid(get_node(timer_name)):
+		get_node(timer_name).queue_free()
