@@ -20,10 +20,13 @@ var attack_enemy_base_x: int
 # The ground
 var ground_y: int
 
+var is_spawning = true # invincible and cc immune
 var is_dead = false
-var is_cc = true
+var is_cc = false
 var is_invincible = true
+
 var current_hp: float
+
 var is_hitting_base = false 	# If it reached the end (i.e. enemy tower)
 
 # Stuff that will change if enemy, use set_as_enemy()
@@ -118,7 +121,7 @@ func take_dmg(damage: int) -> bool:
 	return false
 
 func attack_if_any_target_in_range() -> void:
-	if is_dead or is_cc or !spawn_timer.is_stopped() or sprite.animation == "attack":
+	if is_dead or is_cc or is_spawning or sprite.animation == "attack":
 		return
 		
 	if is_hitting_base:
@@ -187,11 +190,11 @@ func _on_spawn_animation_done() -> void:
 	# TODO: free spawn timer
 	
 func _on_invincible_timeout() -> void:
-	# Currently, invincible is only on spawn, so we can unset both invincible and cc upon timeout
+	# Currently, invincible is only on spawn, so we can unset both invincible and spawning
 	# If we can make troops invincible in other ways in the future, this needs to change
 	# Also, if this is a 1 time thing, we need to free the timer too
 	is_invincible = false
-	is_cc = false
+	is_spawning = false
 
 func _on_attack_timer_timeout() -> void:
 	attack()
@@ -223,7 +226,7 @@ func set_cc(cc: bool) -> void:
 		is_cc = false
 		
 func knockback(duration: float, fluc_bound: float) -> void:
-	if !spawn_timer.is_stopped(): # do not knockback when troop is still spawning
+	if is_spawning: # do not knockback when troop is still spawning
 		return
 	if TROOP_OBJ.get("CC_IMMUNE", false) == true: # do not knockback if troop is cc immune
 		return

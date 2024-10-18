@@ -275,7 +275,7 @@ scale = Vector2(2.13108, 2.54302)
 sprite_frames = SubResource("SpriteFrames_8bhu4")
 animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.21673
+frame_progress = 0.200432
 
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hc2b1")
