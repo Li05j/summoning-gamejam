@@ -1,3 +1,5 @@
+extends Node
+
 const STARTING_GOLD = 50
 
 const GOLD_MINE_COST = 75

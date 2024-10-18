@@ -19,8 +19,6 @@ var giant_scene = preload("res://scenes/troops/giant.tscn")
 
 @onready var battle_bgm = $BGM/Fight
 
-var win = null;
-
 var friendly_summon_location_Vector2: Vector2;
 var enemy_summon_location_Vector2: Vector2;
 
@@ -86,12 +84,12 @@ func summon_troop(troop: String, friend: bool):
 	
 func damage_base(dmg: int, is_troop_friend: bool) -> void:
 	if !is_troop_friend:
-		if friend_base.get_node("base_hp_bar").take_dmg(dmg) and win == null:
-			win = false
+		if friend_base.get_node("base_hp_bar").take_dmg(dmg) and GAME_STATE.win == null:
+			GAME_STATE.win = false
 			base_burn_timer.start()
 	else:
-		if enemy_base.get_node("base_hp_bar").take_dmg(dmg) and win == null:
-			win = true
+		if enemy_base.get_node("base_hp_bar").take_dmg(dmg) and GAME_STATE.win == null:
+			GAME_STATE.win = true
 			base_burn_timer.start()
 
 func r_purchase() -> void:
@@ -150,7 +148,8 @@ func _on_add_gold_timer_timeout() -> void:
 	command_panel.get_node("game_time/Label").text = "Time: " + str(time)
 	
 func _on_base_burn_timer_timeout() -> void:
-	if win:
+	GAME_STATE.final_time = time
+	if GAME_STATE.win:
 		get_tree().change_scene_to_file("res://scenes/menus/notice_menu/victory_scene.tscn")
 	else:
 		get_tree().change_scene_to_file("res://scenes/menus/notice_menu/defeat_scene.tscn")

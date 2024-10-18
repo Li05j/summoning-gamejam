@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GLOBAL_C="*res://scenes/utils/global_constants.gd"
 T="*res://scenes/utils/troops.gd"
+GAME_STATE="*res://scenes/utils/game_state.gd"
 
 [input]
 

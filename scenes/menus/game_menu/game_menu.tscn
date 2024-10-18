@@ -288,9 +288,4 @@ bus = &"BGM"
 
 [connection signal="timeout" from="VBoxScreenLayout/Battlefield/Base_Burn_Timer" to="." method="_on_base_burn_timer_timeout"]
 [connection signal="timeout" from="VBoxScreenLayout/CommandPanel/GoldTimer" to="." method="_on_add_gold_timer_timeout"]
-[connection signal="pressed" from="HBoxButtonLayout/Q_Button" to="." method="_on_key_pressed" binds= ["Summon_1"]]
-[connection signal="pressed" from="HBoxButtonLayout/W_Button" to="." method="_on_key_pressed" binds= ["Summon_2"]]
-[connection signal="pressed" from="HBoxButtonLayout/E_Button" to="." method="_on_key_pressed" binds= ["Summon_3"]]
-[connection signal="pressed" from="HBoxButtonLayout/R_Button" to="." method="_on_key_pressed" binds= ["Lab_purchase"]]
-[connection signal="pressed" from="HBoxButtonLayout/F_Button" to="." method="_on_key_pressed" binds= ["Gold_Mine_purchase"]]
 [connection signal="finished" from="BGM/Fight" to="." method="_on_fight_bgm_finished"]

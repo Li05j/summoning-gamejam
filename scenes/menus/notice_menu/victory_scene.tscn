@@ -511,6 +511,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_pmoh4")
 theme_override_font_sizes/font_size = 80
 text = "You Win!"
+horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1

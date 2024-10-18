@@ -13,6 +13,8 @@
 # IS_AOE: bool			# If basic attack is AOE
 # CC_IMMUNE: bool		# If immune to CC
 
+extends Node
+
 const MONSTER_T = {
 	"SLIME": {
 		"NAME": "Slime",
