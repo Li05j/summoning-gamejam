@@ -14,7 +14,7 @@ var timer_step: int # [0,100], when step > 100, AI will make a move, else, rando
 var enemy_current_gold: int = GLOBAL_C.STARTING_GOLD
 var enemy_income: int = 4
 
-var mode = AIState.CONSERVATIVE
+var mode = AIState.AGGRESSIVE
 var mode_changes = 0
 
 var monster_troops: Dictionary = T.MONSTER_T

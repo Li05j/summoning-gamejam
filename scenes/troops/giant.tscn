@@ -157,7 +157,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -273,9 +273,9 @@ script = ExtResource("1_pht17")
 position = Vector2(-35, -94)
 scale = Vector2(2.13108, 2.54302)
 sprite_frames = SubResource("SpriteFrames_8bhu4")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.379448
+frame_progress = 0.529294
 
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hc2b1")

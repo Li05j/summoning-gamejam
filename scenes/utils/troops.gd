@@ -22,6 +22,8 @@ const MONSTER_T = {
 		"ATTACK_RANGE": 150,
 		"SPAWN_WAIT": 0.8,
 		"SPEED_SCALE": 0.75,
+		"IS_AOE": false,
+		"DESCRIPTION": "meow",
 	},
 	"GOBLIN": { 
 		"NAME": "Goblin",
@@ -34,6 +36,8 @@ const MONSTER_T = {
 		"ATTACK_RANGE": 30,
 		"SPAWN_WAIT": 0.8,
 		"SPEED_SCALE": 2.0,
+		"IS_AOE": false,
+		"DESCRIPTION": "meow",
 	},
 	"GIANT": {
 		"NAME": "Giant",
@@ -41,10 +45,12 @@ const MONSTER_T = {
 		"GOLD_DROP": 43,
 		"MOVE_SPEED": 25,
 		"MAX_HP": 450,
-		"ATTACK_DMG": 65,
+		"ATTACK_DMG": 35,
 		"ATTACK_SPD": 3.0,
 		"ATTACK_RANGE": 75,
 		"SPAWN_WAIT": 2.0,
 		"SPEED_SCALE": 0.5,
+		"IS_AOE": true,
+		"DESCRIPTION": "meow",
 	}
 }
