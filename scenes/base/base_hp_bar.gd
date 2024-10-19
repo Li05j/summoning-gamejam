@@ -18,7 +18,7 @@ func take_dmg(dmg: int) -> bool:
 	return false
 
 func _on_auto_regen_timer_timeout() -> void:
-	if GAME_STATE.win == null:
+	if value > min_value and GAME_STATE.win == null:
 		value += 2
 		if value > max_value:
 			value = max_value

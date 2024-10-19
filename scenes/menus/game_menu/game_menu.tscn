@@ -306,6 +306,7 @@ expand_mode = 1
 
 [node name="Label" type="Label" parent="HBoxButtonLayout/R_Button"]
 modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
 offset_left = 280.0
 offset_top = -95.0
 offset_right = 509.0
@@ -334,6 +335,7 @@ expand_mode = 1
 
 [node name="Label" type="Label" parent="HBoxButtonLayout/F_Button"]
 modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
 offset_left = 280.0
 offset_top = -95.0
 offset_right = 509.0

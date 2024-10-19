@@ -193,7 +193,7 @@ func _on_master_timer_timeout() -> void:
 			enemy_income += 1
 		
 	if mode_changes % 6 == 0:
-		enemy_current_gold += 100 + mode_changes * 10
+		enemy_current_gold += 60 + mode_changes * 10
 
 	print("###################################")
 	print("mode changed... " + str(prev_mode) + " -> " + str(mode))
