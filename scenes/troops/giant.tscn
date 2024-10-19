@@ -25,13 +25,13 @@ region = Rect2(226, 231, 113, 77)
 atlas = ExtResource("3_mbjtd")
 region = Rect2(339, 231, 113, 77)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l6rkb"]
-atlas = ExtResource("3_mbjtd")
-region = Rect2(113, 154, 113, 77)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqxet"]
 atlas = ExtResource("3_mbjtd")
 region = Rect2(226, 154, 113, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6rkb"]
+atlas = ExtResource("3_mbjtd")
+region = Rect2(113, 154, 113, 77)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otr67"]
 atlas = ExtResource("3_ijols")
@@ -152,8 +152,11 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r404l")
 }, {
-"duration": 1.0,
+"duration": 1.8,
 "texture": SubResource("AtlasTexture_2bxf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3p25")
 }],
 "loop": true,
 "name": &"attack",
@@ -161,10 +164,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l6rkb")
-}, {
-"duration": 1.1,
 "texture": SubResource("AtlasTexture_wqxet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6rkb")
 }],
 "loop": true,
 "name": &"idle",
@@ -273,8 +276,9 @@ script = ExtResource("1_pht17")
 position = Vector2(-35, -92)
 scale = Vector2(2.13108, 2.54302)
 sprite_frames = SubResource("SpriteFrames_8bhu4")
-animation = &"walk"
+animation = &"attack"
 autoplay = "idle"
+frame_progress = 0.522182
 
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hc2b1")

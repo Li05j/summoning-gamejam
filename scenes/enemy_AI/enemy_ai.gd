@@ -70,17 +70,17 @@ func update_ai_behavior() -> AIState:
 		conserve_base_chance += 50
 		balanced_base_chance += 10	
 	elif enemy_base_hp_bar.value < 75:
-		balanced_base_chance += 50
-		aggressive_base_chance += 25
+		balanced_base_chance += 75
+		aggressive_base_chance += 30
 		allin_base_chance += 15
 	elif enemy_base_hp_bar.value < 50:
 		balanced_base_chance += 75
-		aggressive_base_chance += 40
-		allin_base_chance += 40
+		aggressive_base_chance += 75
+		allin_base_chance += 60
 	elif enemy_base_hp_bar.value < 25:
 		conserve_base_chance = 0
 		aggressive_base_chance += 75
-		allin_base_chance += 40
+		allin_base_chance += 100
 		
 	match mode:
 		AIState.BALANCED:
@@ -185,11 +185,15 @@ func _on_master_timer_timeout() -> void:
 	var prev_mode = mode
 	mode = update_ai_behavior()
 	mode_changes += 1
-	if (mode_changes + 1) % 4 == 0:
-		enemy_income += 1
+	if mode_changes < 18:
+		if (mode_changes + 1) % 4 == 0:
+			enemy_income += 1
+	else:
+		if mode_changes % 5 == 0:
+			enemy_income += 1
 		
 	if mode_changes % 6 == 0:
-		enemy_current_gold += mode_changes * 90 / 6
+		enemy_current_gold += 100 + mode_changes * 10
 
 	print("###################################")
 	print("mode changed... " + str(prev_mode) + " -> " + str(mode))
