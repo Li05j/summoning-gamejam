@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var master_timer = $MasterTimer
+
 # This is shit, needs overhaul for style and scalability
 
 enum AIState { ALLIN, AGGRESSIVE, BALANCED, CONSERVATIVE }
@@ -32,12 +34,16 @@ func _process(delta: float) -> void:
 # This looks ugly as fuck
 func update_ai_behavior() -> AIState:
 	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.66:
-		enemy_current_gold += 50 + mode_changes * 10
+		enemy_current_gold += 100 + mode_changes * 5
+		master_timer.stop()
+		master_timer.start()
 		return AIState.ALLIN
 		
 	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.33:
-		enemy_current_gold += 100 + mode_changes * 25
+		enemy_current_gold += 200 + mode_changes * 15
 		enemy_income += 1
+		master_timer.stop()
+		master_timer.start()
 		return AIState.ALLIN
 
 	var conserve_base_chance = 100
@@ -121,13 +127,15 @@ func perform_action() -> void:
 				else:
 					chance /= 5
 			AIState.BALANCED:
-				do_nothing_base_chance += 15
+				do_nothing_base_chance += 10
 				if enemy_current_gold > monster_troops[troop].get("COST", INF) * 2.5:
 					chance *= 2
 				else:
 					chance /= 5
+			AIState.AGGRESSIVE:
+				chance *= 1.25
 			AIState.ALLIN:
-				chance *= 1.5
+				chance *= 2.0
 				
 		action_weights[troop] = chance
 			

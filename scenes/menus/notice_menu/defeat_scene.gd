@@ -13,4 +13,5 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 
 func _on_new_game_pressed() -> void:
+	GAME_STATE.reset_game_state()
 	get_tree().change_scene_to_file("res://scenes/menus/game_menu/game_menu.tscn")

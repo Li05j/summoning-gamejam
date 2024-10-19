@@ -7,7 +7,6 @@ var game_menu
 var target_troop_container
 
 var attack_timer: Timer
-var spawn_timer: Timer
 var invincible_timer: Timer
 var dead_sfx_timer: Timer
 
@@ -23,8 +22,15 @@ var ground_y: int
 var just_summoned = true # invincible and cc immune
 var is_spawning = true
 var is_dead = false
-var is_cc = false
 var is_invincible = true
+
+##########################################################
+##### All CC variables #####
+
+var is_cc = false
+var is_knockback = false
+
+##########################################################
 
 var current_hp: float
 
@@ -80,10 +86,11 @@ func add_attack_timer() -> void:
 	add_child(attack_timer)
 	
 func add_spawn_timer() -> void:
-	spawn_timer = Timer.new()
+	var spawn_timer = Timer.new()
+	spawn_timer.name = "spawn"
 	spawn_timer.wait_time = TROOP_OBJ.get("SPAWN_WAIT", -1)
 	spawn_timer.one_shot = true
-	spawn_timer.timeout.connect(_on_spawn_animation_done)
+	spawn_timer.timeout.connect(Callable(self, "_on_spawn_animation_done").bind(spawn_timer.name))
 	add_child(spawn_timer)
 	spawn_timer.start()
 	
@@ -184,20 +191,21 @@ func change_opacity() -> void:
 	sprite.modulate.a = lerp(0.25, 1.0, hp_percentage)
 	
 # Transition from spawn to walk after spawning
-func _on_spawn_animation_done() -> void:
+func _on_spawn_animation_done(timer_name: String) -> void:
 	sprite.play("walk")
 	sprite.speed_scale = TROOP_OBJ.get("SPEED_SCALE", -1)
 	velocity.x = direction * TROOP_OBJ.get("MOVE_SPEED", -1)
 	is_spawning = false
+	if get_node(timer_name) and is_instance_valid(get_node(timer_name)):
+		get_node(timer_name).queue_free()
 	invincible_timer.start()
-	# TODO: free spawn timer
 	
 func _on_invincible_timeout() -> void:
 	# Currently, invincible is only on spawn, so we can unset both invincible and just_summoned
 	# If we can make troops invincible in other ways in the future, this needs to change
 	# Also, if this is a 1 time thing, we need to free the timer too
-	is_invincible = false
 	just_summoned = false
+	is_invincible = false
 
 #func _on_attack_timer_timeout() -> void:
 	#attack()
@@ -228,21 +236,25 @@ func set_cc(cc: bool) -> void:
 	if !cc:
 		is_cc = false
 		
-func knockback(duration: float, fluc_bound: float) -> void:
+func knockback(duration: float) -> void:
 	if just_summoned: # do not knockback when troop was just summoned
 		return
 	if TROOP_OBJ.get("CC_IMMUNE", false) == true: # do not knockback if troop is cc immune
 		return
+	if is_knockback: # do not knockback again
+		return
 	
 	set_cc(true)
+	is_knockback = true
 	
-	var fluc = randf_range(-fluc_bound, fluc_bound)
-	velocity.x = -direction * TROOP_OBJ.get("MOVE_SPEED", -1)
-	velocity.y = -GLOBAL_C.GRAVITY_Y * ((duration + fluc) / 2)
+	var move_speed = TROOP_OBJ.get("MOVE_SPEED", -1)
+	var fluc_x = randf_range(-0.2, 0.2) # 1.2 movespeed
+	velocity.x = -direction * (move_speed + move_speed * fluc_x)
+	velocity.y = -GLOBAL_C.GRAVITY_Y * (duration / 2)
 	
 	var knockback_timer = Timer.new()
-	knockback_timer.name = "knockback_timer"
-	knockback_timer.wait_time = duration + fluc
+	knockback_timer.name = "knockback"
+	knockback_timer.wait_time = duration
 	knockback_timer.one_shot = true
 	knockback_timer.timeout.connect(Callable(self, "_on_cc_timeout").bind(knockback_timer.name))
 	add_child(knockback_timer)
@@ -250,6 +262,7 @@ func knockback(duration: float, fluc_bound: float) -> void:
 
 func _on_cc_timeout(timer_name: String) -> void:
 	set_cc(false)
+	is_knockback = false
 	velocity.y = 0
 	if get_node(timer_name) and is_instance_valid(get_node(timer_name)):
 		get_node(timer_name).queue_free()
