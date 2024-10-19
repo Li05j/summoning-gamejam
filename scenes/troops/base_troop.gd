@@ -169,13 +169,17 @@ func resolve_attack() -> void:
 		if is_hitting_base:
 			game_menu.damage_base(TROOP_OBJ.get("ATTACK_DMG", -1), is_friendly)
 	else:
-		var is_hitting_unit = false
+		var target = null
+		var friend = 1 if is_friendly else -1
+		var closest_unit_x = INF
 		for unit in target_troop_container.get_children():
 			if abs(unit.position.x - position.x) <= TROOP_OBJ.get("ATTACK_RANGE", -1) and is_instance_valid(unit) and !unit.is_dead:
-				is_hitting_unit = true
-				unit.take_dmg(TROOP_OBJ.get("ATTACK_DMG", -1))
-				break
-		if !is_hitting_unit and is_hitting_base:
+				if closest_unit_x > friend * unit.position.x:
+					closest_unit_x = friend * unit.position.x
+					target = unit
+		if is_instance_valid(target):
+			target.take_dmg(TROOP_OBJ.get("ATTACK_DMG", -1))
+		elif !target and is_hitting_base:
 			game_menu.damage_base(TROOP_OBJ.get("ATTACK_DMG", -1), is_friendly)
 
 func this_troop_is_dead() -> void:
