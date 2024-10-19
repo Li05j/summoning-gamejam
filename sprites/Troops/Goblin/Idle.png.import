@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c73h6712rngmj"
-path="res://.godot/imported/pinksquare.png-a19af9921fbcabe71934548891f3eed1.ctex"
+uid="uid://b063limwrhvyo"
+path="res://.godot/imported/Idle.png-1b8145577beca9c72a3e7daa2c6fd843.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/pinksquare.png"
-dest_files=["res://.godot/imported/pinksquare.png-a19af9921fbcabe71934548891f3eed1.ctex"]
+source_file="res://sprites/Troops/Goblin/Idle.png"
+dest_files=["res://.godot/imported/Idle.png-1b8145577beca9c72a3e7daa2c6fd843.ctex"]
 
 [params]
 
