@@ -108,11 +108,11 @@ func f_purchase() -> void:
 	update_costs_text()
 	
 func update_costs_text():
-	command_panel.get_node("q_cost/Label").text = "Q Cost: " + str(q_cost)
-	command_panel.get_node("w_cost/Label").text = "W Cost: " + str(w_cost)
-	command_panel.get_node("e_cost/Label").text = "E Cost: " + str(e_cost)
-	command_panel.get_node("r_cost/Label").text = "R Cost: " + str(r_cost)
-	command_panel.get_node("f_cost/Label").text = "F Cost: " + str(f_cost)
+	command_panel.get_node("q_cost/Label").text = str(q_cost)
+	command_panel.get_node("w_cost/Label").text = str(w_cost)
+	command_panel.get_node("e_cost/Label").text = str(e_cost)
+	command_panel.get_node("r_cost/Label").text = str(r_cost)
+	command_panel.get_node("f_cost/Label").text = str(f_cost)
 	
 func update_gold_text():
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)

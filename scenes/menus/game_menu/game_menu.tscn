@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=18 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="PackedScene" uid="uid://i8t04i3pu053" path="res://scenes/enemy_AI/enemy_AI.tscn" id="2_svb7b"]
@@ -6,15 +6,25 @@
 [ext_resource type="PackedScene" uid="uid://qlvpdxknnqsp" path="res://scenes/base/base.tscn" id="3_v2rvl"]
 [ext_resource type="Texture2D" uid="uid://d1apvpyhli44c" path="res://addons/free-coin-icon-794-thumb.png" id="6_xbff3"]
 [ext_resource type="Texture2D" uid="uid://bdaoovccsps1n" path="res://sprites/Troops/Slime/Slime Portrati.png" id="7_bta4p"]
+[ext_resource type="FontFile" uid="uid://b0mws8gku83oo" path="res://Theme/FlatUI4/kenvector_future.ttf" id="7_cj857"]
 [ext_resource type="Texture2D" uid="uid://b2otnrmcof7o2" path="res://addons/pixel-art-cloud-background [photoutils.com] (2).png" id="7_tkhtq"]
 [ext_resource type="Texture2D" uid="uid://be6wedlgc7ahh" path="res://sprites/Troops/Knight/knight portrait.png" id="8_s6uwo"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://Theme/FlatUI4/kenneyUI-green.tres" id="9_ruhha"]
+[ext_resource type="FontFile" uid="uid://cf7g0o2rn05hx" path="res://addons/FlatUI4/kenvector_future.ttf" id="10_23tv2"]
 [ext_resource type="Texture2D" uid="uid://c1wcihr2i4tdn" path="res://sprites/Troops/Troll/Troll portarit.png" id="10_tou17"]
 [ext_resource type="Texture2D" uid="uid://px1owfda885e" path="res://sprites/red-up arrow.png" id="11_dpk7h"]
 [ext_resource type="AudioStream" uid="uid://u3hkr1gpgmcj" path="res://addons/fight.wav" id="17_rfoq2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
 bg_color = Color(0.813638, 0.524132, 0.267163, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gv24e"]
+font = ExtResource("7_cj857")
+font_size = 250
+
+[sub_resource type="LabelSettings" id="LabelSettings_rr7s8"]
+font = ExtResource("10_23tv2")
+font_size = 200
 
 [node name="GameMenu" type="Control"]
 layout_mode = 3
@@ -99,7 +109,7 @@ text = "Gold: 50"
 metadata/_edit_use_anchors_ = true
 
 [node name="q_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
-position = Vector2(3.23604, 4.79501)
+position = Vector2(1.43372, 4.54883)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -107,15 +117,16 @@ texture = ExtResource("6_xbff3")
 anchors_preset = -1
 anchor_top = 0.127674
 anchor_bottom = 0.127674
-offset_left = -1233.33
-offset_top = -218.877
-offset_right = 249.668
-offset_bottom = 110.123
+offset_left = 266.333
+offset_top = -197.369
+offset_right = 849.333
+offset_bottom = 131.631
 theme_override_font_sizes/font_size = 200
-text = "Q Cost"
+text = "120"
+label_settings = SubResource("LabelSettings_gv24e")
 
 [node name="w_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
-position = Vector2(6.87557, 4.79501)
+position = Vector2(5.52368, 4.54883)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -123,15 +134,16 @@ texture = ExtResource("6_xbff3")
 anchors_preset = -1
 anchor_top = 0.127674
 anchor_bottom = 0.127674
-offset_left = -1233.33
-offset_top = -218.877
-offset_right = 249.668
-offset_bottom = 110.123
+offset_left = 266.333
+offset_top = -197.369
+offset_right = 849.333
+offset_bottom = 131.631
 theme_override_font_sizes/font_size = 200
-text = "W Cost"
+text = "120"
+label_settings = SubResource("LabelSettings_gv24e")
 
 [node name="e_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
-position = Vector2(10.5496, 4.85653)
+position = Vector2(9.61377, 4.54883)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -139,15 +151,16 @@ texture = ExtResource("6_xbff3")
 anchors_preset = -1
 anchor_top = 0.127674
 anchor_bottom = 0.127674
-offset_left = -1233.33
-offset_top = -218.877
-offset_right = 249.668
-offset_bottom = 110.123
+offset_left = 266.333
+offset_top = -197.369
+offset_right = 849.333
+offset_bottom = 131.631
 theme_override_font_sizes/font_size = 200
-text = "E Cost"
+text = "120"
+label_settings = SubResource("LabelSettings_gv24e")
 
 [node name="r_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
-position = Vector2(14.1893, 4.85653)
+position = Vector2(13.6914, 4.52734)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -155,15 +168,16 @@ texture = ExtResource("6_xbff3")
 anchors_preset = -1
 anchor_top = 0.127674
 anchor_bottom = 0.127674
-offset_left = -1233.33
-offset_top = -218.877
-offset_right = 249.668
-offset_bottom = 110.123
+offset_left = 266.333
+offset_top = -197.369
+offset_right = 849.333
+offset_bottom = 131.631
 theme_override_font_sizes/font_size = 200
-text = "R Cost"
+text = "120"
+label_settings = SubResource("LabelSettings_gv24e")
 
 [node name="f_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
-position = Vector2(17.8271, 4.85645)
+position = Vector2(17.7949, 4.54883)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -171,12 +185,13 @@ texture = ExtResource("6_xbff3")
 anchors_preset = -1
 anchor_top = 0.127674
 anchor_bottom = 0.127674
-offset_left = -1233.33
-offset_top = -218.877
-offset_right = 249.67
-offset_bottom = 110.123
+offset_left = 266.333
+offset_top = -197.369
+offset_right = 849.333
+offset_bottom = 131.631
 theme_override_font_sizes/font_size = 200
-text = "F Cost"
+text = "120"
+label_settings = SubResource("LabelSettings_gv24e")
 
 [node name="GoldTimer" type="Timer" parent="VBoxScreenLayout/CommandPanel"]
 autostart = true
@@ -185,10 +200,10 @@ autostart = true
 layout_mode = 0
 offset_left = 23.0
 offset_top = 567.0
-offset_right = 1948.0
+offset_right = 2673.0
 offset_bottom = 802.0
 scale = Vector2(0.2, 0.2)
-theme_override_constants/separation = 175
+theme_override_constants/separation = 240
 
 [node name="Q_Button" type="Button" parent="HBoxButtonLayout"]
 custom_minimum_size = Vector2(350, 225)
@@ -207,6 +222,16 @@ offset_right = 275.0
 offset_bottom = 185.0
 texture = ExtResource("7_bta4p")
 
+[node name="Label" type="Label" parent="HBoxButtonLayout/Q_Button"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
+offset_left = 280.0
+offset_top = -95.0
+offset_right = 509.0
+offset_bottom = 215.0
+text = "Q"
+label_settings = SubResource("LabelSettings_rr7s8")
+
 [node name="W_Button" type="Button" parent="HBoxButtonLayout"]
 custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
@@ -222,6 +247,16 @@ offset_left = 40.0
 offset_right = 325.0
 offset_bottom = 220.0
 texture = ExtResource("8_s6uwo")
+
+[node name="Label" type="Label" parent="HBoxButtonLayout/W_Button"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
+offset_left = 280.0
+offset_top = -95.0
+offset_right = 509.0
+offset_bottom = 215.0
+text = "W"
+label_settings = SubResource("LabelSettings_rr7s8")
 
 [node name="E_Button" type="Button" parent="HBoxButtonLayout"]
 custom_minimum_size = Vector2(350, 225)
@@ -239,6 +274,16 @@ offset_top = 15.0
 offset_right = 290.0
 offset_bottom = 205.0
 texture = ExtResource("10_tou17")
+
+[node name="Label" type="Label" parent="HBoxButtonLayout/E_Button"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
+offset_left = 280.0
+offset_top = -95.0
+offset_right = 509.0
+offset_bottom = 215.0
+text = "E"
+label_settings = SubResource("LabelSettings_rr7s8")
 
 [node name="R_Button" type="Button" parent="HBoxButtonLayout"]
 custom_minimum_size = Vector2(350, 225)
@@ -259,6 +304,15 @@ offset_bottom = 195.0
 texture = ExtResource("11_dpk7h")
 expand_mode = 1
 
+[node name="Label" type="Label" parent="HBoxButtonLayout/R_Button"]
+modulate = Color(1, 1, 1, 0.392157)
+offset_left = 280.0
+offset_top = -95.0
+offset_right = 509.0
+offset_bottom = 215.0
+text = "R"
+label_settings = SubResource("LabelSettings_rr7s8")
+
 [node name="F_Button" type="Button" parent="HBoxButtonLayout"]
 custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
@@ -278,6 +332,15 @@ offset_bottom = 195.0
 texture = ExtResource("11_dpk7h")
 expand_mode = 1
 
+[node name="Label" type="Label" parent="HBoxButtonLayout/F_Button"]
+modulate = Color(1, 1, 1, 0.392157)
+offset_left = 280.0
+offset_top = -95.0
+offset_right = 509.0
+offset_bottom = 215.0
+text = "F"
+label_settings = SubResource("LabelSettings_rr7s8")
+
 [node name="BGM" type="Node" parent="."]
 
 [node name="Fight" type="AudioStreamPlayer" parent="BGM"]
@@ -288,4 +351,9 @@ bus = &"BGM"
 
 [connection signal="timeout" from="VBoxScreenLayout/Battlefield/Base_Burn_Timer" to="." method="_on_base_burn_timer_timeout"]
 [connection signal="timeout" from="VBoxScreenLayout/CommandPanel/GoldTimer" to="." method="_on_add_gold_timer_timeout"]
+[connection signal="pressed" from="HBoxButtonLayout/Q_Button" to="." method="_on_key_pressed" binds= ["Summon_1"]]
+[connection signal="pressed" from="HBoxButtonLayout/W_Button" to="." method="_on_key_pressed" binds= ["Summon_2"]]
+[connection signal="pressed" from="HBoxButtonLayout/E_Button" to="." method="_on_key_pressed" binds= ["Summon_3"]]
+[connection signal="pressed" from="HBoxButtonLayout/R_Button" to="." method="_on_key_pressed" binds= ["Lab_purchase"]]
+[connection signal="pressed" from="HBoxButtonLayout/F_Button" to="." method="_on_key_pressed" binds= ["Gold_Mine_purchase"]]
 [connection signal="finished" from="BGM/Fight" to="." method="_on_fight_bgm_finished"]
