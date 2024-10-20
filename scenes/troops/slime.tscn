@@ -295,7 +295,7 @@ scale = Vector2(2.8375, 2.297)
 sprite_frames = SubResource("SpriteFrames_p48u5")
 animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.345847
+frame_progress = 0.574052
 
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_l866f")

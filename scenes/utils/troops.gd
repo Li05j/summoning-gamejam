@@ -15,6 +15,7 @@
 	# PARABOLA:						# If projectile is a parabola, false means a straight line 
 	# RATE:							# If parabola, defines how high it goes; if straight line then speed
 	# Y_OFFSET:						# Where the projectile will shoot above ground
+	# RANGE_MOD						# How much farther (multiplier) the projectile will last over the default range
 # IS_AOE: bool						# If basic attack is AOE
 # CC_IMMUNE: bool					# If immune to CC
 
@@ -52,8 +53,9 @@ const MONSTER_T = {
 		"SPEED_SCALE": 1.0,
 		"PROJECTILE": {
 			"PARABOLA": true,
-			"RATE": 2,
+			"RATE": 2.0,
 			"Y_OFFSET": 25,
+			"RANGE_MOD": 1.0
 		},
 		"IS_AOE": false,
 		"CC_IMMUNE": false,
@@ -63,18 +65,19 @@ const MONSTER_T = {
 		"NAME": "Fireworm",
 		"COST": 100,
 		"GOLD_DROP": 33,
-		"MOVE_SPEED": 75,
+		"MOVE_SPEED": 80,
 		"MAX_HP": 165,
-		"ATTACK_DMG": 15,
+		"ATTACK_DMG": 10,
 		"ATTACK_SPD": 3,
-		"ATTACK_RANGE": 75,
+		"ATTACK_RANGE": 150,
 		"ATTACK_FRAME": 10,
-		"SPAWN_WAIT": 1.5,
+		"SPAWN_WAIT": 0.8,
 		"SPEED_SCALE": 1.0,
 		"PROJECTILE": {
 			"PARABOLA": false,
-			"RATE": 2,
+			"RATE": 0.8,
 			"Y_OFFSET": 25,
+			"RANGE_MOD": 2.0
 		},
 		"IS_AOE": true,
 		"CC_IMMUNE": false,

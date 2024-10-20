@@ -2,9 +2,12 @@ extends Area2D
 
 class_name PROJECTILE
 
+@onready var sprite = $AnimatedSprite2D
+
 var is_friendly = true # default friendly projectile
 var direction = 1 # right
 var rate_wrt_range = 1.0
+var real_range: int = 0
 var velocity: Vector2
 
 var is_parabola = false
@@ -16,6 +19,8 @@ var parent
 func _ready() -> void:
 	game_menu = get_tree().root.get_node("GameMenu")
 	parent = get_parent()
+	real_range = parent.TROOP_OBJ.get("ATTACK_RANGE")
+	body_entered.connect(_on_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if is_parabola:
@@ -25,28 +30,32 @@ func _physics_process(delta: float) -> void:
 		else:
 			queue_free()
 	else:
-		if position.x > parent.TROOP_OBJ.get("ATTACK_RANGE"):
+		position += velocity * delta
+		if (is_friendly and position.x > real_range) or (!is_friendly and position.x < -real_range):
 			queue_free()
 
-func init(y_offset: int, parabola: bool = true, rate: float = 1.0, friendly: bool = true) -> void:
+func init(y_offset: int, range_mod: float = 1.0, parabola: bool = true, rate: float = 1.0, friendly: bool = true) -> void:
 	if !friendly:
 		is_friendly = false
 		direction = -1
+		sprite.flip_h = true
 		
+	real_range *= range_mod
 	rate_wrt_range = rate
 	
 	if parabola:
 		is_parabola = true
-		velocity = Vector2(parent.TROOP_OBJ.get("ATTACK_RANGE") / (rate * 2), -GLOBAL_C.GRAVITY_Y * rate)
+		velocity = Vector2(real_range / rate, -GLOBAL_C.GRAVITY_Y * rate)
 	else:
 		is_parabola = false
-		velocity = Vector2(parent.TROOP_OBJ.get("ATTACK_RANGE") / (rate * 2), 0)
+		velocity = Vector2(real_range * rate, 0)
 		
 	velocity.x *= direction
 	position.y -= y_offset # lifting up from the ground
 
 func resolve_contact() -> void:
-	queue_free()
+	if !parent.TROOP_OBJ.get("IS_AOE"):
+		queue_free()
 	
 func _on_body_entered(body):
 	var layer = body.collision_layer

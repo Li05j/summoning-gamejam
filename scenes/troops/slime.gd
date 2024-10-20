@@ -11,8 +11,10 @@ func shoot_projectile():
 	add_child(projectile_instance)
 	var projectile_obj = TROOP_OBJ.get("PROJECTILE", null)
 	if projectile_obj:
-		projectile_instance.init(projectile_obj.get("Y_OFFSET"), 
-			projectile_obj.get("RATE"), 
-			projectile_obj.get("PARABOLA"), 
+		projectile_instance.init(
+			projectile_obj.get("Y_OFFSET"),
+			projectile_obj.get("RANGE_MOD"),
+			projectile_obj.get("PARABOLA"),
+			projectile_obj.get("RATE"),
 			is_friendly
 		)

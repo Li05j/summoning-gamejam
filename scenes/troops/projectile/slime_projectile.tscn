@@ -1,13 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cdl4ym3neqnp6"]
 
 [ext_resource type="Texture2D" uid="uid://cegru882cyngf" path="res://sprites/Troops/Slime/bolt1_strip.png" id="1_cqv47"]
-
-[sub_resource type="GDScript" id="GDScript_6jdpk"]
-script/source = "extends \"./base_projectile.gd\"
-
-func _ready() -> void:
-	super()
-"
+[ext_resource type="Script" path="res://scenes/troops/projectile/slime_projectile.gd" id="1_uqfc5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ofhk4"]
 atlas = ExtResource("1_cqv47")
@@ -29,11 +23,6 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 2.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"on_hit",
-"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_worov"]
@@ -42,16 +31,13 @@ radius = 40.0125
 [node name="SlimeProjectile" type="Area2D"]
 collision_layer = 2
 collision_mask = 9
-script = SubResource("GDScript_6jdpk")
+script = ExtResource("1_uqfc5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hioyv")
-animation = &"on_hit"
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = -0.0173931
 scale = Vector2(0.2, 0.2)
 shape = SubResource("CircleShape2D_worov")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -378,6 +378,7 @@ label_settings = SubResource("LabelSettings_rr7s8")
 
 [node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/K_Button"]
 self_modulate = Color(1, 0.854902, 0.219608, 1)
+layout_mode = 0
 offset_left = 90.0
 offset_top = 15.0
 offset_right = 275.0

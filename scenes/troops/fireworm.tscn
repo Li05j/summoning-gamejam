@@ -1,10 +1,11 @@
-[gd_scene load_steps=62 format=3 uid="uid://1gehg7k4pgk"]
+[gd_scene load_steps=63 format=3 uid="uid://1gehg7k4pgk"]
 
 [ext_resource type="Texture2D" uid="uid://rw1xu5e1p3it" path="res://sprites/Gravity-Sheet.png" id="1_e7eyb"]
 [ext_resource type="Texture2D" uid="uid://cwhi85qque04n" path="res://sprites/Troops/Fireworm/Attack.png" id="1_jrvmh"]
 [ext_resource type="Script" path="res://scenes/troops/fireworm.gd" id="1_ujjdo"]
 [ext_resource type="Texture2D" uid="uid://sjdbqsilh5ub" path="res://sprites/Troops/Fireworm/Idle.png" id="2_7cn6y"]
 [ext_resource type="Texture2D" uid="uid://bvx7lphkjncym" path="res://sprites/Troops/Fireworm/Walk.png" id="4_m8f0p"]
+[ext_resource type="AudioStream" uid="uid://bfbmcwuw1ayh8" path="res://addons/fireworm_death.mp3" id="6_2x2wb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_owisg"]
 atlas = ExtResource("1_jrvmh")
@@ -408,14 +409,14 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6cc4"]
-size = Vector2(19, 30.5)
+size = Vector2(31.375, 44.1255)
 
 [node name="Fireworm" type="CharacterBody2D"]
 script = ExtResource("1_ujjdo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -16)
-scale = Vector2(1.11458, 1)
+position = Vector2(0, -21)
+scale = Vector2(1.83976, 1.65063)
 sprite_frames = SubResource("SpriteFrames_tiif1")
 animation = &"attack"
 autoplay = "spawn"
@@ -423,5 +424,9 @@ frame = 15
 frame_progress = 0.523025
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(9.5, -14.75)
+position = Vector2(0, -22.937)
 shape = SubResource("RectangleShape2D_f6cc4")
+
+[node name="death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_2x2wb")
+bus = &"SFX"

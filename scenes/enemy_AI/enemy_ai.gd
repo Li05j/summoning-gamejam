@@ -34,13 +34,13 @@ func _process(delta: float) -> void:
 # This looks ugly as fuck
 func update_ai_behavior() -> AIState:
 	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.66:
-		enemy_current_gold += 100 + mode_changes * 5
+		enemy_current_gold += 60 + mode_changes * 5
 		master_timer.stop()
 		master_timer.start()
 		return AIState.ALLIN
 		
 	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.33:
-		enemy_current_gold += 200 + mode_changes * 10
+		enemy_current_gold += 120 + mode_changes * 10
 		enemy_income += 1
 		master_timer.stop()
 		master_timer.start()
@@ -185,12 +185,12 @@ func _on_master_timer_timeout() -> void:
 	var prev_mode = mode
 	mode = update_ai_behavior()
 	mode_changes += 1
-	if mode_changes < 26:
-		if mode_changes % 5 == 0:
+	if mode_changes < 25:
+		if (mode_changes - 1) % 6 == 0:
 			enemy_current_gold += 50 + mode_changes * 2
 			enemy_income += 1
 	else:
-		if mode_changes % 6 == 0:
+		if mode_changes % 9 == 0:
 			enemy_current_gold += 50 + mode_changes * 3
 			enemy_income += 1
 

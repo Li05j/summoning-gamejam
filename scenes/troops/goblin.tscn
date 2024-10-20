@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://l1d7j0v1wxmd" path="res://sprites/Troops/Goblin/Attack.png" id="2_xr82h"]
 [ext_resource type="Texture2D" uid="uid://b063limwrhvyo" path="res://sprites/Troops/Goblin/Idle.png" id="3_7y2kk"]
 [ext_resource type="Texture2D" uid="uid://rw1xu5e1p3it" path="res://sprites/Gravity-Sheet.png" id="3_uchjt"]
-[ext_resource type="AudioStream" uid="uid://dfsyxopf442b2" path="res://addons/24. Death Groan (Male).wav" id="5_4eaew"]
+[ext_resource type="AudioStream" uid="uid://dmscqcgxkik5l" path="res://addons/goblin_death.mp3" id="6_6k5n3"]
 [ext_resource type="Texture2D" uid="uid://q3s2qml0px7g" path="res://sprites/Troops/Goblin/Run.png" id="6_yst77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7v4s"]
@@ -327,9 +327,9 @@ scale = Vector2(2.25, 2.21429)
 sprite_frames = SubResource("SpriteFrames_d4ikb")
 animation = &"walk"
 autoplay = "spawn"
-frame_progress = 0.771597
+frame_progress = 0.968676
 
 [node name="death" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_4eaew")
+stream = ExtResource("6_6k5n3")
 volume_db = -8.0
 bus = &"SFX"
