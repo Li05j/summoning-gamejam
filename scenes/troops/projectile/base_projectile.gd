@@ -15,7 +15,7 @@ var is_parabola = false
 var game_menu
 var parent
 
-# Called when the node enters the scene tree for the first time.
+# TODO: Need to let projectile live after unit death
 func _ready() -> void:
 	game_menu = get_tree().root.get_node("GameMenu")
 	parent = get_parent()
@@ -70,6 +70,7 @@ func _on_body_entered(body):
 	
 	# if troop
 	elif layer == 1:
+		# TODO: do nothing on spawn
 		if body.is_friendly == parent.is_friendly or body.is_dead: # do nothing
 			return
 		

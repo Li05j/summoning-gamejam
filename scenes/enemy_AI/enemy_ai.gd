@@ -18,6 +18,7 @@ var enemy_income: int = 4
 
 var mode = AIState.AGGRESSIVE
 var mode_changes = 0
+var rage = 0 # Rages at 66% AND 33%
 
 var monster_troops: Dictionary = T.MONSTER_T
 var action_weights: Dictionary # dictionary of summoning chances for each troop
@@ -33,13 +34,15 @@ func _process(delta: float) -> void:
 	
 # This looks ugly as fuck
 func update_ai_behavior() -> AIState:
-	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.66:
+	if rage < 1 and mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.66:
+		rage += 1
 		enemy_current_gold += 60 + mode_changes * 5
 		master_timer.stop()
 		master_timer.start()
 		return AIState.ALLIN
 		
-	if mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.33:
+	if rage < 2 and mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.33:
+		rage += 1
 		enemy_current_gold += 120 + mode_changes * 10
 		enemy_income += 1
 		master_timer.stop()

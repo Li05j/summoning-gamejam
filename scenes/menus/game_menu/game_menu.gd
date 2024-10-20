@@ -36,7 +36,7 @@ var r_cost: int = T.MONSTER_T.get("GIANT").get("COST")
 var j_cost: int = GLOBAL_C.LAB_COST
 var k_cost: int = GLOBAL_C.GOLD_MINE_COST
 
-# Called when the node enters the scene tree for the first time.
+# TODO: Add pause menu with retry, and also a more comprehensive help menu. Also refactor victory/defeat scene if I feel like it.
 func _ready() -> void:
 	# TODO: Should make an array of buttons/troops etc., so I can just iterate
 	# Makes things easier and more abstracted, automatic
