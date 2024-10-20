@@ -310,7 +310,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [node name="Goblin" type="CharacterBody2D"]
@@ -327,7 +327,7 @@ scale = Vector2(2.25, 2.21429)
 sprite_frames = SubResource("SpriteFrames_d4ikb")
 animation = &"walk"
 autoplay = "spawn"
-frame_progress = 0.591497
+frame_progress = 0.771597
 
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_4eaew")

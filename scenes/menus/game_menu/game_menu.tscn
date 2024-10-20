@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bsrgy47skt0dq"]
+[gd_scene load_steps=19 format=3 uid="uid://bsrgy47skt0dq"]
 
 [ext_resource type="Script" path="res://scenes/menus/game_menu/game_menu.gd" id="1_moilo"]
 [ext_resource type="PackedScene" uid="uid://i8t04i3pu053" path="res://scenes/enemy_AI/enemy_AI.tscn" id="2_svb7b"]
@@ -11,8 +11,9 @@
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://Theme/FlatUI4/kenneyUI-green.tres" id="9_ruhha"]
 [ext_resource type="FontFile" uid="uid://cf7g0o2rn05hx" path="res://addons/FlatUI4/kenvector_future.ttf" id="10_23tv2"]
 [ext_resource type="Texture2D" uid="uid://c1wcihr2i4tdn" path="res://sprites/Troops/Troll/Troll portarit.png" id="10_tou17"]
-[ext_resource type="Texture2D" uid="uid://px1owfda885e" path="res://sprites/red-up arrow.png" id="11_dpk7h"]
 [ext_resource type="Texture2D" uid="uid://dtdoxa1pck4mq" path="res://sprites/Troops/Goblin/goblin.png" id="11_x8dly"]
+[ext_resource type="Texture2D" uid="uid://cej1nshcbpd3d" path="res://sprites/Troops/Fireworm/fireworm.png" id="12_k6fw6"]
+[ext_resource type="Texture2D" uid="uid://ivug05bpqtn7" path="res://sprites/arrowup.png" id="14_oba3j"]
 [ext_resource type="AudioStream" uid="uid://u3hkr1gpgmcj" path="res://addons/fight.wav" id="17_rfoq2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
@@ -160,7 +161,7 @@ text = "120"
 label_settings = SubResource("LabelSettings_gv24e")
 
 [node name="r_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
-position = Vector2(13.6914, 4.52734)
+position = Vector2(13.6567, 4.52734)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
@@ -176,12 +177,29 @@ theme_override_font_sizes/font_size = 200
 text = "120"
 label_settings = SubResource("LabelSettings_gv24e")
 
-[node name="f_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
+[node name="j_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
 position = Vector2(17.7949, 4.54883)
 scale = Vector2(0.00207972, 0.00280198)
 texture = ExtResource("6_xbff3")
 
-[node name="Label" type="Label" parent="VBoxScreenLayout/CommandPanel/f_cost"]
+[node name="Label" type="Label" parent="VBoxScreenLayout/CommandPanel/j_cost"]
+anchors_preset = -1
+anchor_top = 0.127674
+anchor_bottom = 0.127674
+offset_left = 266.333
+offset_top = -197.369
+offset_right = 849.333
+offset_bottom = 131.631
+theme_override_font_sizes/font_size = 200
+text = "120"
+label_settings = SubResource("LabelSettings_gv24e")
+
+[node name="k_cost" type="Sprite2D" parent="VBoxScreenLayout/CommandPanel"]
+position = Vector2(21.8506, 4.54883)
+scale = Vector2(0.00207972, 0.00280198)
+texture = ExtResource("6_xbff3")
+
+[node name="Label" type="Label" parent="VBoxScreenLayout/CommandPanel/k_cost"]
 anchors_preset = -1
 anchor_top = 0.127674
 anchor_bottom = 0.127674
@@ -212,15 +230,14 @@ size_flags_vertical = 0
 theme = ExtResource("9_ruhha")
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 80
-text = "Q"
 
 [node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/Q_Button"]
 layout_mode = 0
-offset_left = 50.0
-offset_top = -75.0
-offset_right = 275.0
-offset_bottom = 185.0
-texture = ExtResource("7_bta4p")
+offset_left = 40.0
+offset_top = -25.0
+offset_right = 325.0
+offset_bottom = 235.0
+texture = ExtResource("11_x8dly")
 
 [node name="Label" type="Label" parent="HBoxButtonLayout/Q_Button"]
 modulate = Color(1, 1, 1, 0.392157)
@@ -239,14 +256,14 @@ size_flags_vertical = 0
 theme = ExtResource("9_ruhha")
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
-text = "W"
 
 [node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/W_Button"]
 layout_mode = 0
-offset_left = 40.0
+offset_left = 35.0
+offset_top = -60.0
 offset_right = 325.0
-offset_bottom = 220.0
-texture = ExtResource("11_x8dly")
+offset_bottom = 175.0
+texture = ExtResource("7_bta4p")
 
 [node name="Label" type="Label" parent="HBoxButtonLayout/W_Button"]
 modulate = Color(1, 1, 1, 0.392157)
@@ -265,15 +282,15 @@ size_flags_vertical = 0
 theme = ExtResource("9_ruhha")
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 80
-text = "E"
 
 [node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/E_Button"]
 layout_mode = 0
-offset_left = 45.0
-offset_top = 15.0
-offset_right = 290.0
+offset_left = 10.0
+offset_top = -10.0
+offset_right = 320.0
 offset_bottom = 205.0
-texture = ExtResource("10_tou17")
+texture = ExtResource("12_k6fw6")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="HBoxButtonLayout/E_Button"]
 modulate = Color(1, 1, 1, 0.392157)
@@ -290,19 +307,16 @@ custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("9_ruhha")
-theme_override_colors/font_color = Color(0.277656, 0.499023, 1, 1)
 theme_override_constants/outline_size = 1
-theme_override_font_sizes/font_size = 150
-text = "⬆️"
+theme_override_font_sizes/font_size = 80
 
 [node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/R_Button"]
 layout_mode = 0
-offset_left = 120.0
+offset_left = 45.0
 offset_top = 15.0
-offset_right = 240.0
-offset_bottom = 195.0
-texture = ExtResource("11_dpk7h")
-expand_mode = 1
+offset_right = 290.0
+offset_bottom = 205.0
+texture = ExtResource("10_tou17")
 
 [node name="Label" type="Label" parent="HBoxButtonLayout/R_Button"]
 modulate = Color(1, 1, 1, 0.392157)
@@ -314,7 +328,7 @@ offset_bottom = 215.0
 text = "R"
 label_settings = SubResource("LabelSettings_rr7s8")
 
-[node name="F_Button" type="Button" parent="HBoxButtonLayout"]
+[node name="J_Button" type="Button" parent="HBoxButtonLayout"]
 custom_minimum_size = Vector2(350, 225)
 layout_mode = 2
 size_flags_vertical = 0
@@ -322,26 +336,54 @@ theme = ExtResource("9_ruhha")
 theme_override_colors/font_color = Color(0.277656, 0.499023, 1, 1)
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 150
-text = "⬆️"
 
-[node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/F_Button"]
+[node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/J_Button"]
+self_modulate = Color(0.482353, 0.631373, 1, 1)
 layout_mode = 0
-offset_left = 120.0
+offset_left = 90.0
 offset_top = 15.0
-offset_right = 240.0
+offset_right = 275.0
 offset_bottom = 195.0
-texture = ExtResource("11_dpk7h")
+texture = ExtResource("14_oba3j")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="HBoxButtonLayout/F_Button"]
+[node name="Label" type="Label" parent="HBoxButtonLayout/J_Button"]
 modulate = Color(1, 1, 1, 0.392157)
 layout_mode = 0
 offset_left = 280.0
 offset_top = -95.0
 offset_right = 509.0
 offset_bottom = 215.0
-text = "F"
+text = "J"
 label_settings = SubResource("LabelSettings_rr7s8")
+
+[node name="K_Button" type="Button" parent="HBoxButtonLayout"]
+custom_minimum_size = Vector2(350, 225)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("9_ruhha")
+theme_override_colors/font_color = Color(0.277656, 0.499023, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 150
+
+[node name="Label" type="Label" parent="HBoxButtonLayout/K_Button"]
+modulate = Color(1, 1, 1, 0.392157)
+layout_mode = 0
+offset_left = 280.0
+offset_top = -95.0
+offset_right = 509.0
+offset_bottom = 215.0
+text = "K"
+label_settings = SubResource("LabelSettings_rr7s8")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxButtonLayout/K_Button"]
+self_modulate = Color(1, 0.854902, 0.219608, 1)
+offset_left = 90.0
+offset_top = 15.0
+offset_right = 275.0
+offset_bottom = 195.0
+texture = ExtResource("14_oba3j")
+expand_mode = 1
 
 [node name="BGM" type="Node" parent="."]
 
@@ -356,6 +398,7 @@ bus = &"BGM"
 [connection signal="pressed" from="HBoxButtonLayout/Q_Button" to="." method="_on_key_pressed" binds= ["Summon_1"]]
 [connection signal="pressed" from="HBoxButtonLayout/W_Button" to="." method="_on_key_pressed" binds= ["Summon_2"]]
 [connection signal="pressed" from="HBoxButtonLayout/E_Button" to="." method="_on_key_pressed" binds= ["Summon_3"]]
-[connection signal="pressed" from="HBoxButtonLayout/R_Button" to="." method="_on_key_pressed" binds= ["Lab_purchase"]]
-[connection signal="pressed" from="HBoxButtonLayout/F_Button" to="." method="_on_key_pressed" binds= ["Gold_Mine_purchase"]]
+[connection signal="pressed" from="HBoxButtonLayout/R_Button" to="." method="_on_key_pressed" binds= ["Summon_4"]]
+[connection signal="pressed" from="HBoxButtonLayout/J_Button" to="." method="_on_key_pressed" binds= ["Lab_purchase"]]
+[connection signal="pressed" from="HBoxButtonLayout/K_Button" to="." method="_on_key_pressed" binds= ["Gold_Mine_purchase"]]
 [connection signal="finished" from="BGM/Fight" to="." method="_on_fight_bgm_finished"]

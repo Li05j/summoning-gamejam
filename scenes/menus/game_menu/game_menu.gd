@@ -2,6 +2,7 @@ extends Control
 
 var slime_scene = preload("res://scenes/troops/slime.tscn") # Preload slime scene
 var goblin_scene = preload("res://scenes/troops/goblin.tscn")
+var fireworm_scene = preload("res://scenes/troops/fireworm.tscn")
 var giant_scene = preload("res://scenes/troops/giant.tscn")
 
 @onready var friend_base = $VBoxScreenLayout/Battlefield/Friend_Base
@@ -12,7 +13,8 @@ var giant_scene = preload("res://scenes/troops/giant.tscn")
 @onready var W_Button = $HBoxButtonLayout/W_Button
 @onready var E_Button = $HBoxButtonLayout/E_Button
 @onready var R_Button = $HBoxButtonLayout/R_Button
-@onready var F_Button = $HBoxButtonLayout/F_Button
+@onready var J_Button = $HBoxButtonLayout/J_Button
+@onready var K_Button = $HBoxButtonLayout/K_Button
 
 @onready var battlefield = $VBoxScreenLayout/Battlefield
 @onready var command_panel = $VBoxScreenLayout/CommandPanel
@@ -25,14 +27,19 @@ var enemy_summon_location_Vector2: Vector2;
 var time: int = 0
 var player_current_gold: int = GLOBAL_C.STARTING_GOLD;
 var gold_step: int = 5
-var q_cost: int = T.MONSTER_T.get("SLIME").get("COST")
-var w_cost: int = T.MONSTER_T.get("GOBLIN").get("COST")
-var e_cost: int = T.MONSTER_T.get("GIANT").get("COST")
-var r_cost: int = GLOBAL_C.LAB_COST
-var f_cost: int = GLOBAL_C.GOLD_MINE_COST
+
+var q_cost: int = T.MONSTER_T.get("GOBLIN").get("COST")
+var w_cost: int = T.MONSTER_T.get("SLIME").get("COST")
+var e_cost: int = T.MONSTER_T.get("FIREWORM").get("COST")
+var r_cost: int = T.MONSTER_T.get("GIANT").get("COST")
+
+var j_cost: int = GLOBAL_C.LAB_COST
+var k_cost: int = GLOBAL_C.GOLD_MINE_COST
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# TODO: Should make an array of buttons/troops etc., so I can just iterate
+	# Makes things easier and more abstracted, automatic
 	var viewport_y = get_viewport_rect().size.y
 	var ground_y = command_panel.get_global_rect().size.y
 
@@ -53,6 +60,9 @@ func _process(delta: float) -> void:
 		_on_key_pressed("Summon_2")
 	if Input.is_action_just_pressed("Summon_3"): 
 		_on_key_pressed("Summon_3")
+	if Input.is_action_just_pressed("Summon_4"): 
+		_on_key_pressed("Summon_4")
+		
 	if Input.is_action_just_pressed("Lab_purchase"): 
 		_on_key_pressed("Lab_purchase")
 	if Input.is_action_just_pressed("Gold_Mine_purchase"): 
@@ -61,15 +71,19 @@ func _process(delta: float) -> void:
 	W_Button.disabled = player_current_gold < w_cost
 	E_Button.disabled = player_current_gold < e_cost
 	R_Button.disabled = player_current_gold < r_cost
-	F_Button.disabled = player_current_gold < f_cost
+	
+	J_Button.disabled = player_current_gold < j_cost
+	K_Button.disabled = player_current_gold < k_cost
 	
 func summon_troop(troop: String, friend: bool):
 	var troop_instance;
 	match troop:
-		"SLIME":
-			troop_instance = slime_scene.instantiate()
 		"GOBLIN":
 			troop_instance = goblin_scene.instantiate()
+		"SLIME":
+			troop_instance = slime_scene.instantiate()
+		"FIREWORM":
+			troop_instance = fireworm_scene.instantiate()
 		"GIANT":
 			troop_instance = giant_scene.instantiate()
 		_:
@@ -92,19 +106,21 @@ func damage_base(dmg: int, is_troop_friend: bool) -> void:
 			GAME_STATE.win = true
 			base_burn_timer.start()
 
-func r_purchase() -> void:
-	player_current_gold -= r_cost
+func discount_purchase() -> void:
+	player_current_gold -= j_cost
 	q_cost = max(1, floor(q_cost * GLOBAL_C.LAB_DISCOUNT_RATE))
 	w_cost = max(1, floor(w_cost * GLOBAL_C.LAB_DISCOUNT_RATE))
 	e_cost = max(1, floor(e_cost * GLOBAL_C.LAB_DISCOUNT_RATE))
-	r_cost = floor(r_cost * GLOBAL_C.LAB_COST_INCREASE_RATE)
-	f_cost = floor(f_cost * GLOBAL_C.LAB_DISCOUNT_RATE)
+	r_cost = max(1, floor(r_cost * GLOBAL_C.LAB_DISCOUNT_RATE))
+	
+	j_cost = floor(j_cost * GLOBAL_C.LAB_COST_INCREASE_RATE)
+	k_cost = floor(k_cost * GLOBAL_C.LAB_DISCOUNT_RATE)
 	update_costs_text()
 	
-func f_purchase() -> void:
-	player_current_gold -= f_cost
+func passive_income_purchase() -> void:
+	player_current_gold -= k_cost
 	gold_step += 1
-	f_cost = floor(f_cost * GLOBAL_C.GOLD_MINE_COST_INCREASE_RATE)
+	k_cost = floor(k_cost * GLOBAL_C.GOLD_MINE_COST_INCREASE_RATE)
 	update_costs_text()
 	
 func update_costs_text():
@@ -112,7 +128,8 @@ func update_costs_text():
 	command_panel.get_node("w_cost/Label").text = str(w_cost)
 	command_panel.get_node("e_cost/Label").text = str(e_cost)
 	command_panel.get_node("r_cost/Label").text = str(r_cost)
-	command_panel.get_node("f_cost/Label").text = str(f_cost)
+	command_panel.get_node("j_cost/Label").text = str(j_cost)
+	command_panel.get_node("k_cost/Label").text = str(k_cost)
 	
 func update_gold_text():
 	command_panel.get_node("total_gold/Label").text = "Gold: " + str(player_current_gold)
@@ -122,21 +139,25 @@ func _on_key_pressed(key: String) -> void:
 		"Summon_1":
 			if player_current_gold >= q_cost:
 				player_current_gold -= q_cost
-				summon_troop("SLIME", true)
+				summon_troop("GOBLIN", true)
 		"Summon_2":
 			if player_current_gold >= w_cost:
 				player_current_gold -= w_cost
-				summon_troop("GOBLIN", true)
+				summon_troop("SLIME", true)
 		"Summon_3":
 			if player_current_gold >= e_cost:
 				player_current_gold -= e_cost
+				summon_troop("FIREWORM", true)
+		"Summon_4":
+			if player_current_gold >= r_cost:
+				player_current_gold -= r_cost
 				summon_troop("GIANT", true)
 		"Lab_purchase":
-			if player_current_gold >= r_cost:
-				r_purchase()
+			if player_current_gold >= j_cost:
+				discount_purchase()
 		"Gold_Mine_purchase":
-			if player_current_gold >= f_cost:
-				f_purchase()
+			if player_current_gold >= k_cost:
+				passive_income_purchase()
 		_:
 			return
 	update_gold_text()

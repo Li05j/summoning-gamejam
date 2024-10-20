@@ -23,10 +23,10 @@ func _physics_process(delta: float) -> void:
 		if position.y < 0:
 			velocity.y += GLOBAL_C.GRAVITY_Y * delta * rate_wrt_range
 		else:
-			free_projectile()
+			queue_free()
 	else:
 		if position.x > parent.TROOP_OBJ.get("ATTACK_RANGE"):
-			free_projectile()
+			queue_free()
 
 func init(y_offset: int, parabola: bool = true, rate: float = 1.0, friendly: bool = true) -> void:
 	if !friendly:
@@ -45,7 +45,7 @@ func init(y_offset: int, parabola: bool = true, rate: float = 1.0, friendly: boo
 	velocity.x *= direction
 	position.y -= y_offset # lifting up from the ground
 
-func free_projectile() -> void:
+func resolve_contact() -> void:
 	queue_free()
 	
 func _on_body_entered(body):
@@ -55,7 +55,7 @@ func _on_body_entered(body):
 	if layer == 8: 
 		if parent.is_hitting_base:
 			game_menu.damage_base(parent.TROOP_OBJ.get("ATTACK_DMG", -1), is_friendly)
-			free_projectile()
+			resolve_contact()
 		else:
 			return
 	
@@ -74,4 +74,4 @@ func _on_body_entered(body):
 		for child in target_troop_container.get_children():
 			if body == child:
 				body.take_dmg(parent.TROOP_OBJ.get("ATTACK_DMG", -1))
-				free_projectile()
+				resolve_contact()
