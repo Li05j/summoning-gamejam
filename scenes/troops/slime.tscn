@@ -1,10 +1,13 @@
-[gd_scene load_steps=43 format=3 uid="uid://b1wfuw1csc2s"]
+[gd_scene load_steps=44 format=3 uid="uid://b1wfuw1csc2s"]
 
 [ext_resource type="Script" path="res://scenes/troops/slime.gd" id="1_83uuv"]
 [ext_resource type="Texture2D" uid="uid://ccrhwn1w5ihtm" path="res://sprites/Troops/Slime/Slime_Attack.png" id="2_gc7gl"]
 [ext_resource type="Texture2D" uid="uid://rw1xu5e1p3it" path="res://sprites/Gravity-Sheet.png" id="3_epeo5"]
 [ext_resource type="Texture2D" uid="uid://5ebcm0fvqsng" path="res://sprites/Troops/Slime/Slime_Walk.png" id="3_g3dd1"]
 [ext_resource type="AudioStream" uid="uid://d13o12ly0tnn3" path="res://addons/slime-squish-5-218569.mp3" id="5_l866f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xhns6"]
+size = Vector2(17.9736, 12.1734)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yjo84"]
 atlas = ExtResource("2_gc7gl")
@@ -187,7 +190,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 2.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -290,13 +293,18 @@ animations = [{
 [node name="Slime" type="CharacterBody2D"]
 script = ExtResource("1_83uuv")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15.019)
+scale = Vector2(2.8375, 2.297)
+shape = SubResource("RectangleShape2D_xhns6")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-45, -36)
+position = Vector2(0, -37)
 scale = Vector2(2.8375, 2.297)
 sprite_frames = SubResource("SpriteFrames_p48u5")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.237421
+frame_progress = 0.21142
 
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_l866f")

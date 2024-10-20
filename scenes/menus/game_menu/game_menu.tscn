@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://bdaoovccsps1n" path="res://sprites/Troops/Slime/Slime Portrati.png" id="7_bta4p"]
 [ext_resource type="FontFile" uid="uid://b0mws8gku83oo" path="res://Theme/FlatUI4/kenvector_future.ttf" id="7_cj857"]
 [ext_resource type="Texture2D" uid="uid://b2otnrmcof7o2" path="res://addons/pixel-art-cloud-background [photoutils.com] (2).png" id="7_tkhtq"]
-[ext_resource type="Texture2D" uid="uid://be6wedlgc7ahh" path="res://sprites/Troops/Knight/knight portrait.png" id="8_s6uwo"]
 [ext_resource type="Theme" uid="uid://bnhngmri4tfgr" path="res://Theme/FlatUI4/kenneyUI-green.tres" id="9_ruhha"]
 [ext_resource type="FontFile" uid="uid://cf7g0o2rn05hx" path="res://addons/FlatUI4/kenvector_future.ttf" id="10_23tv2"]
 [ext_resource type="Texture2D" uid="uid://c1wcihr2i4tdn" path="res://sprites/Troops/Troll/Troll portarit.png" id="10_tou17"]
 [ext_resource type="Texture2D" uid="uid://px1owfda885e" path="res://sprites/red-up arrow.png" id="11_dpk7h"]
+[ext_resource type="Texture2D" uid="uid://dtdoxa1pck4mq" path="res://sprites/Troops/Goblin/goblin.png" id="11_x8dly"]
 [ext_resource type="AudioStream" uid="uid://u3hkr1gpgmcj" path="res://addons/fight.wav" id="17_rfoq2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64j8a"]
@@ -246,7 +246,7 @@ layout_mode = 0
 offset_left = 40.0
 offset_right = 325.0
 offset_bottom = 220.0
-texture = ExtResource("8_s6uwo")
+texture = ExtResource("11_x8dly")
 
 [node name="Label" type="Label" parent="HBoxButtonLayout/W_Button"]
 modulate = Color(1, 1, 1, 0.392157)

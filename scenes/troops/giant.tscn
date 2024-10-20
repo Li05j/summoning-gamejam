@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dvaiy58cn1gbg"]
+[gd_scene load_steps=40 format=3 uid="uid://dvaiy58cn1gbg"]
 
 [ext_resource type="Script" path="res://scenes/troops/giant.gd" id="1_pht17"]
 [ext_resource type="Texture2D" uid="uid://rw1xu5e1p3it" path="res://sprites/Gravity-Sheet.png" id="3_ijols"]
@@ -268,17 +268,23 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubcbp"]
+size = Vector2(53.375, 116.875)
+
 [node name="Giant" type="CharacterBody2D"]
 z_index = -1
 script = ExtResource("1_pht17")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-35, -92)
+position = Vector2(0, -92)
 scale = Vector2(2.13108, 2.54302)
 sprite_frames = SubResource("SpriteFrames_8bhu4")
 animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.990088
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -59.5625)
+shape = SubResource("RectangleShape2D_ubcbp")
 
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hc2b1")

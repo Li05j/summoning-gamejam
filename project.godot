@@ -49,6 +49,13 @@ Gold_Mine_purchase={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Troops"
+2d_physics/layer_2="Projectiles that collide"
+2d_physics/layer_3="Objects that don't collide"
+2d_physics/layer_4="Buildings"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

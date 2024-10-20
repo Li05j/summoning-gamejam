@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name TROOP
+
 @onready var sprite = $AnimatedSprite2D
 @onready var deathSound = $death
 
@@ -59,6 +61,9 @@ func _ready() -> void:
 	
 	sprite.animation_looped.connect(_on_animated_sprite_2d_animation_looped)
 	sprite.frame_changed.connect(_on_sprite_attack_frame_change)
+	
+	collision_layer = 1
+	collision_mask = 2
 	
 	if !is_friendly:
 		sprite.flip_h = true # flip sprite to face left
@@ -140,7 +145,7 @@ func attack_if_any_target_in_range() -> void:
 		is_hitting_base = false
 			
 	for unit in target_troop_container.get_children():
-		if abs(unit.position.x - position.x) <= TROOP_OBJ.get("ATTACK_RANGE", -1) and is_instance_valid(unit) and !unit.is_dead:
+		if abs(unit.global_position.x - global_position.x) <= TROOP_OBJ.get("ATTACK_RANGE", -1) and is_instance_valid(unit) and !unit.is_dead:
 			attack()
 			return # There exist a target in range, start attack animation
 			
@@ -156,10 +161,15 @@ func attack() -> void:
 			sprite.play("attack")
 
 func resolve_attack() -> void:
+	if TROOP_OBJ.get("PROJECTILE") is not bool:
+		shoot_projectile()
+		return
+		
+	# If troop does not shoot projectile ...
 	if TROOP_OBJ.get("IS_AOE", false) == true:
 		var targets: Array = [];
 		for unit in target_troop_container.get_children():
-			if abs(unit.position.x - position.x) <= TROOP_OBJ.get("ATTACK_RANGE", -1) and !unit.is_dead:
+			if abs(unit.global_position.x - global_position.x) <= TROOP_OBJ.get("ATTACK_RANGE", -1) and !unit.is_dead:
 				targets.append(unit)
 		for unit in targets:
 			if is_instance_valid(unit):
@@ -173,9 +183,9 @@ func resolve_attack() -> void:
 		var friend = 1 if is_friendly else -1
 		var closest_unit_x = INF
 		for unit in target_troop_container.get_children():
-			if abs(unit.position.x - position.x) <= TROOP_OBJ.get("ATTACK_RANGE", -1) and is_instance_valid(unit) and !unit.is_dead:
-				if closest_unit_x > friend * unit.position.x:
-					closest_unit_x = friend * unit.position.x
+			if abs(unit.global_position.x - global_position.x) <= TROOP_OBJ.get("ATTACK_RANGE", -1) and is_instance_valid(unit) and !unit.is_dead:
+				if closest_unit_x > friend * unit.global_position.x:
+					closest_unit_x = friend * unit.global_position.x
 					target = unit
 		if is_instance_valid(target):
 			target.take_dmg(TROOP_OBJ.get("ATTACK_DMG", -1))
@@ -276,4 +286,7 @@ func _on_cc_timeout(timer_name: String) -> void:
 ##########################################################
 
 func attack_special_effects(troop) -> void:
+	pass
+
+func shoot_projectile() -> void:
 	pass
