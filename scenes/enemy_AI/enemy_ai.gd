@@ -30,25 +30,23 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-	
-# This looks ugly as fuck
-func update_ai_behavior() -> AIState:
-	if rage < 1 and mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.66:
+	if rage < 1 and mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.70:
 		rage += 1
-		enemy_current_gold += 60 + mode_changes * 5
+		enemy_current_gold += 75 + mode_changes * 5
 		master_timer.stop()
 		master_timer.start()
-		return AIState.ALLIN
+		mode = AIState.AGGRESSIVE
 		
-	if rage < 2 and mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.33:
+	elif rage < 2 and mode != AIState.ALLIN and enemy_base_hp_bar.get_as_ratio() < 0.40:
 		rage += 1
-		enemy_current_gold += 120 + mode_changes * 10
+		enemy_current_gold += 150 + mode_changes * 10
 		enemy_income += 1
 		master_timer.stop()
 		master_timer.start()
-		return AIState.ALLIN
-
+		mode = AIState.ALLIN
+	
+# This looks ugly as fuck
+func update_ai_behavior() -> AIState:
 	var conserve_base_chance = 100
 	var balanced_base_chance = 100
 	var aggressive_base_chance = 75
@@ -188,13 +186,13 @@ func _on_master_timer_timeout() -> void:
 	var prev_mode = mode
 	mode = update_ai_behavior()
 	mode_changes += 1
-	if mode_changes < 25:
-		if (mode_changes - 1) % 6 == 0:
-			enemy_current_gold += 50 + mode_changes * 2
+	if mode_changes < 23:
+		if mode_changes % 4 == 0:
+			enemy_current_gold += 35 + mode_changes * 5
 			enemy_income += 1
 	else:
-		if mode_changes % 9 == 0:
-			enemy_current_gold += 50 + mode_changes * 3
+		if mode_changes % 6 == 0:
+			enemy_current_gold += 55 + mode_changes * 10
 			enemy_income += 1
 
 	print("###################################")

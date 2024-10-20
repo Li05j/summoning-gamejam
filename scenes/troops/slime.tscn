@@ -170,7 +170,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -293,9 +293,8 @@ shape = SubResource("RectangleShape2D_xhns6")
 position = Vector2(0, -37)
 scale = Vector2(2.8375, 2.297)
 sprite_frames = SubResource("SpriteFrames_p48u5")
-animation = &"walk"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.574052
 
 [node name="death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_l866f")

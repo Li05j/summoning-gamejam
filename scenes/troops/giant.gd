@@ -5,5 +5,5 @@ func _ready() -> void:
 	super()
 
 func attack_special_effects(troop) -> void:
-	var knockback_duration = 1.5 # seconds
+	var knockback_duration = 1.0 # seconds
 	troop.knockback(knockback_duration)

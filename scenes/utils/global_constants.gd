@@ -2,9 +2,9 @@ extends Node
 
 const STARTING_GOLD = 50
 
-const GOLD_MINE_COST = 75
+const GOLD_MINE_COST = 65
 const GOLD_MINE_COST_INCREASE_RATE = 1.15
-const LAB_COST = 50
+const LAB_COST = 65
 const LAB_DISCOUNT_RATE = 0.95
 const LAB_COST_INCREASE_RATE = 1.15
 

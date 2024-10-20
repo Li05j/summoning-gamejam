@@ -11,6 +11,7 @@ var real_range: int = 0
 var velocity: Vector2
 
 var is_parabola = false
+var lock = false # lock projectile from doing damage once collision if aoe = false, prevent single target projectile dealing dmg more than once
 
 var game_menu
 var parent
@@ -57,12 +58,20 @@ func resolve_contact() -> void:
 	if !parent.TROOP_OBJ.get("IS_AOE"):
 		queue_free()
 	
+# TODO: Make an aoe and single target projectile because this code is trash
 func _on_body_entered(body):
+	if !parent.TROOP_OBJ.get("IS_AOE") and lock:
+		return
+	
 	var layer = body.collision_layer
 	
 	# if building
 	if layer == 8: 
 		if parent.is_hitting_base:
+			if !parent.TROOP_OBJ.get("IS_AOE") and !lock:
+				lock = true
+			elif lock:
+				return
 			game_menu.damage_base(parent.TROOP_OBJ.get("ATTACK_DMG", -1), is_friendly)
 			resolve_contact()
 		else:
@@ -70,8 +79,7 @@ func _on_body_entered(body):
 	
 	# if troop
 	elif layer == 1:
-		# TODO: do nothing on spawn
-		if body.is_friendly == parent.is_friendly or body.is_dead: # do nothing
+		if body.is_friendly == parent.is_friendly or body.just_summoned or body.is_dead: # do nothing
 			return
 		
 		var target_troop_container
@@ -83,5 +91,9 @@ func _on_body_entered(body):
 		# TODO: Apparently we can use groups for this?
 		for child in target_troop_container.get_children():
 			if body == child:
+				if !parent.TROOP_OBJ.get("IS_AOE") and !lock:
+					lock = true
+				elif lock:
+					return
 				body.take_dmg(parent.TROOP_OBJ.get("ATTACK_DMG", -1))
 				resolve_contact()

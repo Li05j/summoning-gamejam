@@ -313,7 +313,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cihnc"]
-size = Vector2(19, 89)
+size = Vector2(4, 86)
 
 [node name="Base" type="StaticBody2D"]
 collision_layer = 8
@@ -339,7 +339,7 @@ sprite_frames = SubResource("SpriteFrames_8h876")
 animation = &"friend_base"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -44.5)
+position = Vector2(0, -43)
 shape = SubResource("RectangleShape2D_cihnc")
 
 [connection signal="timeout" from="base_hp_bar/auto_regen_timer" to="base_hp_bar" method="_on_auto_regen_timer_timeout"]
